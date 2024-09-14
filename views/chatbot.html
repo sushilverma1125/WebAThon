@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>TechXpert | Chatbot</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #1a1a1a; /* Dark background */
+      margin: 0; /* Remove default margin */
+    }
+
+    #chat-container {
+      background-color: #333; /* Darker container background */
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5); /* Increased shadow */
+      width: 100vh;
+      height: fit-content;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #fff; /* White text */
+      font-size: 30px;
+    }
+
+    #chat-history {
+      height: 300px;
+      overflow-y: scroll;
+      scrollbar-width: thin; /* Custom scrollbar for Firefox */
+    }
+
+    .user-message {
+      text-align: right;
+      padding: 10px;
+      background-color: #555; /* Darker message background */
+      border-radius: 10px;
+      margin-bottom: 5px;
+      color: #fff; /* White text */
+    }
+
+    .bot-message {
+      text-align: left;
+      padding: 10px;
+      background-color: #444; /* Dark message background */
+      border-radius: 10px;
+      margin-bottom: 5px;
+      color: #fff; /* White text */
+    }
+
+    form {
+      display: flex;
+    }
+
+    input {
+      flex-grow: 1;
+      margin-right: 10px;
+      padding: 10px;
+      border: 1px solid #666; /* Darker border */
+      border-radius: 5px;
+      background-color: #555; /* Darker input background */
+      color: #fff; /* White text */
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #loader {
+      display: none;
+      /* Hide by default */
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #chat-header {
+    background-color: #4CAF50;
+    padding: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.back2home {
+            justify-content: left;
+            position: absolute;  
+            top: 20px;
+            left: 20px;          
+        }
+  </style>
+</head>
+
+<body>
+  <div id="chat-container">
+    <!-- <h1>TechXpert Chatbot</h1> -->
+    <div id="chat-header">
+      <div class="back2home"><a href="../../main.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-house-door" viewBox="0 0 16 16">
+            <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"/>
+          </svg></a>
+       </div>
+      <h1>TechXpert Chatbot</h1>
+    </div>
+    <br>
+    <div id="chat-history"></div>
+    <br>
+    <form id="chat-form">
+      <input type="text" id="user-input" placeholder="Enter your message" autocomplete="off">
+      <button type="submit">Send</button>
+    </form>
+  </div>
+  <div id="loader">
+    <img src="/public/images/loader.gif" width="150px" alt="Loading...">
+  </div>
+  <script>
+    const chatHistory = document.getElementById('chat-history');
+    const userInput = document.getElementById('user-input');
+    const form = document.getElementById('chat-form');
+
+    async function sendMessage() {
+      const userMessage = userInput.value;
+      userInput.value = ''; // Clear input field
+      console.log(userMessage)
+      try {
+        const response = await fetch('/chatbot', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ userInput: userMessage }),
+        });
+
+        const data = await response.json();
+        console.log(data)
+        const botMessage = data.response;
+        console.log(botMessage)
+        // Add chat message to the chat history
+        chatHistory.innerHTML += `<div class="user-message">${userMessage}</div>`;
+        chatHistory.innerHTML += `<div class="bot-message">${botMessage}</div>`;
+
+        // Scroll to the bottom of the chat history
+        chatHistory.scrollTop = chatHistory.scrollHeight;
+      } catch (error) {
+        console.error('Error:', error);
+        // Handle errors gracefully, e.g., display an error message to the user
+      }
+    }
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault(); // Prevent form submission
+      const loader = document.getElementById('loader');
+      loader.style.display = 'block'; // Show the loader
+      sendMessage().finally(() => {
+        loader.style.display = 'none'; // Hide the loader after the message is sent
+      });;
+    });
+  </script>
+</body>
+
+</html>

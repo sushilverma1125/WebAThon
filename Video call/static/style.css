@@ -1,0 +1,79 @@
+body {
+    background-image:url("vcfimage.webp");
+    /* overflow:auto; */
+}
+
+
+.typewriter {
+    font-size: 1rem;
+    white-space: nowrap;
+    overflow: auto;
+    border-right: 0.15em solid black;
+    position: absolute;
+    top: 6vh;
+    left: 10vh;
+    color:black;
+}
+#typewrite{
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight:1000;   
+    font-style: normal;
+    font-size: 45px;
+}
+
+.cursor {
+    font-weight: bold;
+    animation: blink 0.7s steps(2) infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+#card{
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight:1000;   
+    font-style: normal;
+    font-size: 18px;
+}
+
+
+h2{
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-weight:1000;
+  font-style: normal;
+  font-size: 30px;
+}
+
+#register{
+    font-size: larger;
+}
+#root {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* Remove the outline from the video embed */
+        #root video {
+            outline: none;
+        }
+
+        /* Style the "Back to Dashboard" button */
+        .back-to-dashboard {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+        }
+
+        .back-to-dashboard button {
+            padding: 10px 20px;
+            background-color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }

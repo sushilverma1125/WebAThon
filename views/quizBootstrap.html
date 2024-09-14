@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Bootstrap Quiz</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="../../css/quiz.css" media="screen, print" />
+    <link rel="stylesheet" href="../../css/cheatsheet.css" media="screen, print" />
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+		.poppins-regular {
+	  font-family: "Poppins", sans-serif;
+	  font-weight: 400;
+	  font-style: normal;
+	}
+	</style>
+</head>
+
+<body style="--container: min(95%, 1780px);">
+
+	<div class="tutorial-content" id="mainContent">
+        <center><h1 class="poppins-regular" style="font-size: xx-large;"><strong>Bootstrap Quiz</strong></h1></center>
+		<hr />
+
+		<div class="QA">
+			<div class="Q" id="Q4">
+				<p><span>Q 1</span> - Which of the following is correct about Bootstrap Grid System?</p>
+				<p><a class="false" href="javascript:void(0);"><span>A</span> - Rows must be placed within a .container
+						class for proper alignment and padding.</a></p>
+				<p><a class="false" href="javascript:void(0);"><span>B</span> - Use rows to create horizontal groups of
+						columns.</a></p>
+				<p><a class="false" href="javascript:void(0);"><span>C</span> - Content should be placed within the
+						columns, and only columns may be the immediate children of rows.</a></p>
+				<p><a class="true" href="javascript:void(0);"><span>D</span> - All of the above.</a></p>
+			</div>
+			<div class="A" id="A4">
+				<h3>Answer : D</h3>
+				<h3>Explanation</h3>
+				<p>All of the above options are correct.</p>
+			</div>
+			<div class="B">
+				<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('4')"><i
+						class="icon  icon-sort"></i> <span>Show Answer</span></button>
+			</div>
+		</div>
+		<div class="QA">
+			<div class="Q" id="Q14">
+				<p><span>Q 2</span> - Which of the following class styles a table with a light gray background to rows
+					while the cursor hovers over them?</p>
+				<p><a class="false" href="javascript:void(0);"><span>A</span> - .table</a></p>
+				<p><a class="false" href="javascript:void(0);"><span>B</span> - .table-striped</a></p>
+				<p><a class="false" href="javascript:void(0);"><span>C</span> - .table-bordered</a></p>
+				<p><a class="true" href="javascript:void(0);"><span>D</span> - .table-hover</a></p>
+			</div>
+			<div class="A" id="A14">
+				<h3>Answer : D</h3>
+				<h3>Explanation</h3>
+				<p>By adding the .table-hover class, a light gray background will be added to rows while the cursor
+					hovers over them.</p>
+			</div>
+			<div class="B">
+				<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('14')"><i
+						class="icon  icon-sort"></i> <span>Show Answer</span></button>
+			</div>
+		</div>
+		<div class="QA">
+			<div class="Q" id="Q25">
+				<p><span>Q 3</span> - Which of the following bootstrap style of button provides extra visual weight and
+					identifies the primary action in a set of buttons?</p>
+				<p><a class="false" href="javascript:void(0);"><span>A</span> - .btn</a></p>
+				<p><a class="true" href="javascript:void(0);"><span>B</span> - .btn-primary</a></p>
+				<p><a class="false" href="javascript:void(0);"><span>C</span> - .btn-success</a></p>
+				<p><a class="false" href="javascript:void(0);"><span>D</span> - .btn-info</a></p>
+			</div>
+			<div class="A" id="A25">
+				<h3>Answer : B</h3>
+				<h3>Explanation</h3>
+				<p>.btn-primary &minus; Provides extra visual weight and identifies the primary action in a set of
+					buttons.</p>
+			</div>
+			<div class="B">
+				<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('25')"><i
+						class="icon  icon-sort"></i> <span>Show Answer</span></button>
+			</div>
+		</div>
+		<div class="QA">
+			<div class="Q" id="Q34">
+				<p><span>Q 4</span> - Which of the following bootstrap style of button creates block level buttons that
+					span the full width of a parent?</p>
+				<p><a class="false" href="javascript:void(0);"><span>A</span> - .btn-lg</a></p>
+				<p><a class="false" href="javascript:void(0);"><span>B</span> - .btn-sm</a></p>
+				<p><a class="false" href="javascript:void(0);"><span>C</span> - .btn-xs</a></p>
+				<p><a class="true" href="javascript:void(0);"><span>D</span> - .btn-block</a></p>
+			</div>
+			<div class="A" id="A34">
+				<h3>Answer : D</h3>
+				<h3>Explanation</h3>
+				<p>.btn-block &minus; This creates block level buttons that span the full width of a parent.</p>
+			</div>
+			<div class="B">
+				<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('34')"><i
+						class="icon  icon-sort"></i> <span>Show Answer</span></button>
+			</div>
+		</div>
+		<div class="QA">
+			<div class="Q" id="Q42">
+				<p><span>Q 5</span> - Which of the following bootstrap styles are used to create a tabbed navigation?
+				</p>
+				<p><a class="true" href="javascript:void(0);"><span>A</span> - .nav, .nav-tabs</a></p>
+				<p><a class="false" href="javascript:void(0);"><span>B</span> - .nav, .nav-pills</a></p>
+				<p><a class="false" href="javascript:void(0);"><span>C</span> - .nav, .nav-pills, .nav-stacked</a></p>
+				<p><a class="false" href="javascript:void(0);"><span>D</span> - .nav, .nav-tabs, .nav-justified</a></p>
+			</div>
+			<div class="A" id="A42">
+				<h3>Answer : A</h3>
+				<h3>Explanation</h3>
+				<p>To create a tabbed navigation .menu: Start with a basic unordered list with the base class of .nav
+					and add class .nav-tabs.</p>
+			</div>
+			<div class="B">
+				<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('42')"><i
+						class="icon  icon-sort"></i> <span>Show Answer</span></button>
+			</div>
+		</div>
+		<div class="QA">
+			<div class="Q" id="Q54">
+				<p><span>Q 6</span> - Which of the following bootstrap style is to be used if you want to create a
+					.navbar that scrolls with the page?</p>
+				<p><a class="true" href="javascript:void(0);"><span>A</span> - .navbar-static-top</a></p>
+				<p><a class="false" href="javascript:void(0);"><span>B</span> - .navbar-fixed</a></p>
+				<p><a class="false" href="javascript:void(0);"><span>C</span> - .navbar-fixed-top</a></p>
+				<p><a class="false" href="javascript:void(0);"><span>D</span> - None of the above.</a></p>
+			</div>
+			<div class="A" id="A54">
+				<h3>Answer : A</h3>
+				<h3>Explanation</h3>
+				<p>To create a .navbar that scrolls with the page, add the ..navbar-static-top class. This class does
+					not require adding the padding to the &lt;body&gt;.</p>
+			</div>
+			<div class="B">
+				<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('54')"><i
+						class="icon  icon-sort"></i> <span>Show Answer</span></button>
+			</div>
+		</div>
+		<div class="QA">
+			<div class="Q" id="Q70">
+				<p><span>Q 7</span> - Which of the following is correct about bootstrap media objects?</p>
+				<p><a class="false" href="javascript:void(0);"><span>A</span> - These are abstract object styles for
+						building various types of components (like blog comments, Tweets, etc.) that feature a
+						left-aligned or right-aligned image alongside the textual content.</a></p>
+				<p><a class="false" href="javascript:void(0);"><span>B</span> - The goal of the media object is to make
+						the code for developing these blocks of information drastically shorter.</a></p>
+				<p><a class="true" href="javascript:void(0);"><span>C</span> - Both of the above.</a></p>
+				<p><a class="false" href="javascript:void(0);"><span>D</span> - None of the above.</a></p>
+			</div>
+			<div class="A" id="A70">
+				<h3>Answer : C</h3>
+				<h3>Explanation</h3>
+				<p>Both of the above options are correct.</p>
+			</div>
+			<div class="B">
+				<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('70')"><i
+						class="icon  icon-sort"></i> <span>Show Answer</span></button>
+			</div>
+		</div>
+		<div class="QA">
+			<div class="Q" id="Q75">
+				<p><span>Q 8</span> - <i>Which of the following is correct about bootstrap wells?</i></p>
+				<p><a class="false" href="javascript:void(0);"><span>A</span> - A well is a container in &lt;div&gt;
+						that causes the content to appear sunken or an inset effect on the page.</a></p>
+				<p><a class="false" href="javascript:void(0);"><span>B</span> - To create a well, simply wrap the
+						content that you would like to appear in the well with a &lt;div&gt; containing the class of
+						.well.</a></p>
+				<p><a class="true" href="javascript:void(0);"><span>C</span> - Both of the above.</a></p>
+				<p><a class="false" href="javascript:void(0);"><span>D</span> - None of the above.</a></p>
+			</div>
+			<div class="A" id="A75">
+				<h3>Answer : C</h3>
+				<h3>Explanation</h3>
+				<p>Both of the above options are correct.</p>
+			</div>
+			<div class="B">
+				<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('75')"><i
+						class="icon  icon-sort"></i> <span>Show Answer</span></button>
+			</div>
+		</div>
+		<div class="QA">
+			<div class="Q" id="Q85">
+				<p><span>Q 9</span> - Which of the following is correct about Tab Plugin?</p>
+				<p><a class="false" href="javascript:void(0);"><span>A</span> - You can toggle the Tab plugin's hidden
+						content via data attributes.</a></p>
+				<p><a class="false" href="javascript:void(0);"><span>B</span> - You can toggle the Tab plugin's hidden
+						content via javascript.</a></p>
+				<p><a class="true" href="javascript:void(0);"><span>C</span> - Both of the above.</a></p>
+				<p><a class="false" href="javascript:void(0);"><span>D</span> - None of the above.</a></p>
+			</div>
+			<div class="A" id="A85">
+				<h3>Answer : C</h3>
+				<h3>Explanation</h3>
+				<p>Both of the above options are correct.</p>
+			</div>
+			<div class="B">
+				<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('85')"><i
+						class="icon  icon-sort"></i> <span>Show Answer</span></button>
+			</div>
+		</div>
+		<div class="QA">
+			<div class="Q" id="Q91">
+				<p><span>Q 10</span> - Which of the following is correct about data-trigger Data attribute of Tooltip
+					Plugin?</p>
+				<p><a class="false" href="javascript:void(0);"><span>A</span> - Sets the default title value if the
+						title attribute isn't present.</a></p>
+				<p><a class="true" href="javascript:void(0);"><span>B</span> - Defines how the tooltip is triggered.</a>
+				</p>
+				<p><a class="false" href="javascript:void(0);"><span>C</span> - Defines default content value if
+						data-content attribute isn't present</a></p>
+				<p><a class="false" href="javascript:void(0);"><span>D</span> - Delays showing and hiding the tooltip in
+						ms.</a></p>
+			</div>
+			<div class="A" id="A91">
+				<h3>Answer : B</h3>
+				<h3>Explanation</h3>
+				<p>data-trigger &minus; Defines how the tooltip is triggered: click| hover | focus | manual. You may
+					pass multiple triggers; separate them with a space.</p>
+			</div>
+			<div class="B">
+				<button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('91')"><i
+						class="icon  icon-sort"></i> <span>Show Answer</span></button>
+			</div>
+		</div>
+		<script type="text/javascript" src="/exams.js"></script>
+		<script type="text/javascript" src="../../js/quiz.js"></script>
+        <script type="text/javascript" src="../../js/cheat.js"></script>
+</body>
+
+</html>

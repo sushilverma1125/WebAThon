@@ -1,0 +1,1272 @@
+<!DOCTYPE HTML>
+<html class="scrollbar" translate="no">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="content-language" content="en-gb">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>C++ Cheat Sheet</title>
+    <link rel="stylesheet" href="../../css/cheatsheet.css">
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            let html = document.documentElement.classList;
+            html.toggle('dark')
+        }
+    </script>
+    
+</head>
+
+<body class="bg-slate-100 dark:bg-slate-900">
+    
+    <div class="mx-auto flex flex-wrap md:py-5 flex-col md:flex-row items-center">
+        <div class="flex flex-col w-full mx-auto text-center my-8">
+            <div class="max-container w-full">
+                <h1 class="text-5xl mb-4"> <span class="text-slate-700 dark:text-slate-300 font-light">C++</span> <span class="text-slate-400 dark:text-slate-500 font-extralight hidden md:inline">cheatsheet</span></h1>
+                <div class="lg:w-3/5 mx-auto intro leading-relaxed text-slate-600">
+                    <p>C++ reference cheat sheet that provides basic syntax and methods.</p>
+                </div>
+            </div>
+        </div>
+        <div id="mdLayout" class="mdLayout w-full max-container">
+            <div data-pw-desk="leaderboard_btf" id="pwDeskLbBtf1"></div>
+            <script type="text/javascript">
+                window.ramp.que.push(function() {
+                    window.ramp.addTag("pwDeskLbBtf1")
+                })
+            </script>
+            <div class="h2-wrap">
+                <h2 id="getting-started"><a class="h-anchor" href="#getting-started">#</a>Getting Started</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="hello-cpp"><a class="h-anchor" href="#hello-cpp">#</a>hello.cpp</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+    std::cout &lt;&lt; <span class="hljs-string">&quot;Hello QuickRef\n&quot;</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+</code></pre>
+                            <p>Compiling and running</p>
+                            <pre><code class="hljs language-shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">g++ hello.cpp -o hello</span>
+<span class="hljs-meta prompt_">$ </span><span class="language-bash">./hello</span>
+Hello QuickRef
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="variables"><a class="h-anchor" href="#variables">#</a>Variables</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-type">int</span> number = <span class="hljs-number">5</span>;       <span class="hljs-comment">// Integer</span>
+<span class="hljs-type">float</span> f = <span class="hljs-number">0.95</span>;       <span class="hljs-comment">// Floating number</span>
+<span class="hljs-type">double</span> PI = <span class="hljs-number">3.14159</span>;  <span class="hljs-comment">// Floating number</span>
+<span class="hljs-type">char</span> yes = <span class="hljs-string">&#x27;Y&#x27;</span>;       <span class="hljs-comment">// Character</span>
+std::string s = <span class="hljs-string">&quot;ME&quot;</span>; <span class="hljs-comment">// String (text)</span>
+<span class="hljs-type">bool</span> isRight = <span class="hljs-literal">true</span>;  <span class="hljs-comment">// Boolean</span>
+
+<span class="hljs-comment">// Constants</span>
+<span class="hljs-type">const</span> <span class="hljs-type">float</span> RATE = <span class="hljs-number">0.8</span>;
+</code></pre>
+                            <hr>
+                            <pre><code class="hljs language-cpp"><span class="hljs-type">int</span> age &#123;<span class="hljs-number">25</span>&#125;;         <span class="hljs-comment">// Since C++11</span>
+std::cout &lt;&lt; age;     <span class="hljs-comment">// Print 25</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="primitive-data-types"><a class="h-anchor" href="#primitive-data-types">#</a>Primitive Data Types</h3>
+                        <div class="section">
+                            <table class="show-header">
+                                <thead>
+                                    <tr>
+                                        <th>Data Type</th>
+                                        <th>Size</th>
+                                        <th>Range</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>int</code></td>
+                                        <td>4 bytes</td>
+                                        <td>-2<sup>31</sup> <sup>to</sup> 2<sup>31</sup>-1</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>float</code></td>
+                                        <td>4 bytes</td>
+                                        <td><em>N/A</em></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>double</code></td>
+                                        <td>8 bytes</td>
+                                        <td><em>N/A</em></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>char</code></td>
+                                        <td>1 byte</td>
+                                        <td>-128 <sup>to</sup> 127</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>bool</code></td>
+                                        <td>1 byte</td>
+                                        <td>true / false</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>void</code></td>
+                                        <td><em>N/A</em></td>
+                                        <td><em>N/A</em></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>wchar_t</code></td>
+                                        <td>2 <sup>or</sup> 4 bytes</td>
+                                        <td>1 wide character</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="user-input"><a class="h-anchor" href="#user-input">#</a>User Input</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-type">int</span> num;
+
+std::cout &lt;&lt; <span class="hljs-string">&quot;Type a number: &quot;</span>;
+std::cin &gt;&gt; num;
+
+std::cout &lt;&lt; <span class="hljs-string">&quot;You entered &quot;</span> &lt;&lt; num;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="swap"><a class="h-anchor" href="#swap">#</a>Swap</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-type">int</span> a = <span class="hljs-number">5</span>, b = <span class="hljs-number">10</span>;
+std::<span class="hljs-built_in">swap</span>(a, b);
+
+<span class="hljs-comment">// Outputs: a=10, b=5</span>
+std::cout &lt;&lt; <span class="hljs-string">&quot;a=&quot;</span> &lt;&lt; a &lt;&lt; <span class="hljs-string">&quot;, b=&quot;</span> &lt;&lt; b;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="comments"><a class="h-anchor" href="#comments">#</a>Comments</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-comment">// A single one line comment in C++</span>
+
+<span class="hljs-comment">/* This is a multiple line comment
+   in C++ */</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="if-statement"><a class="h-anchor" href="#if-statement">#</a>If statement</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-keyword">if</span> (a == <span class="hljs-number">10</span>) &#123;
+    <span class="hljs-comment">// do something</span>
+&#125;
+</code></pre>
+                            <p>See: <a href="#c-conditionals">Conditionals</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="loops"><a class="h-anchor" href="#loops">#</a>Loops</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;
+    std::cout &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+&#125;
+</code></pre>
+                            <p>See: <a href="#c-loops">Loops</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="functions"><a class="h-anchor" href="#functions">#</a>Functions</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">hello</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// Declaring</span>
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;  <span class="hljs-comment">// main function</span>
+    <span class="hljs-built_in">hello</span>();    <span class="hljs-comment">// Calling</span>
+&#125;
+ 
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">hello</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-comment">// Defining</span>
+    std::cout &lt;&lt; <span class="hljs-string">&quot;Hello QuickRef!\n&quot;</span>;
+&#125;
+</code></pre>
+                            <p>See: <a href="#c-functions">Functions</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="references"><a class="h-anchor" href="#references">#</a>References</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;
+<span class="hljs-type">int</span>&amp; ri = i; <span class="hljs-comment">// ri is a reference to i</span>
+
+ri = <span class="hljs-number">2</span>; <span class="hljs-comment">// i is now changed to 2</span>
+std::cout &lt;&lt; <span class="hljs-string">&quot;i=&quot;</span> &lt;&lt; i;
+
+i = <span class="hljs-number">3</span>;   <span class="hljs-comment">// i is now changed to 3</span>
+std::cout &lt;&lt; <span class="hljs-string">&quot;ri=&quot;</span> &lt;&lt; ri;
+</code></pre>
+                            <p><code>ri</code> and <code>i</code> refer to the same memory location.</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="namespaces"><a class="h-anchor" href="#namespaces">#</a>Namespaces</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">namespace</span> ns1 &#123;<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">val</span><span class="hljs-params">()</span></span>&#123;<span class="hljs-keyword">return</span> <span class="hljs-number">5</span>;&#125;&#125;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>&#123;
+    std::cout &lt;&lt; ns1::<span class="hljs-built_in">val</span>();
+&#125;
+</code></pre>
+                            <hr>
+                            <pre><code class="hljs language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">namespace</span> ns1 &#123;<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">val</span><span class="hljs-params">()</span></span>&#123;<span class="hljs-keyword">return</span> <span class="hljs-number">5</span>;&#125;&#125;
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> ns1;
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>&#123;
+    cout &lt;&lt; <span class="hljs-built_in">val</span>(); 
+&#125;
+</code></pre>
+                            <p>Namespaces allow global identifiers under a name</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="c-arrays"><a class="h-anchor" href="#c-arrays">#</a>C++ Arrays</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="declaration"><a class="h-anchor" href="#declaration">#</a>Declaration</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp">std::array&lt;<span class="hljs-type">int</span>, 3&gt; marks; <span class="hljs-comment">// Definition</span>
+marks[<span class="hljs-number">0</span>] = <span class="hljs-number">92</span>;
+marks[<span class="hljs-number">1</span>] = <span class="hljs-number">97</span>;
+marks[<span class="hljs-number">2</span>] = <span class="hljs-number">98</span>;
+
+<span class="hljs-comment">// Define and initialize</span>
+std::array&lt;<span class="hljs-type">int</span>, 3&gt; = &#123;<span class="hljs-number">92</span>, <span class="hljs-number">97</span>, <span class="hljs-number">98</span>&#125;;
+
+<span class="hljs-comment">// With empty members</span>
+std::array&lt;<span class="hljs-type">int</span>, 3&gt; marks = &#123;<span class="hljs-number">92</span>, <span class="hljs-number">97</span>&#125;;
+std::cout &lt;&lt; marks[<span class="hljs-number">2</span>]; <span class="hljs-comment">// Outputs: 0</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="manipulation"><a class="h-anchor" href="#manipulation">#</a>Manipulation</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp">┌─────┬─────┬─────┬─────┬─────┬─────┐
+| <span class="hljs-number">92</span>  | <span class="hljs-number">97</span>  | <span class="hljs-number">98</span>  | <span class="hljs-number">99</span>  | <span class="hljs-number">98</span>  | <span class="hljs-number">94</span>  |
+└─────┴─────┴─────┴─────┴─────┴─────┘
+   <span class="hljs-number">0</span>     <span class="hljs-number">1</span>     <span class="hljs-number">2</span>     <span class="hljs-number">3</span>     <span class="hljs-number">4</span>     <span class="hljs-number">5</span>
+</code></pre>
+                            <hr>
+                            <pre><code class="hljs language-cpp">std::array&lt;<span class="hljs-type">int</span>, 6&gt; marks = &#123;<span class="hljs-number">92</span>, <span class="hljs-number">97</span>, <span class="hljs-number">98</span>, <span class="hljs-number">99</span>, <span class="hljs-number">98</span>, <span class="hljs-number">94</span>&#125;;
+
+<span class="hljs-comment">// Print first element</span>
+std::cout &lt;&lt; marks[<span class="hljs-number">0</span>];
+
+<span class="hljs-comment">// Change 2th element to 99</span>
+marks[<span class="hljs-number">1</span>] = <span class="hljs-number">99</span>;
+
+<span class="hljs-comment">// Take input from the user</span>
+std::cin &gt;&gt; marks[<span class="hljs-number">2</span>];
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="displaying"><a class="h-anchor" href="#displaying">#</a>Displaying</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-type">char</span> ref[<span class="hljs-number">5</span>] = &#123;<span class="hljs-string">&#x27;R&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>, <span class="hljs-string">&#x27;f&#x27;</span>&#125;;
+
+<span class="hljs-comment">// Range based for loop</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-type">const</span> <span class="hljs-type">int</span> &amp;n : ref) &#123;
+    std::cout &lt;&lt; std::<span class="hljs-built_in">string</span>(<span class="hljs-number">1</span>, n);
+&#125;
+
+<span class="hljs-comment">// Traditional for loop</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">sizeof</span>(ref); ++i) &#123;
+    std::cout &lt;&lt; ref[i];
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="multidimensional"><a class="h-anchor" href="#multidimensional">#</a>Multidimensional</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp">     j0   j1   j2   j3   j4   j5
+   ┌────┬────┬────┬────┬────┬────┐
+i0 | <span class="hljs-number">1</span>  | <span class="hljs-number">2</span>  | <span class="hljs-number">3</span>  | <span class="hljs-number">4</span>  | <span class="hljs-number">5</span>  | <span class="hljs-number">6</span>  |
+   ├────┼────┼────┼────┼────┼────┤
+i1 | <span class="hljs-number">6</span>  | <span class="hljs-number">5</span>  | <span class="hljs-number">4</span>  | <span class="hljs-number">3</span>  | <span class="hljs-number">2</span>  | <span class="hljs-number">1</span>  |
+   └────┴────┴────┴────┴────┴────┘
+</code></pre>
+                            <hr>
+                            <pre><code class="hljs language-cpp"><span class="hljs-type">int</span> x[<span class="hljs-number">2</span>][<span class="hljs-number">6</span>] = &#123;
+    &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>&#125;, &#123;<span class="hljs-number">6</span>,<span class="hljs-number">5</span>,<span class="hljs-number">4</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>&#125;
+&#125;;
+<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">2</span>; ++i) &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">6</span>; ++j) &#123;
+        std::cout &lt;&lt; x[i][j] &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;
+    &#125;
+&#125;
+<span class="hljs-comment">// Outputs: 1 2 3 4 5 6 6 5 4 3 2 1 </span>
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="c-conditionals"><a class="h-anchor" href="#c-conditionals">#</a>C++ Conditionals</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="if-clause"><a class="h-anchor" href="#if-clause">#</a>If Clause</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-keyword">if</span> (a == <span class="hljs-number">10</span>) &#123;
+    <span class="hljs-comment">// do something</span>
+&#125;
+</code></pre>
+                            <hr>
+                            <pre><code class="hljs language-cpp"><span class="hljs-type">int</span> number = <span class="hljs-number">16</span>;
+
+<span class="hljs-keyword">if</span> (number % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>)
+&#123;
+    std::cout &lt;&lt; <span class="hljs-string">&quot;even&quot;</span>;
+&#125;
+<span class="hljs-keyword">else</span>
+&#123;
+    std::cout &lt;&lt; <span class="hljs-string">&quot;odd&quot;</span>;
+&#125;
+
+<span class="hljs-comment">// Outputs: even</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="else-if-statement"><a class="h-anchor" href="#else-if-statement">#</a>Else if Statement</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-type">int</span> score = <span class="hljs-number">99</span>;
+<span class="hljs-keyword">if</span> (score == <span class="hljs-number">100</span>) &#123;
+    std::cout &lt;&lt; <span class="hljs-string">&quot;Superb&quot;</span>;
+&#125;
+<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (score &gt;= <span class="hljs-number">90</span>) &#123;
+    std::cout &lt;&lt; <span class="hljs-string">&quot;Excellent&quot;</span>;
+&#125;
+<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (score &gt;= <span class="hljs-number">80</span>) &#123;
+    std::cout &lt;&lt; <span class="hljs-string">&quot;Very Good&quot;</span>;
+&#125;
+<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (score &gt;= <span class="hljs-number">70</span>) &#123;
+    std::cout &lt;&lt; <span class="hljs-string">&quot;Good&quot;</span>;
+&#125;
+<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (score &gt;= <span class="hljs-number">60</span>)
+    std::cout &lt;&lt; <span class="hljs-string">&quot;OK&quot;</span>;
+<span class="hljs-keyword">else</span>
+    std::cout &lt;&lt; <span class="hljs-string">&quot;What?&quot;</span>;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="operators"><a class="h-anchor" href="#operators">#</a>Operators</h3>
+                        <div class="section">
+                            <h4 id="relational-operators"><a class="h-anchor" href="#relational-operators">#</a>Relational Operators</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>a == b</code></td>
+                                        <td>a is equal to b</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>a != b</code></td>
+                                        <td>a is NOT equal to b</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>a &lt; b</code></td>
+                                        <td>a is less than b</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>a &gt; b</code></td>
+                                        <td>a is greater b</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>a &lt;= b</code></td>
+                                        <td>a is less than or equal to b</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>a &gt;= b</code></td>
+                                        <td>a is greater or equal to b</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h4 id="assignment-operators"><a class="h-anchor" href="#assignment-operators">#</a>Assignment Operators</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Example</th>
+                                        <th>Equivalent to</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>a += b</code></td>
+                                        <td><em>Aka</em> a = a + b</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>a -= b</code></td>
+                                        <td><em>Aka</em> a = a - b</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>a *= b</code></td>
+                                        <td><em>Aka</em> a = a * b</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>a /= b</code></td>
+                                        <td><em>Aka</em> a = a / b</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>a %= b</code></td>
+                                        <td><em>Aka</em> a = a % b</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h4 id="logical-operators"><a class="h-anchor" href="#logical-operators">#</a>Logical Operators</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Example</th>
+                                        <th>Meaning</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>exp1 &amp;&amp; exp2</code></td>
+                                        <td>Both are true <em>(AND)</em></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>exp1 || exp2</code></td>
+                                        <td>Either is true <em>(OR)</em></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>!exp</code></td>
+                                        <td><code>exp</code> is false <em>(NOT)</em></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h4 id="bitwise-operators"><a class="h-anchor" href="#bitwise-operators">#</a>Bitwise Operators</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Operator</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>a &amp; b</code></td>
+                                        <td>Binary AND</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>a | b</code></td>
+                                        <td>Binary OR</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>a ^ b</code></td>
+                                        <td>Binary XOR</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>~ a</code></td>
+                                        <td>Binary One's Complement</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>a &lt;&lt; b</code></td>
+                                        <td>Binary Shift Left</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>a &gt;&gt; b</code></td>
+                                        <td>Binary Shift Right</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="ternary-operator"><a class="h-anchor" href="#ternary-operator">#</a>Ternary Operator</h3>
+                        <div class="section">
+                            <pre><code class="hljs">           ┌── <span class="hljs-literal">True</span> ──┐
+<span class="hljs-keyword">Result</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">Condition</span> ? Exp1 : Exp2;
+           └───── <span class="hljs-literal">False</span> ─────┘
+</code></pre>
+                            <hr>
+                            <pre><code class="hljs language-cpp"><span class="hljs-type">int</span> x = <span class="hljs-number">3</span>, y = <span class="hljs-number">5</span>, max;
+max = (x &gt; y) ? x : y;
+
+<span class="hljs-comment">// Outputs: 5</span>
+std::cout &lt;&lt; max &lt;&lt; std::endl;
+</code></pre>
+                            <hr>
+                            <pre><code class="hljs language-cpp"><span class="hljs-type">int</span> x = <span class="hljs-number">3</span>, y = <span class="hljs-number">5</span>, max;
+<span class="hljs-keyword">if</span> (x &gt; y) &#123;
+    max = x;
+&#125; <span class="hljs-keyword">else</span> &#123;
+    max = y;
+&#125;
+<span class="hljs-comment">// Outputs: 5</span>
+std::cout &lt;&lt; max &lt;&lt; std::endl;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="switch-statement"><a class="h-anchor" href="#switch-statement">#</a>Switch Statement</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-type">int</span> num = <span class="hljs-number">2</span>;
+<span class="hljs-keyword">switch</span> (num) &#123;
+    <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:
+        std::cout &lt;&lt; <span class="hljs-string">&quot;Zero&quot;</span>;
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+        std::cout &lt;&lt; <span class="hljs-string">&quot;One&quot;</span>;
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+        std::cout &lt;&lt; <span class="hljs-string">&quot;Two&quot;</span>;
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:
+        std::cout &lt;&lt; <span class="hljs-string">&quot;Three&quot;</span>;
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">default</span>:
+        std::cout &lt;&lt; <span class="hljs-string">&quot;What?&quot;</span>;
+        <span class="hljs-keyword">break</span>;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="c-loops"><a class="h-anchor" href="#c-loops">#</a>C++ Loops</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="while"><a class="h-anchor" href="#while">#</a>While</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">while</span> (i &lt; <span class="hljs-number">6</span>) &#123;
+    std::cout &lt;&lt; i++;
+&#125;
+
+<span class="hljs-comment">// Outputs: 012345</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="do-while"><a class="h-anchor" href="#do-while">#</a>Do-while</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">do</span> &#123;
+    std::cout &lt;&lt; i++;
+&#125; <span class="hljs-keyword">while</span> (i &lt;= <span class="hljs-number">5</span>);
+
+<span class="hljs-comment">// Outputs: 12345</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="continue-statements"><a class="h-anchor" href="#continue-statements">#</a>Continue statements</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;
+    <span class="hljs-keyword">if</span> (i % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) &#123;
+        <span class="hljs-keyword">continue</span>;
+    &#125;
+    std::cout &lt;&lt; i;
+&#125; <span class="hljs-comment">// Outputs: 13579</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="infinite-loop"><a class="h-anchor" href="#infinite-loop">#</a>Infinite loop</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123; <span class="hljs-comment">// true or 1</span>
+    std::cout &lt;&lt; <span class="hljs-string">&quot;infinite loop&quot;</span>;
+&#125;
+</code></pre>
+                            <hr>
+                            <pre><code class="hljs language-cpp"><span class="hljs-keyword">for</span> (;;) &#123;
+    std::cout &lt;&lt; <span class="hljs-string">&quot;infinite loop&quot;</span>;
+&#125;
+</code></pre>
+                            <hr>
+                            <pre><code class="hljs language-cpp"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &gt; <span class="hljs-number">0</span>; i++) &#123;
+    std::cout &lt;&lt; <span class="hljs-string">&quot;infinite loop&quot;</span>;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="for-each-since-c-11"><a class="h-anchor" href="#for-each-since-c-11">#</a>for_each (Since C++11)</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>&#123;
+    <span class="hljs-keyword">auto</span> print = [](<span class="hljs-type">int</span> num) &#123; std::cout &lt;&lt; num &lt;&lt; std::endl; &#125;;
+
+    std::array&lt;<span class="hljs-type">int</span>, 4&gt; arr = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>&#125;;
+    std::for_each(arr.<span class="hljs-built_in">begin</span>(), arr.<span class="hljs-built_in">end</span>(), print);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="range-based-since-c-11"><a class="h-anchor" href="#range-based-since-c-11">#</a>Range-based (Since C++11)</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> n : &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>&#125;) &#123;
+    std::cout &lt;&lt; n &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;
+&#125;
+<span class="hljs-comment">// Outputs: 1 2 3 4 5</span>
+</code></pre>
+                            <hr>
+                            <pre><code class="hljs language-cpp">std::string hello = <span class="hljs-string">&quot;QuickRef.ME&quot;</span>;
+<span class="hljs-keyword">for</span> (<span class="hljs-type">char</span> c: hello)
+&#123;
+    std::cout &lt;&lt; c &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;
+&#125;
+<span class="hljs-comment">// Outputs: Q u i c k R e f . M E </span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="break-statements"><a class="h-anchor" href="#break-statements">#</a>Break statements</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-type">int</span> password, times = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">while</span> (password != <span class="hljs-number">1234</span>) &#123;
+    <span class="hljs-keyword">if</span> (times++ &gt;= <span class="hljs-number">3</span>) &#123;
+        std::cout &lt;&lt; <span class="hljs-string">&quot;Locked!\n&quot;</span>;
+        <span class="hljs-keyword">break</span>;
+    &#125;
+    std::cout &lt;&lt; <span class="hljs-string">&quot;Password: &quot;</span>;
+    std::cin &gt;&gt; password; <span class="hljs-comment">// input</span>
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="several-variations"><a class="h-anchor" href="#several-variations">#</a>Several variations</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>, j = <span class="hljs-number">2</span>; i &lt; <span class="hljs-number">3</span>; i++, j--)&#123;
+    std::cout &lt;&lt; <span class="hljs-string">&quot;i=&quot;</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot;,&quot;</span>;
+    std::cout &lt;&lt; <span class="hljs-string">&quot;j=&quot;</span> &lt;&lt; j &lt;&lt; <span class="hljs-string">&quot;;&quot;</span>;
+&#125;
+<span class="hljs-comment">// Outputs: i=0,j=2;i=1,j=1;i=2,j=0;</span>
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="c-functions"><a class="h-anchor" href="#c-functions">#</a>C++ Functions</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="arguments-returns"><a class="h-anchor" href="#arguments-returns">#</a>Arguments &amp; Returns</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> </span>&#123;
+    <span class="hljs-keyword">return</span> a + b;  
+&#125;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+    std::cout &lt;&lt; <span class="hljs-built_in">add</span>(<span class="hljs-number">10</span>, <span class="hljs-number">20</span>); 
+&#125;
+</code></pre>
+                            <p><code>add</code> is a function taking 2 ints and returning int</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="overloading"><a class="h-anchor" href="#overloading">#</a>Overloading</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">fun</span><span class="hljs-params">(string a, string b)</span> </span>&#123;
+    std::cout &lt;&lt; a + <span class="hljs-string">&quot; &quot;</span> + b;
+&#125;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">fun</span><span class="hljs-params">(string a)</span> </span>&#123;
+    std::cout &lt;&lt; a;
+&#125;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">fun</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span> </span>&#123;
+    std::cout &lt;&lt; a;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="built-in-functions"><a class="h-anchor" href="#built-in-functions">#</a>Built-in Functions</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cmath&gt;</span> <span class="hljs-comment">// import library</span></span>
+ 
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+    <span class="hljs-comment">// sqrt() is from cmath</span>
+    std::cout &lt;&lt; <span class="hljs-built_in">sqrt</span>(<span class="hljs-number">9</span>);
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap cols-2">
+                <h2 id="c-classes-objects"><a class="h-anchor" href="#c-classes-objects">#</a>C++ Classes &amp; Objects</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="defining-a-class"><a class="h-anchor" href="#defining-a-class">#</a>Defining a Class</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> &#123;
+  <span class="hljs-keyword">public</span>:             <span class="hljs-comment">// Access specifier</span>
+    <span class="hljs-type">int</span> myNum;        <span class="hljs-comment">// Attribute (int variable)</span>
+    string myString;  <span class="hljs-comment">// Attribute (string variable)</span>
+&#125;;
+
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="creating-an-object"><a class="h-anchor" href="#creating-an-object">#</a>Creating an Object</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp">MyClass myObj;  <span class="hljs-comment">// Create an object of MyClass</span>
+
+myObj.myNum = <span class="hljs-number">15</span>;          <span class="hljs-comment">// Set the value of myNum to 15</span>
+myObj.myString = <span class="hljs-string">&quot;Hello&quot;</span>;  <span class="hljs-comment">// Set the value of myString to &quot;Hello&quot;</span>
+
+cout &lt;&lt; myObj.myNum &lt;&lt; endl;         <span class="hljs-comment">// Output 15</span>
+cout &lt;&lt; myObj.myString &lt;&lt; endl;      <span class="hljs-comment">// Output &quot;Hello&quot;</span>
+
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="constructors"><a class="h-anchor" href="#constructors">#</a>Constructors</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> &#123;
+  <span class="hljs-keyword">public</span>:
+    <span class="hljs-type">int</span> myNum;
+    string myString;
+    <span class="hljs-built_in">MyClass</span>() &#123;  <span class="hljs-comment">// Constructor</span>
+      myNum = <span class="hljs-number">0</span>;
+      myString = <span class="hljs-string">&quot;&quot;</span>;
+    &#125;
+&#125;;
+
+MyClass myObj;  <span class="hljs-comment">// Create an object of MyClass</span>
+
+cout &lt;&lt; myObj.myNum &lt;&lt; endl;         <span class="hljs-comment">// Output 0</span>
+cout &lt;&lt; myObj.myString &lt;&lt; endl;      <span class="hljs-comment">// Output &quot;&quot;</span>
+
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="destructors"><a class="h-anchor" href="#destructors">#</a>Destructors</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> &#123;
+  <span class="hljs-keyword">public</span>:
+    <span class="hljs-type">int</span> myNum;
+    string myString;
+    <span class="hljs-built_in">MyClass</span>() &#123;  <span class="hljs-comment">// Constructor</span>
+      myNum = <span class="hljs-number">0</span>;
+      myString = <span class="hljs-string">&quot;&quot;</span>;
+    &#125;
+    ~<span class="hljs-built_in">MyClass</span>() &#123;  <span class="hljs-comment">// Destructor</span>
+      cout &lt;&lt; <span class="hljs-string">&quot;Object destroyed.&quot;</span> &lt;&lt; endl;
+    &#125;
+&#125;;
+
+MyClass myObj;  <span class="hljs-comment">// Create an object of MyClass</span>
+
+<span class="hljs-comment">// Code here...</span>
+
+<span class="hljs-comment">// Object is destroyed automatically when the program exits the scope</span>
+
+
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="class-methods"><a class="h-anchor" href="#class-methods">#</a>Class Methods</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> &#123;
+  <span class="hljs-keyword">public</span>:
+    <span class="hljs-type">int</span> myNum;
+    string myString;
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">myMethod</span><span class="hljs-params">()</span> </span>&#123;  <span class="hljs-comment">// Method/function defined inside the class</span>
+      cout &lt;&lt; <span class="hljs-string">&quot;Hello World!&quot;</span> &lt;&lt; endl;
+    &#125;
+&#125;;
+
+MyClass myObj;  <span class="hljs-comment">// Create an object of MyClass</span>
+myObj.<span class="hljs-built_in">myMethod</span>();  <span class="hljs-comment">// Call the method</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="access-modifiers"><a class="h-anchor" href="#access-modifiers">#</a>Access Modifiers</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> &#123;
+  <span class="hljs-keyword">public</span>:     <span class="hljs-comment">// Public access specifier</span>
+    <span class="hljs-type">int</span> x;    <span class="hljs-comment">// Public attribute</span>
+  <span class="hljs-keyword">private</span>:    <span class="hljs-comment">// Private access specifier</span>
+    <span class="hljs-type">int</span> y;    <span class="hljs-comment">// Private attribute</span>
+  <span class="hljs-keyword">protected</span>:  <span class="hljs-comment">// Protected access specifier</span>
+    <span class="hljs-type">int</span> z;    <span class="hljs-comment">// Protected attribute</span>
+&#125;;
+
+MyClass myObj;
+myObj.x = <span class="hljs-number">25</span>;  <span class="hljs-comment">// Allowed (public)</span>
+myObj.y = <span class="hljs-number">50</span>;  <span class="hljs-comment">// Not allowed (private)</span>
+myObj.z = <span class="hljs-number">75</span>;  <span class="hljs-comment">// Not allowed (protected)</span>
+
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="getters-and-setters"><a class="h-anchor" href="#getters-and-setters">#</a>Getters and Setters</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> &#123;
+  <span class="hljs-keyword">private</span>:
+    <span class="hljs-type">int</span> myNum;
+  <span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setMyNum</span><span class="hljs-params">(<span class="hljs-type">int</span> num)</span> </span>&#123;  <span class="hljs-comment">// Setter</span>
+      myNum = num;
+    &#125;
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">getMyNum</span><span class="hljs-params">()</span> </span>&#123;  <span class="hljs-comment">// Getter</span>
+      <span class="hljs-keyword">return</span> myNum;
+    &#125;
+&#125;;
+
+MyClass myObj;
+myObj.<span class="hljs-built_in">setMyNum</span>(<span class="hljs-number">15</span>);  <span class="hljs-comment">// Set the value of myNum to 15</span>
+cout &lt;&lt; myObj.<span class="hljs-built_in">getMyNum</span>() &lt;&lt; endl;  <span class="hljs-comment">// Output 15</span>
+
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="inheritance"><a class="h-anchor" href="#inheritance">#</a>Inheritance</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Vehicle</span> &#123;
+  <span class="hljs-keyword">public</span>:
+    string brand = <span class="hljs-string">&quot;Ford&quot;</span>;
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">honk</span><span class="hljs-params">()</span> </span>&#123;
+      cout &lt;&lt; <span class="hljs-string">&quot;Tuut, tuut!&quot;</span> &lt;&lt; endl;
+    &#125;
+&#125;;
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Car</span> : <span class="hljs-keyword">public</span> Vehicle &#123;
+  <span class="hljs-keyword">public</span>:
+    string model = <span class="hljs-string">&quot;Mustang&quot;</span>;
+&#125;;
+
+Car myCar;
+myCar.<span class="hljs-built_in">honk</span>();  <span class="hljs-comment">// Output &quot;Tuut, tuut!&quot;</span>
+cout &lt;&lt; myCar.brand + <span class="hljs-string">&quot; &quot;</span> + myCar.model &lt;&lt; endl;  <span class="hljs-comment">// Output &quot;Ford Mustang&quot;</span>
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="c-preprocessor"><a class="h-anchor" href="#c-preprocessor">#</a>C++ Preprocessor</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap row-span-3">
+                        <h3 id="preprocessor"><a class="h-anchor" href="#preprocessor">#</a>Preprocessor</h3>
+                        <div class="section">
+                            <ul class="marker-none cols-2">
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/preprocessor/conditional">if</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/preprocessor/conditional">elif</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/preprocessor/conditional">else</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/preprocessor/conditional">endif</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/preprocessor/conditional">ifdef</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/preprocessor/conditional">ifndef</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/preprocessor/replace">define</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/preprocessor/replace">undef</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/preprocessor/include">include</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/preprocessor/line">line</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/preprocessor/error">error</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/preprocessor/impl">pragma</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/preprocessor/conditional">defined</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/feature_test">__has_include</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/feature_test">__has_cpp_attribute</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/export">export</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/mwiki/index.php?title=cpp/keyword/import&amp;action=edit&amp;redlink=1">import</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/mwiki/index.php?title=cpp/keyword/module&amp;action=edit&amp;redlink=1">module</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="includes"><a class="h-anchor" href="#includes">#</a>Includes</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;iostream&quot;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="defines"><a class="h-anchor" href="#defines">#</a>Defines</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">define</span> FOO</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> FOO <span class="hljs-string">&quot;hello&quot;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">undef</span> FOO</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="if"><a class="h-anchor" href="#if">#</a>If</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">ifdef</span> DEBUG</span>
+  console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;hi&#x27;</span>);
+<span class="hljs-meta">#<span class="hljs-keyword">elif</span> defined VERBOSE</span>
+  ...
+<span class="hljs-meta">#<span class="hljs-keyword">else</span></span>
+  ...
+<span class="hljs-meta">#<span class="hljs-keyword">endif</span></span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="error"><a class="h-anchor" href="#error">#</a>Error</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">if</span> VERSION == 2.0</span>
+  <span class="hljs-meta">#<span class="hljs-keyword">error</span> Unsupported</span>
+  <span class="hljs-meta">#<span class="hljs-keyword">warning</span> Not really supported</span>
+<span class="hljs-meta">#<span class="hljs-keyword">endif</span></span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="macro"><a class="h-anchor" href="#macro">#</a>Macro</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">define</span> DEG(x) ((x) * 57.29)</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="token-concat"><a class="h-anchor" href="#token-concat">#</a>Token concat</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">define</span> DST(name) name##_s name##_t</span>
+<span class="hljs-built_in">DST</span>(object);   #=&gt; object_s <span class="hljs-type">object_t</span>;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="stringification"><a class="h-anchor" href="#stringification">#</a>Stringification</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">define</span> STR(name) #name</span>
+<span class="hljs-type">char</span> * a = <span class="hljs-built_in">STR</span>(object);   #=&gt; <span class="hljs-type">char</span> * a = <span class="hljs-string">&quot;object&quot;</span>;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="file-and-line"><a class="h-anchor" href="#file-and-line">#</a>file and line</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">define</span> LOG(msg) console.log(__FILE__, __LINE__, msg)</span>
+#=&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&quot;file.txt&quot;</span>, <span class="hljs-number">3</span>, <span class="hljs-string">&quot;hey&quot;</span>)
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="miscellaneous"><a class="h-anchor" href="#miscellaneous">#</a>Miscellaneous</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="escape-sequences"><a class="h-anchor" href="#escape-sequences">#</a>Escape Sequences</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Escape Sequences</th>
+                                        <th>Characters</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>\b</code></td>
+                                        <td>Backspace</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>\f</code></td>
+                                        <td>Form feed</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>\n</code></td>
+                                        <td>Newline</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>\r</code></td>
+                                        <td>Return</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>\t</code></td>
+                                        <td>Horizontal tab</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>\v</code></td>
+                                        <td>Vertical tab</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>\\</code></td>
+                                        <td>Backslash</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>\'</code></td>
+                                        <td>Single quotation mark</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>\&quot;</code></td>
+                                        <td>Double quotation mark</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>\?</code></td>
+                                        <td>Question mark</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>\0</code></td>
+                                        <td>Null Character</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap col-span-2 row-span-2">
+                        <h3 id="keywords"><a class="h-anchor" href="#keywords">#</a>Keywords </h3>
+                        <div class="section">
+                            <ul class="marker-none cols-5">
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/alignas">alignas</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/alignof">alignof</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/and">and</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/and_eq">and_eq</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/asm">asm</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/atomic_cancel">atomic_cancel</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/atomic_commit">atomic_commit</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/atomic_noexcept">atomic_noexcept</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/auto">auto</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/bitand">bitand</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/bitor">bitor</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/bool">bool</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/break">break</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/case">case</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/catch">catch</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/char">char</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/char8_t">char8_t</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/char16_t">char16_t</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/char32_t">char32_t</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/class">class</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/compl">compl</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/concept">concept</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/const">const</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/consteval">consteval</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/constexpr">constexpr</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/constinit">constinit</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/const_cast">const_cast</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/continue">continue</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/co_await">co_await</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/co_return">co_return</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/co_yield">co_yield</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/decltype">decltype</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/default">default</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/delete">delete</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/do">do</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/double">double</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/dynamic_cast">dynamic_cast</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/else">else</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/enum">enum</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/explicit">explicit</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/export">export</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/extern">extern</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/false">false</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/float">float</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/for">for</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/friend">friend</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/goto">goto</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/if">if</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/inline">inline</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/int">int</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/long">long</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/mutable">mutable</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/namespace">namespace</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/new">new</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/noexcept">noexcept</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/not">not</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/not_eq">not_eq</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/nullptr">nullptr</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/operator">operator</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/or">or</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/or_eq">or_eq</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/private">private</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/protected">protected</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/public">public</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/reflexpr">reflexpr</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/register">register</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/reinterpret_cast">reinterpret_cast</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/requires">requires</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/language/return">return</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/short">short</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/signed">signed</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/sizeof">sizeof</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/static">static</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/static_assert">static_assert</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/static_cast">static_cast</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/struct">struct</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/switch">switch</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/synchronized">synchronized</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/template">template</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/this">this</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/thread_local">thread_local</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/throw">throw</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/true">true</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/try">try</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/typedef">typedef</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/typeid">typeid</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/typename">typename</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/union">union</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/unsigned">unsigned</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/using">using</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/virtual">virtual</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/void">void</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/volatile">volatile</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/wchar_t">wchar_t</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/while">while</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/xor">xor</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/xor_eq">xor_eq</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/language/final">final</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/language/override">override</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/language/transactional_memory">transaction_safe</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/language/transactional_memory">transaction_safe_dynamic</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="preprocessor-2"><a class="h-anchor" href="#preprocessor-2">#</a>Preprocessor</h3>
+                        <div class="section">
+                            <ul class="marker-none cols-2">
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/preprocessor/conditional">if</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/preprocessor/conditional">elif</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/preprocessor/conditional">else</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/preprocessor/conditional">endif</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/preprocessor/conditional">ifdef</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/preprocessor/conditional">ifndef</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/preprocessor/replace">define</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/preprocessor/replace">undef</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/preprocessor/include">include</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/preprocessor/line">line</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/preprocessor/error">error</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/preprocessor/impl">pragma</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/preprocessor/conditional">defined</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/feature_test">__has_include</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/feature_test">__has_cpp_attribute</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/cpp/keyword/export">export</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/mwiki/index.php?title=cpp/keyword/import&amp;action=edit&amp;redlink=1">import</a></li>
+                                <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/mwiki/index.php?title=cpp/keyword/module&amp;action=edit&amp;redlink=1">module</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="also-see"><a class="h-anchor" href="#also-see">#</a>Also see</h2>
+                <div class="h3-wrap-list">
+                    <ul>
+                        <li>
+                            <p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hackingcpp.com/cpp/cheat_sheets.html">C++ Infographics &amp; Cheat Sheets</a> <em>(hackingcpp.com)</em></p>
+                        </li>
+                        <li>
+                            <p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.cppreference.com/w/">C++ reference</a> <em>(cppreference.com)</em></p>
+                        </li>
+                        <li>
+                            <p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.cplusplus.com/doc/tutorial/">C++ Language Tutorials</a> <em>(cplusplus.com)</em></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div data-pw-desk="med_rect_btf" id="pwDeskMedRectBtf3"></div>
+            <script type="text/javascript">
+                window.ramp.que.push(function() {
+                    window.ramp.addTag("pwDeskMedRectBtf3")
+                })
+            </script>
+        </div>
+    </div>
+    <script>
+        ! function(e, n, t, r) {
+            var o = n.createElement(t);
+            o.async = 1, o.src = "https://a.ad.gt/api/v1/u/matches/514?url=" + encodeURIComponent(e.location.href) + "&ref=" + encodeURIComponent(n.referrer);
+            var a = n.getElementsByTagName(t)[0];
+            a.parentNode.insertBefore(o, a)
+        }(window, document, "script")
+    </script>
+    <div id="mysearch" class="z-50 fixed inset-0 flex justify-center bg-slate-600/80 dark:bg-slate-900/90 items-start text-sm z-50 overflow-hidden lg:pt-16 lg:pb-20 hidden">
+        <div id="mysearch-box" class="lg:max-w-screen-lg w-full flex flex-col justify-between bg-white dark:bg-slate-700 shadow-3xl dark:shadow-3xl lg:rounded-lg lg:max-h-832 min-h-320 h-full">
+            <div class="flex items-center h-16 flex-none border-b border-slate-200 dark:border-slate-700">
+                <div class="w-full h-full">
+                    <form class="flex items-center w-full h-full outline-none rounded-tl-lg"><label for="mysearch-input" id="mysearch-label" class="h-full w-14 mt-1 ml-1 px-4 flex items-center justify-center transition-colors duration-200 ease-in-out text-emerald-200"><div class="text-2xl text-emerald-500"><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="1em" width="1em"><path d="M942.14826666 878.7968l-200.56746667-229.92213333C795.37493333 583.8848 827.73333333 500.5312 827.73333333 409.6 827.73333333 202.27413333 659.59253333 34.13333333 452.26666666 34.13333333 244.87253333 34.13333333 76.79999999 202.27413333 76.79999999 409.6S244.87253333 785.06666667 452.26666666 785.06666667c77.14133333 0 148.82133333-23.3472 208.41813333-63.21493334l199.33866667 228.5568c19.72906667 22.7328 54.272 24.91733333 76.8 5.25653334C959.62453333 935.86773333 961.87733333 901.46133333 942.14826666 878.7968zM179.19999999 409.6c0-150.59626667 122.4704-273.06666667 273.06666667-273.06666667 150.59626667 0 273.06666667 122.4704 273.06666667 273.06666667s-122.4704 273.06666667-273.06666667 273.06666667C301.67039999 682.66666667 179.19999999 560.19626667 179.19999999 409.6z"></path></svg></div></label>
+                        <div
+                            class="relative flex-1"> <input class="flex-1 font-light h-full bg-transparent focus:text-slate-900 text-slate-500 dark:text-slate-300 placeholder-slate-400 placeholder-opacity-80 shadow-none outline-none truncate text-lg sm:text-2xl caret-color-emerald-400 leading-normalized w-full appearance-none rounded-none transition-colors duration-200 ease-in-out"
+                                id="mysearch-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search for cheatsheet" maxlength="128" type="text" enterkeyhint="go"></div> <button id="mysearch-clear" type="reset"
+                    class="items-center justify-center h-full w-14 px-4 text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-100 opacity-75 fill-current cursor-pointer transition-fast-out flex"><i class="icon icon-close text-xs font-bold"></i></button></form>
+            </div>
+            <div class="w-px h-8 bg-slate-100 dark:bg-slate-400/20 flex-none"></div> <button class="cancel mr-1 px-4 h-full text-slate-500 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-300"> Cancel</button></div>
+        <div class="flex flex-grow overflow-hidden lg:rounded-br-lg">
+            <div class="relative w-full flex-none overflow-y-auto lg:w-1/2">
+                <ul id="mysearch-list"></ul>
+            </div>
+            <div class="preview-panel shadow-inner bg-slate-100 dark:bg-slate-800 lg:block w-1/2 flex-none overflow-y-auto"></div>
+        </div>
+    </div>
+    </div>
+
+    <div id="carbon_container"></div>
+</body>
+<script src="main.js"></script>
+<script>
+    // Get all pre > code elements
+    const codeBlocks = document.querySelectorAll('pre > code');
+    const initInnerHTML = '<svg height="1em" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path> </svg>';
+    const successInnerHTML = '<svg height="1em" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>';
+    codeBlocks.forEach(function(codeBlock) {
+        // Create a copy button element
+        const copyButton = document.createElement('button');
+        copyButton.className = 'bg-emerald-500 p-2 text-white fadeIn shadow-xl rounded flex items-center absolute top-2 right-2';
+        copyButton.innerHTML = initInnerHTML;
+        copyButton.style.opacity = "0";
+        const parent = codeBlock.parentNode;
+
+        parent.style = "position: relative;"
+        parent.insertBefore(copyButton, codeBlock);
+
+        // Add click event listener to copy button
+        copyButton.addEventListener('click', () => {
+            navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+                copyButton.innerHTML = successInnerHTML;
+                setTimeout(() => {
+                    copyButton.innerHTML = initInnerHTML;
+                }, 1000);
+            });
+        });
+
+        parent.addEventListener('mouseenter', () => {
+            copyButton.style.opacity = "1";
+        });
+        parent.addEventListener('mouseleave', () => {
+            copyButton.style.opacity = "0";
+        });
+    });
+</script>
+
+
+</html>

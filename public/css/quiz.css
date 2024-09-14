@@ -1,0 +1,276 @@
+:root {
+    --clr-text: #000;
+    --clr-grey-100: #eeeeee;
+    --clr-dark-100: #f4f4f4;
+    --clr-neutral-50: #fff;
+    --background-primary: #fff;
+    --background-secondary: #f9f9fb;
+    --background-tertiary: #fff;
+    --background-toc-active: #ebeaea;
+    --background-mark-yellow: rgba(199, 183, 0, .4);
+    --background-mark-green: rgba(0, 208, 97, .4);
+    --background-information: rgba(0, 133, 242, .1);
+    --background-warning: rgba(255, 42, 81, .1);
+    --background-critical: rgba(211, 0, 56, .1);
+    --background-success: rgba(0, 121, 54, .1);
+    --clr-neutral-100: #fbfbfd;
+    --clr-neutral-150: #f4f4f4;
+    --clr-neutral-200: #eeeeee;
+    --clr-neutral-225: #C5C5C5;
+    --clr-neutral-250: #b5b4b4;
+    --clr-neutral-250: #b5b4b4;
+    --clr-neutral-300: #8b8b8b;
+    --clr-neutral-350: #444f55;
+    --clr-neutral-400: #333232;
+    --clr-neutral-500: #021f30;
+    --clr-neutral-600: #1e2b32;
+    --clr-neutral-700: #232323;
+    --clr-neutral-750: #031926;
+    --clr-neutral-800: #06141c;
+    --clr-neutral-900: #1c1d21;
+    --clr-secondary-200: #e3f3cf;
+    --clr-accent-25: #f4fff5;
+    --clr-accent-50: #e4ffe5;
+    --clr-accent-100: #cfe9d0;
+    --clr-accent-200: #70ff00;
+    --clr-accent-400: #3ff360;
+    --clr-accent-500: #33c34e;
+    --clr-accent-600: #57b25a;
+    --clr-accent-700: #04af2f;
+    --clr-accent-800: #2c9d30;
+    --clr-accent-900: #239327;
+    --clr-beige: hsl(54, 79%, 58%, 0.6);
+    --clr-yellow-200: #fefad8;
+    --clr-yellow: #FFE529;
+    --clr-yellow-400: #FFE529;
+    --clr-orange-100: #ffede0;
+    --clr-orange-200: #fcdbc4;
+    --clr-orange-300: #ff9175;
+    --clr-orange-400: #f46f14;
+    --clr-blue-100: #f4fbff;
+    --clr-blue-150: #e1f6ff;
+    --clr-blue-200: #bfe4f5;
+    --clr-blue-300: #aed3ff;
+    --clr-blue-400: #0196da;
+    --clr-blue-700: #4fa9c5;
+    --clr-blue-900: #233743;
+    --clr-danger-400: #ae4136;
+    --clr-red-100: #ffaf96;
+    --clr-red-200: #e65326;
+    --clr-red-300: #f9440d;
+    --clr-grey-100: #eeeeee;
+    --ff-poppins: "Poppins", sans-serif;
+    --ff-lato: "Lato", sans-serif;
+    --ff-raleway: "Raleway", sans-serif;
+    --ff-nunito: "Nunito", sans-serif;
+    --fs-900: 2.5rem;
+    --fs-850: 1.688rem;
+    --fs-800: 2.5rem;
+    --fs-750: 2rem;
+    --fs-700: 1.65rem;
+    --fs-600: 1.25rem;
+    --fs-550: 1.125rem;
+    --fs-500: 1rem;
+    --fs-400: 1rem;
+    --fs-300: 0.875rem;
+    --fs-200: 0.775rem;
+    --container-width: 1413px;
+    --container: min(calc(100% - 1.875rem * 2), var(--container-width));
+    --header-height: 72px;
+    --accent-header-height: 45px;
+    --elem-radius: 0.25rem;
+}
+
+@media(min-width: 32rem) {
+    :root {
+        --fs-900: 3rem;
+        --fs-850: 1.9rem;
+        --fs-800: 3rem;
+        --fs-750: 2rem;
+        --fs-700: 1.6rem;
+        --fs-600: 1.37rem;
+        --fs-650: 1.47rem;
+    }
+}
+
+@media(min-width: 40rem) {
+    :root {
+        --fs-900: 3.75rem;
+        --fs-850: 2.313rem;
+        --fs-800: 3.5rem;
+        --fs-750: 2.5rem;
+        --fs-700: 1.9rem;
+        --fs-650: 1.7rem;
+        --fs-600: 1.563rem;
+        --fs-550: 1.25rem;
+        --fs-500: 1.25rem;
+    }
+}
+
+
+ul,
+ol {
+    list-style: none;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration-skip-ink: auto;
+    text-decoration: none;
+    color: currentColor;
+}
+
+
+body {
+    min-height: 100vh;
+    line-height: 1.5;
+    font-family: var(--ff-poppins);
+    background-color: antiquewhite;
+    font-family: Verdana, sans-serif;
+}
+
+h1,
+h2 {
+    font-family: var(--ff-lato);
+    font-weight: bold;
+}
+
+@media (min-width: 840px) {
+    .dropdown__list--multi-column {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        align-items: center;
+    }
+    .accent-nav__login-button {
+        display: none;
+    }
+    .library-header {
+        --header-height: 70px;
+    }
+    .library-header .nav[data-visible] {
+        grid-template-rows: 1fr;
+    }
+    .library-header .nav-toggle {
+        display: block;
+    }
+    .tutorial-toc-toggle {
+        display: none;
+    }
+    .row {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 1.25rem;
+    }
+    .container,
+    .container-fluid {
+        width: var(--container) !important;
+    }
+    .tutorial-content {
+        padding: 1.5rem 1.75rem !important;
+    }
+    .tutorial-toc .mini-logo {
+        display: flex;
+    }
+    .tutorial-toc {
+        border-radius: .75rem;
+    }
+}
+
+.tutorial-content .QA {
+    margin-top: 2rem !important;
+    position: relative;
+    border: 1px solid var(--clr-neutral-225);
+    border-radius: .5rem;
+    padding: 1rem;
+    padding-top: 1.5rem;
+}
+
+/*
+.library-quiz__options {
+    margin-block: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    align-items: flex-start;
+}
+*/
+
+.tutorial-content .QA .Q p:first-child {
+    font-weight: 600;
+}
+
+.tutorial-content .QA .Q a {
+    margin-top: .5rem;
+    display: inline-block;
+    text-align: start;
+    cursor: pointer;
+    border: 0;
+    border-radius: 100vmax;
+    padding: .4rem 1rem;
+    transition: .25s ease;
+    color: currentColor;
+    font-weight: normal;
+}
+
+.tutorial-content .QA .Q a:hover {
+    background-color: var(--clr-neutral-200);
+}
+
+/*
+.tutorial-content .QA .Q a.wrong {
+    background-color: var(--clr-orange-200);
+}
+/*
+.tutorial-content .QA .Q a.true {
+    background-color: var(--clr-secondary-200);
+}
+*/
+
+.false.selected {
+    background-color: var(--clr-red-100) !important;
+}
+
+.true.selected {
+    background-color: var(--clr-secondary-200) !important;
+}
+
+.tutorial-content .QA .A {
+    margin-top: 1rem;
+    background-color: var(--clr-blue-150);
+    border-radius: 0.75rem;
+    display: none;
+    padding: 1rem;
+}
+
+.tutorial-content .QA .A>h3:first-child {
+    font-size: var(--fs-500);
+    font-weight: 500;
+    margin-block: .5rem;
+}
+
+.tutorial-content .QA .A>h3:nth-child(2) {
+    margin-bottom: .5rem;
+    font-weight: 500;
+}
+
+.tutorial-content .QA .A h2 {
+    margin-bottom: 1rem;
+}
+
+.tutorial-content .QA .B .btn {
+    position: absolute;
+    top: -1rem;
+    right: 1rem;
+    cursor: pointer;
+    border: 0;
+    background-color: var(--clr-accent-800);
+    border-radius: .3rem;
+    padding: .3rem 1rem;
+    color: #fff;
+    transition: .25s ease;
+    width: fit-content;
+}

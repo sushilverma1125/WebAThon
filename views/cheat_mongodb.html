@@ -1,0 +1,595 @@
+<!DOCTYPE HTML>
+<html class="scrollbar" translate="no">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="content-language" content="en-gb">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>MongoDB Cheat Sheet</title>
+    <link rel="stylesheet" href="../../css/cheatsheet.css">
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            let html = document.documentElement.classList;
+            html.toggle('dark')
+        }
+    </script>
+    
+</head>
+
+<body class="bg-slate-100 dark:bg-slate-900">
+    
+    <div class="mx-auto flex flex-wrap md:py-5 flex-col md:flex-row items-center">
+        <div class="flex flex-col w-full mx-auto text-center my-8">
+            <div class="max-container w-full">
+                <h1 class="text-5xl mb-4"> <span class="text-slate-700 dark:text-slate-300 font-light">MongoDB</span> <span class="text-slate-400 dark:text-slate-500 font-extralight hidden md:inline">cheatsheet</span></h1>
+                <div class="lg:w-3/5 mx-auto intro leading-relaxed text-slate-600">
+                    <p>The MongoDB cheat sheet provides you with the most commonly used MongoDB commands and queries for your reference. the cheatsheet is from mongodb developers website</p>
+                </div>
+            </div>
+        </div>
+        <div id="mdLayout" class="mdLayout w-full max-container">
+            <div data-pw-desk="leaderboard_btf" id="pwDeskLbBtf1"></div>
+            <script type="text/javascript">
+                window.ramp.que.push(function() {
+                    window.ramp.addTag("pwDeskLbBtf1")
+                })
+            </script>
+            <div class="h2-wrap cols-2">
+                <h2 id="getting-started"><a class="h-anchor" href="#getting-started">#</a>Getting Started</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="connect-mongodb-shell"><a class="h-anchor" href="#connect-mongodb-shell">#</a>Connect MongoDB Shell</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">mongo # connects to mongodb://127.0.0.1:27017 by default
+</code></pre>
+                            <pre><code class="hljs language-mongosh">mongo --host &lt;host&gt; --port &lt;port&gt; -u &lt;user&gt; -p &lt;pwd&gt; # omit the password if you want a prompt
+</code></pre>
+                            <pre><code class="hljs language-mongosh">mongo &quot;mongodb://192.168.1.1:27017&quot;
+</code></pre>
+                            <pre><code class="hljs language-mongosh">mongo &quot;mongodb+srv://cluster-name.abcde.mongodb.net/&lt;dbname&gt;&quot; --username &lt;username&gt; # MongoDB Atlas
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="helpers"><a class="h-anchor" href="#helpers">#</a>Helpers</h3>
+                        <div class="section">
+                            <p>show dbs :</p>
+                            <pre><code class="hljs language-mongosh">db // prints the current database
+</code></pre>
+                            <p>Switch database :</p>
+                            <pre><code class="hljs language-mongosh">use &lt;database_name&gt;
+</code></pre>
+                            <p>Show collections :</p>
+                            <pre><code class="hljs language-mongosh">show collections
+</code></pre>
+                            <p>Run JavaScript file :</p>
+                            <pre><code class="hljs language-mongosh">load(&quot;myScript.js&quot;)
+</code></pre>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="crud"><a class="h-anchor" href="#crud">#</a>Crud</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="create"><a class="h-anchor" href="#create">#</a>Create</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">db.coll.insertOne(&#123;name: &quot;Max&quot;&#125;)
+db.coll.insert([&#123;name: &quot;Max&quot;&#125;, &#123;name:&quot;Alex&quot;&#125;]) // ordered bulk insert
+db.coll.insert([&#123;name: &quot;Max&quot;&#125;, &#123;name:&quot;Alex&quot;&#125;], &#123;ordered: false&#125;) // unordered bulk insert
+db.coll.insert(&#123;date: ISODate()&#125;)
+db.coll.insert(&#123;name: &quot;Max&quot;&#125;, &#123;&quot;writeConcern&quot;: &#123;&quot;w&quot;: &quot;majority&quot;, &quot;wtimeout&quot;: 5000&#125;&#125;)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="delete"><a class="h-anchor" href="#delete">#</a>Delete</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">db.coll.remove(&#123;name: &quot;Max&quot;&#125;)
+db.coll.remove(&#123;name: &quot;Max&quot;&#125;, &#123;justOne: true&#125;)
+db.coll.remove(&#123;&#125;) // WARNING! Deletes all the docs but not the collection itself and its index definitions
+db.coll.remove(&#123;name: &quot;Max&quot;&#125;, &#123;&quot;writeConcern&quot;: &#123;&quot;w&quot;: &quot;majority&quot;, &quot;wtimeout&quot;: 5000&#125;&#125;)
+db.coll.findOneAndDelete(&#123;&quot;name&quot;: &quot;Max&quot;&#125;)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="update"><a class="h-anchor" href="#update">#</a>Update</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;&quot;year&quot;: 2016&#125;) // WARNING! Replaces the entire document
+db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$set: &#123;&quot;year&quot;: 2016, name: &quot;Max&quot;&#125;&#125;)
+db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$unset: &#123;&quot;year&quot;: 1&#125;&#125;)
+db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$rename: &#123;&quot;year&quot;: &quot;date&quot;&#125; &#125;)
+db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$inc: &#123;&quot;year&quot;: 5&#125;&#125;)
+db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$mul: &#123;price: NumberDecimal(&quot;1.25&quot;), qty: 2&#125;&#125;)
+db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$min: &#123;&quot;imdb&quot;: 5&#125;&#125;)
+db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$max: &#123;&quot;imdb&quot;: 8&#125;&#125;)
+db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$currentDate: &#123;&quot;lastModified&quot;: true&#125;&#125;)
+db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$currentDate: &#123;&quot;lastModified&quot;: &#123;$type: &quot;timestamp&quot;&#125;&#125;&#125;)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="array"><a class="h-anchor" href="#array">#</a>Array</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$push :&#123;&quot;array&quot;: 1&#125;&#125;)
+db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$pull :&#123;&quot;array&quot;: 1&#125;&#125;)
+db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$addToSet :&#123;&quot;array&quot;: 2&#125;&#125;)
+db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$pop: &#123;&quot;array&quot;: 1&#125;&#125;)  // last element
+db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$pop: &#123;&quot;array&quot;: -1&#125;&#125;) // first element
+db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$pullAll: &#123;&quot;array&quot; :[3, 4, 5]&#125;&#125;)
+db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$push: &#123;scores: &#123;$each: [90, 92, 85]&#125;&#125;&#125;)
+db.coll.updateOne(&#123;&quot;_id&quot;: 1, &quot;grades&quot;: 80&#125;, &#123;$set: &#123;&quot;grades.$&quot;: 82&#125;&#125;)
+db.coll.updateMany(&#123;&#125;, &#123;$inc: &#123;&quot;grades.$[]&quot;: 10&#125;&#125;)
+db.coll.update(&#123;&#125;, &#123;$set: &#123;&quot;grades.$[element]&quot;: 100&#125;&#125;, &#123;multi: true, arrayFilters: [&#123;&quot;element&quot;: &#123;$gte: 100&#125;&#125;]&#125;)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-1">
+                        <h3 id="update-many"><a class="h-anchor" href="#update-many">#</a>Update many</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">db.coll.update(&#123;&quot;year&quot;: 1999&#125;, &#123;$set: &#123;&quot;decade&quot;: &quot;90's&quot;&#125;&#125;, &#123;&quot;multi&quot;:true&#125;)
+db.coll.updateMany(&#123;&quot;year&quot;: 1999&#125;, &#123;$set: &#123;&quot;decade&quot;: &quot;90's&quot;&#125;&#125;)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-1">
+                        <h3 id="findoneandupdate"><a class="h-anchor" href="#findoneandupdate">#</a>FindOneAndUpdate</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">db.coll.findOneAndUpdate(&#123;&quot;name&quot;: &quot;Max&quot;&#125;, &#123;$inc: &#123;&quot;points&quot;: 5&#125;&#125;, &#123;returnNewDocument: true&#125;)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-1">
+                        <h3 id="upsert"><a class="h-anchor" href="#upsert">#</a>Upsert</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">db.coll.update(&#123;&quot;_id&quot;: 1&#125;, &#123;$set: &#123;item: &quot;apple&quot;&#125;, $setOnInsert: &#123;defaultQty: 100&#125;&#125;, &#123;upsert: true&#125;)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-1">
+                        <h3 id="replace"><a class="h-anchor" href="#replace">#</a>Replace</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">db.coll.replaceOne(&#123;&quot;name&quot;: &quot;Max&quot;&#125;, &#123;&quot;firstname&quot;: &quot;Maxime&quot;, &quot;surname&quot;: &quot;Beugnet&quot;&#125;)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-1">
+                        <h3 id="save"><a class="h-anchor" href="#save">#</a>Save</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">db.coll.save(&#123;&quot;item&quot;: &quot;book&quot;, &quot;qty&quot;: 40&#125;)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-1">
+                        <h3 id="write-concern"><a class="h-anchor" href="#write-concern">#</a>Write concern</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">db.coll.update(&#123;&#125;, &#123;$set: &#123;&quot;x&quot;: 1&#125;&#125;, &#123;&quot;writeConcern&quot;: &#123;&quot;w&quot;: &quot;majority&quot;, &quot;wtimeout&quot;: 5000&#125;&#125;)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="find"><a class="h-anchor" href="#find">#</a>Find</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">db.coll.findOne() // returns a single document
+db.coll.find()    // returns a cursor - show 20 results - &quot;it&quot; to display more
+db.coll.find().pretty()
+db.coll.find(&#123;name: &quot;Max&quot;, age: 32&#125;) // implicit logical &quot;AND&quot;.
+db.coll.find(&#123;date: ISODate(&quot;2020-09-25T13:57:17.180Z&quot;)&#125;)
+db.coll.find(&#123;name: &quot;Max&quot;, age: 32&#125;).explain(&quot;executionStats&quot;) // or &quot;queryPlanner&quot; or &quot;allPlansExecution&quot;
+db.coll.distinct(&quot;name&quot;)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="count"><a class="h-anchor" href="#count">#</a>Count</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">db.coll.count(&#123;age: 32&#125;)          // estimation based on collection metadata
+db.coll.estimatedDocumentCount()  // estimation based on collection metadata
+db.coll.countDocuments(&#123;age: 32&#125;) // alias for an aggregation pipeline - accurate count
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="comparison"><a class="h-anchor" href="#comparison">#</a>Comparison</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">db.coll.find(&#123;&quot;year&quot;: &#123;$gt: 1970&#125;&#125;)
+db.coll.find(&#123;&quot;year&quot;: &#123;$gte: 1970&#125;&#125;)
+db.coll.find(&#123;&quot;year&quot;: &#123;$lt: 1970&#125;&#125;)
+db.coll.find(&#123;&quot;year&quot;: &#123;$lte: 1970&#125;&#125;)
+db.coll.find(&#123;&quot;year&quot;: &#123;$ne: 1970&#125;&#125;)
+db.coll.find(&#123;&quot;year&quot;: &#123;$in: [1958, 1959]&#125;&#125;)
+db.coll.find(&#123;&quot;year&quot;: &#123;$nin: [1958, 1959]&#125;&#125;)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="logical"><a class="h-anchor" href="#logical">#</a>Logical</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">db.coll.find(&#123;name:&#123;$not: &#123;$eq: &quot;Max&quot;&#125;&#125;&#125;)
+db.coll.find(&#123;$or: [&#123;&quot;year&quot; : 1958&#125;, &#123;&quot;year&quot; : 1959&#125;]&#125;)
+db.coll.find(&#123;$nor: [&#123;price: 1.99&#125;, &#123;sale: true&#125;]&#125;)
+db.coll.find(&#123;
+$and: [
+    &#123;$or: [&#123;qty: &#123;$lt :10&#125;&#125;, &#123;qty :&#123;$gt: 50&#125;&#125;]&#125;,
+&#123;$or: [&#123;sale: true&#125;, &#123;price: &#123;$lt: 5 &#125;&#125;]&#125;
+]
+&#125;)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="element"><a class="h-anchor" href="#element">#</a>Element</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">db.coll.find(&#123;name: &#123;$exists: true&#125;&#125;)
+db.coll.find(&#123;&quot;zipCode&quot;: &#123;$type: 2 &#125;&#125;)
+db.coll.find(&#123;&quot;zipCode&quot;: &#123;$type: &quot;string&quot;&#125;&#125;)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="aggregation-pipeline"><a class="h-anchor" href="#aggregation-pipeline">#</a>Aggregation Pipeline</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">db.coll.aggregate([
+&#123;$match: &#123;status: &quot;A&quot;&#125;&#125;,
+&#123;$group: &#123;_id: &quot;$cust_id&quot;, total: &#123;$sum: &quot;$amount&quot;&#125;&#125;&#125;,
+&#123;$sort: &#123;total: -1&#125;&#125;
+])
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="text-search-with-a-text-index"><a class="h-anchor" href="#text-search-with-a-text-index">#</a>Text search with a &quot;text&quot; index</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">db.coll.find(&#123;$text: &#123;$search: &quot;cake&quot;&#125;&#125;, &#123;score: &#123;$meta: &quot;textScore&quot;&#125;&#125;).sort(&#123;score: &#123;$meta: &quot;textScore&quot;&#125;&#125;)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="regex"><a class="h-anchor" href="#regex">#</a>Regex</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">db.coll.find(&#123;name: /^Max/&#125;) // regex: starts by letter &quot;M&quot;
+db.coll.find(&#123;name: /^Max$/i&#125;) // regex case insensitive
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="array-2"><a class="h-anchor" href="#array-2">#</a>Array</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">db.coll.find(&#123;tags: &#123;$all: [&quot;Realm&quot;, &quot;Charts&quot;]&#125;&#125;)
+db.coll.find(&#123;field: &#123;$size: 2&#125;&#125;) // impossible to index - prefer storing the size of the array &amp; update it
+db.coll.find(&#123;results: &#123;$elemMatch: &#123;product: &quot;xyz&quot;, score: &#123;$gte: 8&#125;&#125;&#125;&#125;)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="projections"><a class="h-anchor" href="#projections">#</a>Projections</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">db.coll.find(&#123;&quot;x&quot;: 1&#125;, &#123;&quot;actors&quot;: 1&#125;) // actors + \_id
+db.coll.find(&#123;&quot;x&quot;: 1&#125;, &#123;&quot;actors&quot;: 1, &quot;\_id&quot;: 0&#125;) // actors
+db.coll.find(&#123;&quot;x&quot;: 1&#125;, &#123;&quot;actors&quot;: 0, &quot;summary&quot;: 0&#125;) // all but &quot;actors&quot; and &quot;summary&quot;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="sort-skip-limit"><a class="h-anchor" href="#sort-skip-limit">#</a>Sort, skip, limit</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">db.coll.find(&#123;&#125;).sort(&#123;&quot;year&quot;: 1, &quot;rating&quot;: -1&#125;).skip(10).limit(3)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="read-concern"><a class="h-anchor" href="#read-concern">#</a>Read Concern</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">db.coll.find().readConcern(&quot;majority&quot;)
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap cols-2">
+                <h2 id="databases-and-collections"><a class="h-anchor" href="#databases-and-collections">#</a>Databases and Collections</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap row-span-1">
+                        <h3 id="drop"><a class="h-anchor" href="#drop">#</a>Drop</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">db.coll.drop()    // removes the collection and its index definitions
+db.dropDatabase() // double check that you are *NOT* on the PROD cluster... :-)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="create-collection"><a class="h-anchor" href="#create-collection">#</a>Create Collection</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">db.createCollection(&quot;contacts&quot;, &#123;
+   validator: &#123;$jsonSchema: &#123;
+      bsonType: &quot;object&quot;,
+      required: [&quot;phone&quot;],
+      properties: &#123;
+         phone: &#123;
+            bsonType: &quot;string&quot;,
+            description: &quot;must be a string and is required&quot;
+         &#125;,
+         email: &#123;
+            bsonType: &quot;string&quot;,
+            pattern: &quot;@mongodb\.com$&quot;,
+            description: &quot;must be a string and match the regular expression pattern&quot;
+         &#125;,
+         status: &#123;
+            enum: [ &quot;Unknown&quot;, &quot;Incomplete&quot; ],
+            description: &quot;can only be one of the enum values&quot;
+         &#125;
+      &#125;
+   &#125;&#125;
+&#125;)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-1">
+                        <h3 id="other-collection-functions"><a class="h-anchor" href="#other-collection-functions">#</a>Other Collection Functions</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">db.coll.stats()
+db.coll.storageSize()
+db.coll.totalIndexSize()
+db.coll.totalSize()
+db.coll.validate(&#123;full: true&#125;)
+db.coll.renameCollection(&quot;new_coll&quot;, true) // 2nd parameter to drop the target collection if exists
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap cols-2">
+                <h2 id="indexes"><a class="h-anchor" href="#indexes">#</a>Indexes</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="basics"><a class="h-anchor" href="#basics">#</a>Basics</h3>
+                        <div class="section">
+                            <h4 id="list"><a class="h-anchor" href="#list">#</a>List</h4>
+                            <pre><code class="hljs language-mongosh">db.coll.getIndexes()
+db.coll.getIndexKeys()
+</code></pre>
+                            <h4 id="drop-indexes"><a class="h-anchor" href="#drop-indexes">#</a>Drop Indexes</h4>
+                            <pre><code class="hljs language-mongosh">db.coll.dropIndex(&quot;name_1&quot;)
+</code></pre>
+                            <h4 id="hide-unhide-indexes"><a class="h-anchor" href="#hide-unhide-indexes">#</a>Hide/Unhide Indexes</h4>
+                            <pre><code class="hljs language-mongosh">db.coll.hideIndex(&quot;name_1&quot;)
+db.coll.unhideIndex(&quot;name_1&quot;)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="create-indexes"><a class="h-anchor" href="#create-indexes">#</a>Create Indexes</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">// Index Types
+db.coll.createIndex(&#123;&quot;name&quot;: 1&#125;)                // single field index
+db.coll.createIndex(&#123;&quot;name&quot;: 1, &quot;date&quot;: 1&#125;)     // compound index
+db.coll.createIndex(&#123;foo: &quot;text&quot;, bar: &quot;text&quot;&#125;) // text index
+db.coll.createIndex(&#123;&quot;$**&quot;: &quot;text&quot;&#125;)            // wildcard text index
+db.coll.createIndex(&#123;&quot;userMetadata.$**&quot;: 1&#125;)    // wildcard index
+db.coll.createIndex(&#123;&quot;loc&quot;: &quot;2d&quot;&#125;)              // 2d index
+db.coll.createIndex(&#123;&quot;loc&quot;: &quot;2dsphere&quot;&#125;)        // 2dsphere index
+db.coll.createIndex(&#123;&quot;_id&quot;: &quot;hashed&quot;&#125;)          // hashed index
+
+// Index Options
+db.coll.createIndex(&#123;&quot;lastModifiedDate&quot;: 1&#125;, &#123;expireAfterSeconds: 3600&#125;)      // TTL index
+db.coll.createIndex(&#123;&quot;name&quot;: 1&#125;, &#123;unique: true&#125;)
+db.coll.createIndex(&#123;&quot;name&quot;: 1&#125;, &#123;partialFilterExpression: &#123;age: &#123;$gt: 18&#125;&#125;&#125;) // partial index
+db.coll.createIndex(&#123;&quot;name&quot;: 1&#125;, &#123;collation: &#123;locale: 'en', strength: 1&#125;&#125;)    // case insensitive index with strength = 1 or 2
+db.coll.createIndex(&#123;&quot;name&quot;: 1 &#125;, &#123;sparse: true&#125;)
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap cols-2">
+                <h2 id="others"><a class="h-anchor" href="#others">#</a>Others</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap row-span-3">
+                        <h3 id="handy-commands"><a class="h-anchor" href="#handy-commands">#</a>Handy commands</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">use admin
+db.createUser(&#123;&quot;user&quot;: &quot;root&quot;, &quot;pwd&quot;: passwordPrompt(), &quot;roles&quot;: [&quot;root&quot;]&#125;)
+db.dropUser(&quot;root&quot;)
+db.auth( &quot;user&quot;, passwordPrompt() )
+
+use test
+db.getSiblingDB(&quot;dbname&quot;)
+db.currentOp()
+db.killOp(123) // opid
+
+db.fsyncLock()
+db.fsyncUnlock()
+
+db.getCollectionNames()
+db.getCollectionInfos()
+db.printCollectionStats()
+db.stats()
+
+db.getReplicationInfo()
+db.printReplicationInfo()
+db.isMaster()
+db.hostInfo()
+db.printShardingStatus()
+db.shutdownServer()
+db.serverStatus()
+
+db.setSlaveOk()
+db.getSlaveOk()
+
+db.getProfilingLevel()
+db.getProfilingStatus()
+db.setProfilingLevel(1, 200) // 0 == OFF, 1 == ON with slowms, 2 == ON
+
+db.enableFreeMonitoring()
+db.disableFreeMonitoring()
+db.getFreeMonitoringStatus()
+
+db.createView(&quot;viewName&quot;, &quot;sourceColl&quot;, [&#123;$project:&#123;department: 1&#125;&#125;])
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="replica-set"><a class="h-anchor" href="#replica-set">#</a>Replica Set</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">rs.status()
+rs.initiate(&#123;&quot;_id&quot;: &quot;replicaTest&quot;,
+  members: [
+    &#123; _id: 0, host: &quot;127.0.0.1:27017&quot; &#125;,
+    &#123; _id: 1, host: &quot;127.0.0.1:27018&quot; &#125;,
+    &#123; _id: 2, host: &quot;127.0.0.1:27019&quot;, arbiterOnly:true &#125;]
+&#125;)
+rs.add(&quot;mongodbd1.example.net:27017&quot;)
+rs.addArb(&quot;mongodbd2.example.net:27017&quot;)
+rs.remove(&quot;mongodbd1.example.net:27017&quot;)
+rs.conf()
+rs.isMaster()
+rs.printReplicationInfo()
+rs.printSlaveReplicationInfo()
+rs.reconfig(&lt;valid_conf&gt;)
+rs.slaveOk()
+rs.stepDown(20, 5) // (stepDownSecs, secondaryCatchUpPeriodSecs)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="sharded-cluster"><a class="h-anchor" href="#sharded-cluster">#</a>Sharded Cluster</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">sh.status()
+sh.addShard(&quot;rs1/mongodbd1.example.net:27017&quot;)
+sh.shardCollection(&quot;mydb.coll&quot;, &#123;zipcode: 1&#125;)
+
+sh.moveChunk(&quot;mydb.coll&quot;, &#123; zipcode: &quot;53187&quot; &#125;, &quot;shard0019&quot;)
+sh.splitAt(&quot;mydb.coll&quot;, &#123;x: 70&#125;)
+sh.splitFind(&quot;mydb.coll&quot;, &#123;x: 70&#125;)
+sh.disableAutoSplit()
+sh.enableAutoSplit()
+
+sh.startBalancer()
+sh.stopBalancer()
+sh.disableBalancing(&quot;mydb.coll&quot;)
+sh.enableBalancing(&quot;mydb.coll&quot;)
+sh.getBalancerState()
+sh.setBalancerState(true/false)
+sh.isBalancerRunning()
+
+sh.addTagRange(&quot;mydb.coll&quot;, &#123;state: &quot;NY&quot;, zip: MinKey &#125;, &#123; state: &quot;NY&quot;, zip: MaxKey &#125;, &quot;NY&quot;)
+sh.removeTagRange(&quot;mydb.coll&quot;, &#123;state: &quot;NY&quot;, zip: MinKey &#125;, &#123; state: &quot;NY&quot;, zip: MaxKey &#125;, &quot;NY&quot;)
+sh.addShardTag(&quot;shard0000&quot;, &quot;NYC&quot;)
+sh.removeShardTag(&quot;shard0000&quot;, &quot;NYC&quot;)
+
+sh.addShardToZone(&quot;shard0000&quot;, &quot;JFK&quot;)
+sh.removeShardFromZone(&quot;shard0000&quot;, &quot;NYC&quot;)
+sh.removeRangeFromZone(&quot;mydb.coll&quot;, &#123;a: 1, b: 1&#125;, &#123;a: 10, b: 10&#125;)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-1">
+                        <h3 id="change-streams"><a class="h-anchor" href="#change-streams">#</a>Change Streams</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-mongosh">watchCursor = db.coll.watch( [ &#123; $match : &#123;&quot;operationType&quot; : &quot;insert&quot; &#125; &#125; ] )
+
+while (!watchCursor.isExhausted())&#123;
+   if (watchCursor.hasNext())&#123;
+      print(tojson(watchCursor.next()));
+   &#125;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div data-pw-desk="med_rect_btf" id="pwDeskMedRectBtf3"></div>
+            <script type="text/javascript">
+                window.ramp.que.push(function() {
+                    window.ramp.addTag("pwDeskMedRectBtf3")
+                })
+            </script>
+        </div>
+    </div>
+    <script>
+        ! function(e, n, t, r) {
+            var o = n.createElement(t);
+            o.async = 1, o.src = "https://a.ad.gt/api/v1/u/matches/514?url=" + encodeURIComponent(e.location.href) + "&ref=" + encodeURIComponent(n.referrer);
+            var a = n.getElementsByTagName(t)[0];
+            a.parentNode.insertBefore(o, a)
+        }(window, document, "script")
+    </script>
+    <div id="mysearch" class="z-50 fixed inset-0 flex justify-center bg-slate-600/80 dark:bg-slate-900/90 items-start text-sm z-50 overflow-hidden lg:pt-16 lg:pb-20 hidden">
+        <div id="mysearch-box" class="lg:max-w-screen-lg w-full flex flex-col justify-between bg-white dark:bg-slate-700 shadow-3xl dark:shadow-3xl lg:rounded-lg lg:max-h-832 min-h-320 h-full">
+            <div class="flex items-center h-16 flex-none border-b border-slate-200 dark:border-slate-700">
+                <div class="w-full h-full">
+                    <form class="flex items-center w-full h-full outline-none rounded-tl-lg"><label for="mysearch-input" id="mysearch-label" class="h-full w-14 mt-1 ml-1 px-4 flex items-center justify-center transition-colors duration-200 ease-in-out text-emerald-200"><div class="text-2xl text-emerald-500"><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="1em" width="1em"><path d="M942.14826666 878.7968l-200.56746667-229.92213333C795.37493333 583.8848 827.73333333 500.5312 827.73333333 409.6 827.73333333 202.27413333 659.59253333 34.13333333 452.26666666 34.13333333 244.87253333 34.13333333 76.79999999 202.27413333 76.79999999 409.6S244.87253333 785.06666667 452.26666666 785.06666667c77.14133333 0 148.82133333-23.3472 208.41813333-63.21493334l199.33866667 228.5568c19.72906667 22.7328 54.272 24.91733333 76.8 5.25653334C959.62453333 935.86773333 961.87733333 901.46133333 942.14826666 878.7968zM179.19999999 409.6c0-150.59626667 122.4704-273.06666667 273.06666667-273.06666667 150.59626667 0 273.06666667 122.4704 273.06666667 273.06666667s-122.4704 273.06666667-273.06666667 273.06666667C301.67039999 682.66666667 179.19999999 560.19626667 179.19999999 409.6z"></path></svg></div></label>
+                        <div
+                            class="relative flex-1"> <input class="flex-1 font-light h-full bg-transparent focus:text-slate-900 text-slate-500 dark:text-slate-300 placeholder-slate-400 placeholder-opacity-80 shadow-none outline-none truncate text-lg sm:text-2xl caret-color-emerald-400 leading-normalized w-full appearance-none rounded-none transition-colors duration-200 ease-in-out"
+                                id="mysearch-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search for cheatsheet" maxlength="128" type="text" enterkeyhint="go"></div> <button id="mysearch-clear" type="reset"
+                    class="items-center justify-center h-full w-14 px-4 text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-100 opacity-75 fill-current cursor-pointer transition-fast-out flex"><i class="icon icon-close text-xs font-bold"></i></button></form>
+            </div>
+            <div class="w-px h-8 bg-slate-100 dark:bg-slate-400/20 flex-none"></div> <button class="cancel mr-1 px-4 h-full text-slate-500 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-300"> Cancel</button></div>
+        <div class="flex flex-grow overflow-hidden lg:rounded-br-lg">
+            <div class="relative w-full flex-none overflow-y-auto lg:w-1/2">
+                <ul id="mysearch-list"></ul>
+            </div>
+            <div class="preview-panel shadow-inner bg-slate-100 dark:bg-slate-800 lg:block w-1/2 flex-none overflow-y-auto"></div>
+        </div>
+    </div>
+    </div>
+
+    <div id="carbon_container"></div>
+</body>
+<script src="main.js"></script>
+<script src="https://unpkg.com/@popperjs/core@2?_v=1694179016929"></script>
+<script src="https://unpkg.com/tippy.js@6?_v=1694179016929"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        if (typeof(tippy) !== 'undefined') {
+            document.querySelectorAll("a[data-tooltip]").forEach(function(x) {
+                let content = x.getAttribute('data-tooltip');
+                tippy(x, {
+                    content: content
+                });
+            });
+        }
+    });
+</script>
+<script>
+    // Get all pre > code elements
+    const codeBlocks = document.querySelectorAll('pre > code');
+    const initInnerHTML = '<svg height="1em" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path> </svg>';
+    const successInnerHTML = '<svg height="1em" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>';
+    codeBlocks.forEach(function(codeBlock) {
+        // Create a copy button element
+        const copyButton = document.createElement('button');
+        copyButton.className = 'bg-emerald-500 p-2 text-white fadeIn shadow-xl rounded flex items-center absolute top-2 right-2';
+        copyButton.innerHTML = initInnerHTML;
+        copyButton.style.opacity = "0";
+        const parent = codeBlock.parentNode;
+
+        parent.style = "position: relative;"
+        parent.insertBefore(copyButton, codeBlock);
+
+        // Add click event listener to copy button
+        copyButton.addEventListener('click', () => {
+            navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+                copyButton.innerHTML = successInnerHTML;
+                setTimeout(() => {
+                    copyButton.innerHTML = initInnerHTML;
+                }, 1000);
+            });
+        });
+
+        parent.addEventListener('mouseenter', () => {
+            copyButton.style.opacity = "1";
+        });
+        parent.addEventListener('mouseleave', () => {
+            copyButton.style.opacity = "0";
+        });
+    });
+</script>
+
+
+</html>

@@ -1,0 +1,1624 @@
+<!DOCTYPE HTML>
+<html class="scrollbar" translate="no">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="content-language" content="en-gb">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>CSS 3 Cheat Sheet</title>
+    <link rel="stylesheet" href="../../css/cheatsheet.css">
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            let html = document.documentElement.classList;
+            html.toggle('dark')
+        }
+    </script>
+    
+</head>
+
+<body class="bg-slate-100 dark:bg-slate-900">
+    
+    <div class="mx-auto flex flex-wrap md:py-5 flex-col md:flex-row items-center">
+        <div class="flex flex-col w-full mx-auto text-center my-8">
+            <div class="max-container w-full">
+                <h1 class="text-5xl mb-4"> <span class="text-slate-700 dark:text-slate-300 font-light">CSS 3</span> <span class="text-slate-400 dark:text-slate-500 font-extralight hidden md:inline">cheatsheet</span></h1>
+                <div class="lg:w-3/5 mx-auto intro leading-relaxed text-slate-600">
+                    <p>This is a reference cheat sheet for CSS goodness, listing selector syntax, properties, units and other useful bits of information.</p>
+                </div>
+            </div>
+        </div>
+        <div id="mdLayout" class="mdLayout w-full max-container">
+            <div data-pw-desk="leaderboard_btf" id="pwDeskLbBtf1"></div>
+            <script type="text/javascript">
+                window.ramp.que.push(function() {
+                    window.ramp.addTag("pwDeskLbBtf1")
+                })
+            </script>
+            <div class="h2-wrap">
+                <h2 id="getting-started"><a class="h-anchor" href="#getting-started">#</a>Getting Started</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap row-span-3">
+                        <h3 id="introduction"><a class="h-anchor" href="#introduction">#</a>Introduction</h3>
+                        <div class="section">
+                            <p>CSS is rich in capabilities and is more than simply laying out pages.</p>
+                            <h4 id="external-stylesheet"><a class="h-anchor" href="#external-stylesheet">#</a>External stylesheet</h4>
+                            <pre><code class="hljs wrap language-html"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;./path/to/stylesheet/style.css&quot;</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/css&quot;</span>&gt;</span>
+</code></pre>
+                            <h4 id="internal-stylesheet"><a class="h-anchor" href="#internal-stylesheet">#</a>Internal stylesheet</h4>
+                            <pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
+<span class="hljs-selector-tag">body</span> &#123;
+    <span class="hljs-attribute">background-color</span>: linen;
+&#125;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+</code></pre>
+                            <h4 id="inline-styles"><a class="h-anchor" href="#inline-styles">#</a>Inline styles</h4>
+                            <pre><code class="hljs wrap language-html"><span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;text-align: center;&quot;</span>&gt;</span>Centered text<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;color: blue; font-size: 18px;&quot;</span>&gt;</span>Blue, 18-point text<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="add-class"><a class="h-anchor" href="#add-class">#</a>Add class</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;classname&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;class1 ... classn&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+                            <p>Support multiple classes on one element.</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="important"><a class="h-anchor" href="#important">#</a>!important</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-class">.post-title</span> &#123;
+    <span class="hljs-attribute">color</span>: blue <span class="hljs-meta">!important</span>;
+&#125;
+</code></pre>
+                            <p>Overrides all previous styling rules.</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="selector"><a class="h-anchor" href="#selector">#</a>Selector</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-tag">h1</span> &#123; &#125; 
+<span class="hljs-selector-id">#job-title</span> &#123; &#125;
+<span class="hljs-selector-tag">div</span><span class="hljs-selector-class">.hero</span> &#123; &#125;
+<span class="hljs-selector-tag">div</span> &gt; <span class="hljs-selector-tag">p</span> &#123; &#125;
+</code></pre>
+                            <p>See: <a href="#css-selectors">Selectors</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="text-color"><a class="h-anchor" href="#text-color">#</a>Text color</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-attribute">color</span>: <span class="hljs-number">#2a2aff</span>;
+<span class="hljs-attribute">color</span>: green;
+<span class="hljs-attribute">color</span>: <span class="hljs-built_in">rgb</span>(<span class="hljs-number">34</span>, <span class="hljs-number">12</span>, <span class="hljs-number">64</span>, <span class="hljs-number">0.6</span>);
+<span class="hljs-attribute">color</span>: <span class="hljs-built_in">hsla</span>(<span class="hljs-number">30</span> <span class="hljs-number">100%</span> <span class="hljs-number">50%</span> / <span class="hljs-number">0.6</span>);
+</code></pre>
+                            <p>See: <a href="#css-colors">Colors</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="background"><a class="h-anchor" href="#background">#</a>Background</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-attribute">background-color</span>: blue;
+<span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">&quot;nyan-cat.gif&quot;</span>);
+<span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">&quot;../image.png&quot;</span>);
+</code></pre>
+                            <p>See: <a href="#css-backgrounds">Backgrounds</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="font"><a class="h-anchor" href="#font">#</a>Font</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-class">.page-title</span> &#123;
+    <span class="hljs-attribute">font-weight</span>: bold;
+    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">30px</span>;
+    <span class="hljs-attribute">font-family</span>: <span class="hljs-string">&quot;Courier New&quot;</span>;
+&#125;
+</code></pre>
+                            <p>See: <a href="#css-fonts">Fonts</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="position"><a class="h-anchor" href="#position">#</a>Position</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-class">.box</span> &#123;
+    <span class="hljs-attribute">position</span>: relative;
+    <span class="hljs-attribute">top</span>: <span class="hljs-number">20px</span>;
+    <span class="hljs-attribute">left</span>: <span class="hljs-number">20px</span>;
+&#125;
+</code></pre>
+                            <p>See also: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://learn-the-web.algonquindesign.ca/topics/css-layout-cheat-sheet/">Position</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="animation"><a class="h-anchor" href="#animation">#</a>Animation</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css">
+<span class="hljs-attribute">animation</span>: <span class="hljs-number">300ms</span> linear <span class="hljs-number">0s</span> infinite;
+
+<span class="hljs-attribute">animation</span>: bounce <span class="hljs-number">300ms</span> linear infinite;
+
+</code></pre>
+                            <p>See: <a href="#css-animation">Animation</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="comment"><a class="h-anchor" href="#comment">#</a>Comment</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css">
+<span class="hljs-comment">/* This is a single line comment */</span>
+
+<span class="hljs-comment">/* This is a 
+   multi-line comment */</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="flex-layout"><a class="h-anchor" href="#flex-layout">#</a>Flex layout</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-tag">div</span> &#123;
+    <span class="hljs-attribute">display</span>: flex;
+    <span class="hljs-attribute">justify-content</span>: center;
+&#125;
+<span class="hljs-selector-tag">div</span> &#123;
+    <span class="hljs-attribute">display</span>: flex;
+    <span class="hljs-attribute">justify-content</span>: flex-start;
+&#125;
+</code></pre>
+                            <p>See: <a href="#css-flexbox">Flexbox</a> | <a href="#css-flexbox-tricks">Flex Tricks</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="grid-layout"><a class="h-anchor" href="#grid-layout">#</a>Grid layout</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-id">#container</span> &#123;
+  <span class="hljs-attribute">display</span>: grid;
+  <span class="hljs-attribute">grid</span>: <span class="hljs-built_in">repeat</span>(<span class="hljs-number">2</span>, <span class="hljs-number">60px</span>) / auto-flow <span class="hljs-number">80px</span>;
+&#125;
+
+<span class="hljs-selector-id">#container</span> &gt; <span class="hljs-selector-tag">div</span> &#123;
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#8ca0ff</span>;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">50px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">50px</span>;
+&#125;
+</code></pre>
+                            <p>See: <a href="#css-grid-layout">Grid Layout</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="variable-counter"><a class="h-anchor" href="#variable-counter">#</a>Variable &amp; Counter</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css">counter-set: subsection;
+<span class="hljs-attribute">counter-increment</span>: subsection;
+<span class="hljs-attribute">counter-reset</span>: subsection <span class="hljs-number">0</span>;
+
+<span class="hljs-selector-pseudo">:root</span> &#123;
+  <span class="hljs-attr">--bg-color</span>: brown;
+&#125;
+element &#123;
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--bg-color);
+&#125;
+</code></pre>
+                            <p>See: <a href="#css-dynamic-content">Dynamic content</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="css-selectors"><a class="h-anchor" href="#css-selectors">#</a>CSS Selectors</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="examples"><a class="h-anchor" href="#examples">#</a>Examples </h3>
+                        <div class="section">
+                            <h4 id="groups-selector"><a class="h-anchor" href="#groups-selector">#</a>Groups Selector</h4>
+                            <pre><code class="hljs language-css"><span class="hljs-selector-tag">h1</span>, <span class="hljs-selector-tag">h2</span> &#123;
+    <span class="hljs-attribute">color</span>: red;
+&#125;
+</code></pre>
+                            <h4 id="chaining-selector"><a class="h-anchor" href="#chaining-selector">#</a>Chaining Selector</h4>
+                            <pre><code class="hljs language-css"><span class="hljs-selector-tag">h3</span><span class="hljs-selector-class">.section-heading</span> &#123;
+    <span class="hljs-attribute">color</span>: blue;
+&#125;
+</code></pre>
+                            <h4 id="attribute-selector"><a class="h-anchor" href="#attribute-selector">#</a>Attribute Selector</h4>
+                            <pre><code class="hljs language-css"><span class="hljs-selector-tag">div</span><span class="hljs-selector-attr">[attribute=<span class="hljs-string">&quot;SomeValue&quot;</span>]</span> &#123;
+    <span class="hljs-attribute">background-color</span>: red;
+&#125;
+</code></pre>
+                            <h4 id="first-child-selector"><a class="h-anchor" href="#first-child-selector">#</a>First Child Selector</h4>
+                            <pre><code class="hljs language-css"><span class="hljs-selector-tag">p</span><span class="hljs-selector-pseudo">:first</span>-child &#123;
+    <span class="hljs-attribute">font-weight</span>: bold;
+&#125;
+</code></pre>
+                            <h4 id="no-children-selector"><a class="h-anchor" href="#no-children-selector">#</a>No Children Selector</h4>
+                            <pre><code class="hljs language-css"><span class="hljs-selector-class">.box</span><span class="hljs-selector-pseudo">:empty</span> &#123;
+  <span class="hljs-attribute">background</span>: lime;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">80px</span>;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">80px</span>;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="basic"><a class="h-anchor" href="#basic">#</a>Basic</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>*</code></td>
+                                        <td>All elements</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>div</code></td>
+                                        <td>All div tags</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>.classname</code></td>
+                                        <td>All elements with class</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>#idname</code></td>
+                                        <td>Element with ID</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>div,p</code></td>
+                                        <td>All divs and paragraphs</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>#idname *</code></td>
+                                        <td>All elements inside #idname</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>See also: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/CSS/Type_selectors">Type</a> / <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors">Class</a>                                / <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/CSS/ID_selectors">ID</a> / <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/CSS/Universal_selectors">Universal</a>                                selectors</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="combinators"><a class="h-anchor" href="#combinators">#</a>Combinators</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Selector</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>div.classname</code></td>
+                                        <td>Div with certain classname</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>div#idname</code></td>
+                                        <td>Div with certain ID</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>div p</code></td>
+                                        <td>Paragraphs inside divs</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>div &gt; p</code></td>
+                                        <td>All p tags<br><em>one level deep in div</em></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>div + p</code></td>
+                                        <td>P tags immediately after div</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>div ~ p</code></td>
+                                        <td>P tags preceded by div</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>See also: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/CSS/Adjacent_sibling_combinator">Adjacent</a> / <a target="_blank" rel="noopener external nofollow noreferrer"
+                                    href="https://developer.mozilla.org/en-US/docs/Web/CSS/General_sibling_combinator">Sibling</a> / <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/CSS/Child_combinator">Child</a>                                selectors</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="attribute-selectors"><a class="h-anchor" href="#attribute-selectors">#</a>Attribute selectors</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>a[target]</code></td>
+                                        <td>With a
+                                            <yel>target</yel> attribute</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>a[target=&quot;_blank&quot;]</code></td>
+                                        <td>Open in new tab</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>a[href^=&quot;/index&quot;]</code></td>
+                                        <td>Starts with
+                                            <yel>/index</yel>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>[class|=&quot;chair&quot;]</code></td>
+                                        <td>Starts with
+                                            <yel>chair</yel>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>[class*=&quot;chair&quot;]</code></td>
+                                        <td>containing
+                                            <yel>chair</yel>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>[title~=&quot;chair&quot;]</code></td>
+                                        <td>Contains the word
+                                            <yel>chair</yel>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>a[href$=&quot;.doc&quot;]</code></td>
+                                        <td>Ends with
+                                            <yel>.doc</yel>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>[type=&quot;button&quot;]</code></td>
+                                        <td>Specified type</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>See also: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors">Attribute selectors</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="user-action-pseudo-classes"><a class="h-anchor" href="#user-action-pseudo-classes">#</a>User action pseudo classes</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>a:link    </code></td>
+                                        <td>Link in normal state</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>a:active  </code></td>
+                                        <td>Link in clicked state</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>a:hover   </code></td>
+                                        <td>Link with mouse over it</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>a:visited </code></td>
+                                        <td>Visited link</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="pseudo-classes"><a class="h-anchor" href="#pseudo-classes">#</a>Pseudo classes</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>p::after</code></td>
+                                        <td>Add content after p</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>p::before</code></td>
+                                        <td>Add content before p</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>p::first-letter</code></td>
+                                        <td>First letter in p</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>p::first-line</code></td>
+                                        <td>First line in p</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>::selection</code></td>
+                                        <td>Selected by user</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>::placeholder</code></td>
+                                        <td><a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/CSS/::placeholder">Placeholder</a> attribute</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>:root</code></td>
+                                        <td>Documents root element</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>:target</code></td>
+                                        <td>Highlight active anchor</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>div:empty</code></td>
+                                        <td>Element with no children</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>p:lang(en)</code></td>
+                                        <td>P with en language attribute</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>:not(span)</code></td>
+                                        <td>Element that's not a span</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="input-pseudo-classes"><a class="h-anchor" href="#input-pseudo-classes">#</a>Input pseudo classes</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>input:checked</code></td>
+                                        <td>Checked inputs</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>input:disabled</code></td>
+                                        <td>Disabled inputs</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>input:enabled</code></td>
+                                        <td>Enabled inputs</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>input:focus</code></td>
+                                        <td>Input has focus</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>input:in-range</code></td>
+                                        <td>Value in range</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>input:out-of-range</code></td>
+                                        <td>Input value out of range</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>input:valid</code></td>
+                                        <td>Input with valid value</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>input:invalid</code></td>
+                                        <td>Input with invalid value</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>input:optional</code></td>
+                                        <td>No required attribute</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>input:required</code></td>
+                                        <td>Input with required attribute</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>input:read-only</code></td>
+                                        <td>With readonly attribute</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>input:read-write</code></td>
+                                        <td>No readonly attribute</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>input:indeterminate</code></td>
+                                        <td>With <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/CSS/:indeterminate">indeterminate</a> state</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="structural-pseudo-classes"><a class="h-anchor" href="#structural-pseudo-classes">#</a>Structural pseudo classes</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>p:first-child</code></td>
+                                        <td>First child</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>p:last-child</code></td>
+                                        <td>Last child</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>p:first-of-type</code></td>
+                                        <td>First of some type</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>p:last-of-type</code></td>
+                                        <td>Last of some type</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>p:nth-child(2)</code></td>
+                                        <td>Second child of its parent</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>p:nth-child(3n42)</code></td>
+                                        <td>Nth-child (an + b) formula</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>p:nth-last-child(2)</code></td>
+                                        <td>Second child from behind</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>p:nth-of-type(2)</code></td>
+                                        <td>Second p of its parent</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>p:nth-last-of-type(2)</code></td>
+                                        <td>...from behind</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>p:only-of-type</code></td>
+                                        <td>Unique of its parent</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>p:only-child</code></td>
+                                        <td>Only child of its parent</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="css-fonts"><a class="h-anchor" href="#css-fonts">#</a>CSS Fonts</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap row-span-3">
+                        <h3 id="properties"><a class="h-anchor" href="#properties">#</a>Properties</h3>
+                        <div class="section">
+                            <table class="left-text">
+                                <thead>
+                                    <tr>
+                                        <th>Property</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>font-family:</code></td>
+                                        <td>&lt;font&gt;
+                                            <fontn></fontn>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>font-size:</code></td>
+                                        <td>&lt;size&gt;</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>letter-spacing:</code></td>
+                                        <td>&lt;size&gt;</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>line-height:</code></td>
+                                        <td>&lt;number&gt;</td>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr>
+                                        <td><code>font-weight:</code></td>
+                                        <td>&lt;number&gt; / bold / normal</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>font-style:</code></td>
+                                        <td>italic / normal</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>text-decoration:</code></td>
+                                        <td>underline / none</td>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr>
+                                        <td><code>text-align:</code></td>
+                                        <td>left / right<br>center / justify</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>text-transform:</code></td>
+                                        <td>capitalize / uppercase / lowercase</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>See also: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/CSS/font">Font</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap secondary col-span-2">
+                        <h3 id="shorthand"><a class="h-anchor" href="#shorthand">#</a>Shorthand</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>style</th>
+                                        <th>weight</th>
+                                        <th>size (required)</th>
+                                        <th></th>
+                                        <th>line-height</th>
+                                        <th>family</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>font:</code></td>
+                                        <td><code>italic</code></td>
+                                        <td><code>400</code></td>
+                                        <td><code>14px</code></td>
+                                        <td><code>/</code></td>
+                                        <td><code>1.5</code></td>
+                                        <td><code>sans-serif</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>style</td>
+                                        <td>weight</td>
+                                        <td>size (required)</td>
+                                        <td></td>
+                                        <td>line-height</td>
+                                        <td>family (required)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="example"><a class="h-anchor" href="#example">#</a>Example</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-attribute">font-family</span>: Arial, sans-serif;
+<span class="hljs-attribute">font-size</span>: <span class="hljs-number">12pt</span>;
+<span class="hljs-attribute">letter-spacing</span>: <span class="hljs-number">0.02em</span>;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="case"><a class="h-anchor" href="#case">#</a>Case</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css">
+<span class="hljs-comment">/* Hello */</span>
+<span class="hljs-attribute">text-transform</span>: capitalize;
+
+<span class="hljs-comment">/* HELLO */</span>
+<span class="hljs-attribute">text-transform</span>: uppercase;
+
+<span class="hljs-comment">/* hello */</span>
+<span class="hljs-attribute">text-transform</span>: lowercase;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="font-face"><a class="h-anchor" href="#font-face">#</a>@font-face</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-keyword">@font-face</span> &#123;
+    <span class="hljs-attribute">font-family</span>: <span class="hljs-string">&#x27;Glegoo&#x27;</span>;
+    <span class="hljs-attribute">src</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">&#x27;../Glegoo.woff&#x27;</span>);
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="css-colors"><a class="h-anchor" href="#css-colors">#</a>CSS Colors</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="named-color"><a class="h-anchor" href="#named-color">#</a>Named color</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-attribute">color</span>: red;
+<span class="hljs-attribute">color</span>: orange;
+<span class="hljs-attribute">color</span>: tan;
+<span class="hljs-attribute">color</span>: rebeccapurple;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="hexadecimal-color"><a class="h-anchor" href="#hexadecimal-color">#</a>Hexadecimal color</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-attribute">color</span>: <span class="hljs-number">#090</span>;
+<span class="hljs-attribute">color</span>: <span class="hljs-number">#009900</span>;
+<span class="hljs-attribute">color</span>: <span class="hljs-number">#090a</span>;
+<span class="hljs-attribute">color</span>: <span class="hljs-number">#009900aa</span>;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="rgb-colors"><a class="h-anchor" href="#rgb-colors">#</a>rgb() Colors</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-attribute">color</span>: <span class="hljs-built_in">rgb</span>(<span class="hljs-number">34</span>, <span class="hljs-number">12</span>, <span class="hljs-number">64</span>, <span class="hljs-number">0.6</span>);
+<span class="hljs-attribute">color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">34</span>, <span class="hljs-number">12</span>, <span class="hljs-number">64</span>, <span class="hljs-number">0.6</span>);
+<span class="hljs-attribute">color</span>: <span class="hljs-built_in">rgb</span>(<span class="hljs-number">34</span> <span class="hljs-number">12</span> <span class="hljs-number">64</span> / <span class="hljs-number">0.6</span>);
+<span class="hljs-attribute">color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">34</span> <span class="hljs-number">12</span> <span class="hljs-number">64</span> / <span class="hljs-number">0.3</span>);
+<span class="hljs-attribute">color</span>: <span class="hljs-built_in">rgb</span>(<span class="hljs-number">34.0</span> <span class="hljs-number">12</span> <span class="hljs-number">64</span> / <span class="hljs-number">60%</span>);
+<span class="hljs-attribute">color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">34.6</span> <span class="hljs-number">12</span> <span class="hljs-number">64</span> / <span class="hljs-number">30%</span>);
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="hsl-colors"><a class="h-anchor" href="#hsl-colors">#</a>HSL Colors</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-attribute">color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">30</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">50%</span>, <span class="hljs-number">0.6</span>);
+<span class="hljs-attribute">color</span>: <span class="hljs-built_in">hsla</span>(<span class="hljs-number">30</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">50%</span>, <span class="hljs-number">0.6</span>);
+<span class="hljs-attribute">color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">30</span> <span class="hljs-number">100%</span> <span class="hljs-number">50%</span> / <span class="hljs-number">0.6</span>);
+<span class="hljs-attribute">color</span>: <span class="hljs-built_in">hsla</span>(<span class="hljs-number">30</span> <span class="hljs-number">100%</span> <span class="hljs-number">50%</span> / <span class="hljs-number">0.6</span>);
+<span class="hljs-attribute">color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">30.0</span> <span class="hljs-number">100%</span> <span class="hljs-number">50%</span> / <span class="hljs-number">60%</span>);
+<span class="hljs-attribute">color</span>: <span class="hljs-built_in">hsla</span>(<span class="hljs-number">30.2</span> <span class="hljs-number">100%</span> <span class="hljs-number">50%</span> / <span class="hljs-number">60%</span>);
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="other"><a class="h-anchor" href="#other">#</a>Other</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-attribute">color</span>: inherit;
+<span class="hljs-attribute">color</span>: initial;
+<span class="hljs-attribute">color</span>: unset;
+<span class="hljs-attribute">color</span>: transparent;
+
+<span class="hljs-attribute">color</span>: currentcolor; <span class="hljs-comment">/* keyword */</span>
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="css-backgrounds"><a class="h-anchor" href="#css-backgrounds">#</a>CSS Backgrounds</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="properties-2"><a class="h-anchor" href="#properties-2">#</a>Properties</h3>
+                        <div class="section">
+                            <table class="left-text">
+                                <thead>
+                                    <tr>
+                                        <th>Property</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>background:</code></td>
+                                        <td><em>(Shorthand)</em></td>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr>
+                                        <td><code>background-color:</code></td>
+                                        <td>See: <a href="#css-colors">Colors</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>background-image:</code></td>
+                                        <td>url(...)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>background-position:</code></td>
+                                        <td>left/center/right<br>top/center/bottom</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>background-size:</code></td>
+                                        <td>cover X Y</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>background-clip:</code></td>
+                                        <td>border-box<br>padding-box<br>content-box</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>background-repeat:</code></td>
+                                        <td>no-repeat<br>repeat-x<br>repeat-y</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>background-attachment:</code></td>
+                                        <td>scroll/fixed/local</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap secondary col-span-2">
+                        <h3 id="shorthand-2"><a class="h-anchor" href="#shorthand-2">#</a>Shorthand</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>color</th>
+                                        <th>image</th>
+                                        <th>positionX</th>
+                                        <th>positionY</th>
+                                        <th></th>
+                                        <th>size</th>
+                                        <th>repeat</th>
+                                        <th>attachment</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>background:</code></td>
+                                        <td><code>#ff0</code></td>
+                                        <td><code>url(a.jpg)</code></td>
+                                        <td><code>left</code></td>
+                                        <td><code>top</code></td>
+                                        <td><code>/</code></td>
+                                        <td><code>100px</code> <code>auto</code></td>
+                                        <td><code>no-repeat</code></td>
+                                        <td><code>fixed;</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>background:</code></td>
+                                        <td><code>#abc</code></td>
+                                        <td><code>url(b.png)</code></td>
+                                        <td><code>center</code></td>
+                                        <td><code>center</code></td>
+                                        <td><code>/</code></td>
+                                        <td><code>cover</code></td>
+                                        <td><code>repeat-x</code></td>
+                                        <td><code>local;</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>color</td>
+                                        <td>image</td>
+                                        <td>posX</td>
+                                        <td>posY</td>
+                                        <td></td>
+                                        <td>size</td>
+                                        <td>repeat</td>
+                                        <td>attach..</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap col-span-2">
+                        <h3 id="examples-2"><a class="h-anchor" href="#examples-2">#</a>Examples</h3>
+                        <div class="section">
+                            <pre><code class="hljs wrap language-css"><span class="hljs-attribute">background</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">img_man.jpg</span>) no-repeat center;
+
+<span class="hljs-attribute">background</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">img_flwr.gif</span>) right bottom no-repeat, <span class="hljs-built_in">url</span>(<span class="hljs-string">paper.gif</span>) left top repeat;
+
+<span class="hljs-attribute">background</span>: <span class="hljs-built_in">rgb</span>(<span class="hljs-number">2</span>,<span class="hljs-number">0</span>,<span class="hljs-number">36</span>);
+<span class="hljs-attribute">background</span>: <span class="hljs-built_in">linear-gradient</span>(<span class="hljs-number">90deg</span>, <span class="hljs-built_in">rgba</span>(<span class="hljs-number">2</span>,<span class="hljs-number">0</span>,<span class="hljs-number">36</span>,<span class="hljs-number">1</span>) <span class="hljs-number">0%</span>, <span class="hljs-built_in">rgba</span>(<span class="hljs-number">13</span>,<span class="hljs-number">232</span>,<span class="hljs-number">230</span>,<span class="hljs-number">1</span>) <span class="hljs-number">35%</span>, <span class="hljs-built_in">rgba</span>(<span class="hljs-number">0</span>,<span class="hljs-number">212</span>,<span class="hljs-number">255</span>,<span class="hljs-number">1</span>) <span class="hljs-number">100%</span>);
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="css-the-box-model"><a class="h-anchor" href="#css-the-box-model">#</a>CSS The Box Model</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="maximums-minimums"><a class="h-anchor" href="#maximums-minimums">#</a>Maximums/Minimums</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-class">.column</span> &#123;
+    <span class="hljs-attribute">max-width</span>: <span class="hljs-number">200px</span>;
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">500px</span>;
+&#125;
+</code></pre>
+                            <p>See also: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/CSS/max-width">max-width</a> / <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/CSS/min-width">min-width</a>                                / <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/CSS/max-height">max-height</a> / <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/CSS/min-height">min-height</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="margin-padding"><a class="h-anchor" href="#margin-padding">#</a>Margin / Padding</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-class">.block-one</span> &#123;
+    <span class="hljs-attribute">margin</span>: <span class="hljs-number">20px</span>;
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span>;
+&#125;
+</code></pre>
+                            <p>See also: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/CSS/margin">Margin</a> / <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding">Padding</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="box-sizing"><a class="h-anchor" href="#box-sizing">#</a>Box-sizing</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-class">.container</span> &#123;
+    <span class="hljs-attribute">box-sizing</span>: border-box;
+&#125;
+</code></pre>
+                            <p>See also: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/CSS/Box-sizing">Box-sizing</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="visibility"><a class="h-anchor" href="#visibility">#</a>Visibility</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-class">.invisible-elements</span> &#123;
+    <span class="hljs-attribute">visibility</span>: hidden;
+&#125;
+</code></pre>
+                            <p>See also: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/CSS/visibility">Visibility</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="auto-keyword"><a class="h-anchor" href="#auto-keyword">#</a>Auto keyword</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-tag">div</span> &#123;
+    <span class="hljs-attribute">margin</span>: auto;
+&#125;
+</code></pre>
+                            <p>See also: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/CSS/margin">Margin</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="overflow"><a class="h-anchor" href="#overflow">#</a>Overflow</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-class">.small-block</span> &#123;
+    <span class="hljs-attribute">overflow</span>: scroll;
+&#125;
+</code></pre>
+                            <p>See also: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/CSS/overflow">Overflow</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap cols-5">
+                <h2 id="css-animation"><a class="h-anchor" href="#css-animation">#</a>CSS Animation</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap col-span-5 secondary">
+                        <h3 id="shorthand-3"><a class="h-anchor" href="#shorthand-3">#</a>Shorthand</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>name</th>
+                                        <th>duration</th>
+                                        <th>timing-function</th>
+                                        <th>delay</th>
+                                        <th>count</th>
+                                        <th>direction</th>
+                                        <th>fill-mode</th>
+                                        <th>play-state</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>animation:</code></td>
+                                        <td><code>bounce</code></td>
+                                        <td><code>300ms</code></td>
+                                        <td><code>linear</code></td>
+                                        <td><code>100ms</code></td>
+                                        <td><code>infinite</code></td>
+                                        <td><code>alternate-reverse</code></td>
+                                        <td><code>both</code></td>
+                                        <td><code>reverse</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>name</td>
+                                        <td>duration</td>
+                                        <td>timing-function</td>
+                                        <td>delay</td>
+                                        <td>count</td>
+                                        <td>direction</td>
+                                        <td>fill-mode</td>
+                                        <td>play-state</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2 col-span-2">
+                        <h3 id="properties-3"><a class="h-anchor" href="#properties-3">#</a>Properties</h3>
+                        <div class="section">
+                            <table class="left-text">
+                                <thead>
+                                    <tr>
+                                        <th>Property</th>
+                                        <th>Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>animation:</code></td>
+                                        <td><em>(shorthand)</em></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>animation-name:</code></td>
+                                        <td>&lt;name&gt;</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>animation-duration:</code></td>
+                                        <td>&lt;time&gt;ms</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>animation-timing-function:</code></td>
+                                        <td>ease / linear / ease-in / ease-out / ease-in-out</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>animation-delay:</code></td>
+                                        <td>&lt;time&gt;ms</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>animation-iteration-count:</code></td>
+                                        <td>infinite / &lt;number&gt;</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>animation-direction:</code></td>
+                                        <td>normal / reverse / alternate / alternate-reverse</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>animation-fill-mode:</code></td>
+                                        <td>none / forwards / backwards / both / initial / inherit</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>animation-play-state:</code></td>
+                                        <td>normal / reverse / alternate / alternate-reverse</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>See also: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation">Animation</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap col-span-3">
+                        <h3 id="example-2"><a class="h-anchor" href="#example-2">#</a>Example</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-comment">/* @keyframes duration | timing-function | delay |
+   iteration-count | direction | fill-mode | play-state | name */</span>
+<span class="hljs-attribute">animation</span>: <span class="hljs-number">3s</span> ease-in <span class="hljs-number">1s</span> <span class="hljs-number">2</span> reverse both paused slidein;
+
+<span class="hljs-comment">/* @keyframes duration | timing-function | delay | name */</span>
+<span class="hljs-attribute">animation</span>: <span class="hljs-number">3s</span> linear <span class="hljs-number">1s</span> slidein;
+
+<span class="hljs-comment">/* @keyframes duration | name */</span>
+<span class="hljs-attribute">animation</span>: <span class="hljs-number">3s</span> slidein;
+
+<span class="hljs-attribute">animation</span>: <span class="hljs-number">4s</span> linear <span class="hljs-number">0s</span> infinite alternate move_eye;
+<span class="hljs-attribute">animation</span>: bounce <span class="hljs-number">300ms</span> linear <span class="hljs-number">0s</span> infinite normal;
+<span class="hljs-attribute">animation</span>: bounce <span class="hljs-number">300ms</span> linear infinite;
+<span class="hljs-attribute">animation</span>: bounce <span class="hljs-number">300ms</span> linear infinite alternate-reverse;
+<span class="hljs-attribute">animation</span>: bounce <span class="hljs-number">300ms</span> linear <span class="hljs-number">2s</span> infinite alternate-reverse forwards normal;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap col-span-3">
+                        <h3 id="javascript-event"><a class="h-anchor" href="#javascript-event">#</a>Javascript Event</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js">.<span class="hljs-title function_">one</span>(<span class="hljs-string">&#x27;webkitAnimationEnd oanimationend msAnimationEnd animationend&#x27;</span>)
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap cols-2">
+                <h2 id="css-flexbox"><a class="h-anchor" href="#css-flexbox">#</a>CSS Flexbox</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="simple-example"><a class="h-anchor" href="#simple-example">#</a>Simple example</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-class">.container</span> &#123;
+  <span class="hljs-attribute">display</span>: flex;
+&#125;
+</code></pre>
+                            <pre><code class="hljs language-css"><span class="hljs-selector-class">.container</span> &gt; <span class="hljs-selector-tag">div</span> &#123;
+  <span class="hljs-attribute">flex</span>: <span class="hljs-number">1</span> <span class="hljs-number">1</span> auto;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="container"><a class="h-anchor" href="#container">#</a>Container</h3>
+                        <div class="section">
+                            <p>.container {</p>
+                            <pre><code class="hljs language-css">  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">display</span>: inline-flex;
+</code></pre>
+                            <pre><code class="hljs language-css">  <span class="hljs-attribute">flex-direction</span>: row;            <span class="hljs-comment">/* ltr - default */</span>
+  <span class="hljs-attribute">flex-direction</span>: row-reverse;    <span class="hljs-comment">/* rtl */</span>
+  <span class="hljs-attribute">flex-direction</span>: column;         <span class="hljs-comment">/* top-bottom */</span>
+  <span class="hljs-attribute">flex-direction</span>: column-reverse; <span class="hljs-comment">/* bottom-top */</span>
+</code></pre>
+                            <pre><code class="hljs language-css">  <span class="hljs-attribute">flex-wrap</span>: nowrap; <span class="hljs-comment">/* one-line */</span>
+  <span class="hljs-attribute">flex-wrap</span>: wrap;   <span class="hljs-comment">/* multi-line */</span>
+</code></pre>
+                            <pre><code class="hljs language-css">  <span class="hljs-attribute">align-items</span>: flex-start; <span class="hljs-comment">/* vertical-align to top */</span>
+  <span class="hljs-attribute">align-items</span>: flex-end;   <span class="hljs-comment">/* vertical-align to bottom */</span>
+  <span class="hljs-attribute">align-items</span>: center;     <span class="hljs-comment">/* vertical-align to center */</span>
+  <span class="hljs-attribute">align-items</span>: stretch;    <span class="hljs-comment">/* same height on all (default) */</span>
+</code></pre>
+                            <pre><code class="hljs language-css">  <span class="hljs-attribute">justify-content</span>: flex-start;    <span class="hljs-comment">/* [xxx        ] */</span>
+  <span class="hljs-attribute">justify-content</span>: center;        <span class="hljs-comment">/* [    xxx    ] */</span>
+  <span class="hljs-attribute">justify-content</span>: flex-end;      <span class="hljs-comment">/* [        xxx] */</span>
+  <span class="hljs-attribute">justify-content</span>: space-between; <span class="hljs-comment">/* [x    x    x] */</span>
+  <span class="hljs-attribute">justify-content</span>: space-around;  <span class="hljs-comment">/* [ x   x   x ] */</span>
+  <span class="hljs-attribute">justify-content</span>: space-evenly;  <span class="hljs-comment">/* [  x  x  x  ] */</span>
+</code></pre>
+                            <p>}</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="child"><a class="h-anchor" href="#child">#</a>Child</h3>
+                        <div class="section">
+                            <p>.container &gt; div {</p>
+                            <pre><code class="hljs language-css">  <span class="hljs-comment">/* This: */</span>
+  <span class="hljs-attribute">flex</span>: <span class="hljs-number">1</span> <span class="hljs-number">0</span> auto;
+
+  <span class="hljs-comment">/* Is equivalent to this: */</span>
+  <span class="hljs-attribute">flex-grow</span>: <span class="hljs-number">1</span>;
+  <span class="hljs-attribute">flex-shrink</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">flex-basis</span>: auto;
+</code></pre>
+                            <pre><code class="hljs language-css">  <span class="hljs-attribute">order</span>: <span class="hljs-number">1</span>;
+</code></pre>
+                            <pre><code class="hljs language-css">  <span class="hljs-attribute">align-self</span>: flex-start;  <span class="hljs-comment">/* left */</span>
+  <span class="hljs-attribute">margin-left</span>: auto;       <span class="hljs-comment">/* right */</span>
+</code></pre>
+                            <p>}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="css-flexbox-tricks"><a class="h-anchor" href="#css-flexbox-tricks">#</a>CSS Flexbox Tricks</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="vertical-center"><a class="h-anchor" href="#vertical-center">#</a>Vertical center</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-class">.container</span> &#123;
+  <span class="hljs-attribute">display</span>: flex;
+&#125;
+
+<span class="hljs-selector-class">.container</span> &gt; <span class="hljs-selector-tag">div</span> &#123;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">margin</span>: auto;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="vertical-center-2"><a class="h-anchor" href="#vertical-center-2">#</a>Vertical center (2)</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-class">.container</span> &#123;
+  <span class="hljs-attribute">display</span>: flex;
+
+  <span class="hljs-comment">/* vertical */</span>
+  <span class="hljs-attribute">align-items</span>: center; 
+
+  <span class="hljs-comment">/* horizontal */</span>
+  <span class="hljs-attribute">justify-content</span>: center;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="reordering"><a class="h-anchor" href="#reordering">#</a>Reordering</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-class">.container</span> &gt; <span class="hljs-selector-class">.top</span> &#123;
+ <span class="hljs-attribute">order</span>: <span class="hljs-number">1</span>;
+&#125;
+
+<span class="hljs-selector-class">.container</span> &gt; <span class="hljs-selector-class">.bottom</span> &#123;
+ <span class="hljs-attribute">order</span>: <span class="hljs-number">2</span>;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="mobile-layout"><a class="h-anchor" href="#mobile-layout">#</a>Mobile layout</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-class">.container</span> &#123;
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">flex-direction</span>: column;
+&#125;
+
+<span class="hljs-selector-class">.container</span> &gt; <span class="hljs-selector-class">.top</span> &#123;
+  <span class="hljs-attribute">flex</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">100px</span>;
+&#125;
+
+<span class="hljs-selector-class">.container</span> &gt; <span class="hljs-selector-class">.content</span> &#123;
+  <span class="hljs-attribute">flex</span>: <span class="hljs-number">1</span> <span class="hljs-number">0</span> auto;
+&#125;
+</code></pre>
+                            <p>A fixed-height top bar and a dynamic-height content area.</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap col-span-2">
+                        <h3 id="table-like"><a class="h-anchor" href="#table-like">#</a>Table-like</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css">
+<span class="hljs-selector-class">.container</span> &#123;
+  <span class="hljs-attribute">display</span>: flex;
+&#125;
+
+
+<span class="hljs-comment">/* the &#x27;px&#x27; values here are just suggested percentages */</span>
+<span class="hljs-selector-class">.container</span> &gt; <span class="hljs-selector-class">.checkbox</span> &#123; <span class="hljs-attribute">flex</span>: <span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">20px</span>; &#125;
+<span class="hljs-selector-class">.container</span> &gt; <span class="hljs-selector-class">.subject</span>  &#123; <span class="hljs-attribute">flex</span>: <span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">400px</span>; &#125;
+<span class="hljs-selector-class">.container</span> &gt; <span class="hljs-selector-class">.date</span>     &#123; <span class="hljs-attribute">flex</span>: <span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">120px</span>; &#125;
+</code></pre>
+                            <p>This creates columns that have different widths, but size accordingly according to the circumstances.</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="vertical"><a class="h-anchor" href="#vertical">#</a>Vertical</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-class">.container</span> &#123;
+  <span class="hljs-attribute">align-items</span>: center;
+&#125;
+</code></pre>
+                            <p>Vertically-center all items.</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap col-span-2">
+                        <h3 id="left-and-right"><a class="h-anchor" href="#left-and-right">#</a>Left and right</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-class">.menu</span> &gt; <span class="hljs-selector-class">.left</span>  &#123; <span class="hljs-attribute">align-self</span>: flex-start; &#125;
+<span class="hljs-selector-class">.menu</span> &gt; <span class="hljs-selector-class">.right</span> &#123; <span class="hljs-attribute">align-self</span>: flex-end; &#125;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="css-grid-layout"><a class="h-anchor" href="#css-grid-layout">#</a>CSS Grid Layout</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="grid-template-columns"><a class="h-anchor" href="#grid-template-columns">#</a>Grid Template Columns</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-id">#grid-container</span> &#123;
+    <span class="hljs-attribute">display</span>: grid;
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;
+    <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-number">20px</span> <span class="hljs-number">20%</span> <span class="hljs-number">60%</span>;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="fr-relative-unit"><a class="h-anchor" href="#fr-relative-unit">#</a>fr Relative Unit</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-class">.grid</span> &#123;
+    <span class="hljs-attribute">display</span>: grid;
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;
+    <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-number">1</span>fr <span class="hljs-number">60px</span> <span class="hljs-number">1</span>fr;
+&#125;
+
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="grid-gap"><a class="h-anchor" href="#grid-gap">#</a>Grid Gap</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-comment">/*The distance between rows is 20px*/</span>
+<span class="hljs-comment">/*The distance between columns is 10px*/</span>
+<span class="hljs-selector-id">#grid-container</span> &#123;
+    <span class="hljs-attribute">display</span>: grid;
+    <span class="hljs-attribute">grid-gap</span>: <span class="hljs-number">20px</span> <span class="hljs-number">10px</span>;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="css-block-level-grid"><a class="h-anchor" href="#css-block-level-grid">#</a>CSS Block Level Grid</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-id">#grid-container</span> &#123;
+    <span class="hljs-attribute">display</span>: block;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="css-grid-row"><a class="h-anchor" href="#css-grid-row">#</a>CSS grid-row</h3>
+                        <div class="section">
+                            <p>CSS syntax:</p>
+                            <ul>
+                                <li>grid-row: grid-row-start / grid-row-end;</li>
+                            </ul>
+                            <h4 id="example-3"><a class="h-anchor" href="#example-3">#</a>Example</h4>
+                            <pre><code class="hljs language-css"><span class="hljs-selector-class">.item</span> &#123;
+    <span class="hljs-attribute">grid-row</span>: <span class="hljs-number">1</span> / span <span class="hljs-number">2</span>;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="css-inline-level-grid"><a class="h-anchor" href="#css-inline-level-grid">#</a>CSS Inline Level Grid</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-id">#grid-container</span> &#123;
+    <span class="hljs-attribute">display</span>: inline-grid;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="minmax-function"><a class="h-anchor" href="#minmax-function">#</a>minmax() Function</h3>
+                        <div class="section">
+                            <pre><code class="hljs wrap language-css"><span class="hljs-selector-class">.grid</span> &#123;
+    <span class="hljs-attribute">display</span>: grid;
+    <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-number">100px</span> <span class="hljs-built_in">minmax</span>(<span class="hljs-number">100px</span>, <span class="hljs-number">500px</span>) <span class="hljs-number">100px</span>; 
+&#125;
+
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="grid-row-start-grid-row-end"><a class="h-anchor" href="#grid-row-start-grid-row-end">#</a>grid-row-start &amp; grid-row-end</h3>
+                        <div class="section">
+                            <p>CSS syntax:</p>
+                            <ul>
+                                <li>grid-row-start: auto|row-line;<br></li>
+                                <li>grid-row-end: auto|row-line|span n;</li>
+                            </ul>
+                            <h4 id="example-4"><a class="h-anchor" href="#example-4">#</a>Example</h4>
+                            <pre><code class="hljs language-css"><span class="hljs-attribute">grid-row-start</span>: <span class="hljs-number">2</span>;
+<span class="hljs-attribute">grid-row-end</span>: span <span class="hljs-number">2</span>;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="css-grid-row-gap"><a class="h-anchor" href="#css-grid-row-gap">#</a>CSS grid-row-gap</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-attribute">grid-row</span>-<span class="hljs-attribute">gap</span>: length;
+</code></pre>
+                            <p>Any legal length value, like px or %. 0 is the default value</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="css-grid-area"><a class="h-anchor" href="#css-grid-area">#</a>CSS grid-area</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-class">.item1</span> &#123;
+    <span class="hljs-attribute">grid-area</span>: <span class="hljs-number">2</span> / <span class="hljs-number">1</span> / span <span class="hljs-number">2</span> / span <span class="hljs-number">3</span>;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="justify-items"><a class="h-anchor" href="#justify-items">#</a>Justify Items</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-id">#container</span> &#123;
+    <span class="hljs-attribute">display</span>: grid;
+    justify-items: center;
+    <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-number">1</span>fr;
+    <span class="hljs-attribute">grid-template-rows</span>: <span class="hljs-number">1</span>fr <span class="hljs-number">1</span>fr <span class="hljs-number">1</span>fr;
+    <span class="hljs-attribute">grid-gap</span>: <span class="hljs-number">10px</span>;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="css-grid-template-areas"><a class="h-anchor" href="#css-grid-template-areas">#</a>CSS grid-template-areas</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-class">.item</span> &#123;
+    <span class="hljs-attribute">grid-area</span>: nav;
+&#125;
+<span class="hljs-selector-class">.grid-container</span> &#123;
+    <span class="hljs-attribute">display</span>: grid;
+    <span class="hljs-attribute">grid-template-areas</span>:
+    <span class="hljs-string">&#x27;nav nav . .&#x27;</span>
+    <span class="hljs-string">&#x27;nav nav . .&#x27;</span>;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="justify-self"><a class="h-anchor" href="#justify-self">#</a>Justify Self</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-id">#grid-container</span> &#123;
+    <span class="hljs-attribute">display</span>: grid;
+    justify-items: start;
+&#125;
+
+<span class="hljs-selector-class">.grid-items</span> &#123;
+    justify-self: end;
+&#125;
+</code></pre>
+                            <p>The grid items are positioned to the right (end) of the row.</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="align-items"><a class="h-anchor" href="#align-items">#</a>Align Items</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-id">#container</span> &#123;
+    <span class="hljs-attribute">display</span>: grid;
+    <span class="hljs-attribute">align-items</span>: start;
+    <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-number">1</span>fr;
+    <span class="hljs-attribute">grid-template-rows</span>: <span class="hljs-number">1</span>fr <span class="hljs-number">1</span>fr <span class="hljs-number">1</span>fr;
+    <span class="hljs-attribute">grid-gap</span>: <span class="hljs-number">10px</span>;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="css-dynamic-content"><a class="h-anchor" href="#css-dynamic-content">#</a>CSS Dynamic Content</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="variable"><a class="h-anchor" href="#variable">#</a>Variable</h3>
+                        <div class="section">
+                            <p>Define CSS Variable</p>
+                            <pre><code class="hljs language-css"><span class="hljs-selector-pseudo">:root</span> &#123;
+  <span class="hljs-attr">--first-color</span>: <span class="hljs-number">#16f</span>;
+  <span class="hljs-attr">--second-color</span>: <span class="hljs-number">#ff7</span>;
+&#125;
+</code></pre>
+                            <p>Variable Usage</p>
+                            <pre><code class="hljs language-css"><span class="hljs-selector-id">#firstParagraph</span> &#123;
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--first-color);
+  <span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--second-color);
+&#125;
+</code></pre>
+                            <p>See also: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/CSS/--*">CSS Variable</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="counter"><a class="h-anchor" href="#counter">#</a>Counter</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-comment">/* Set &quot;my-counter&quot; to 0 */</span>
+counter-set: my-counter;
+</code></pre>
+                            <pre><code class="hljs language-css"><span class="hljs-comment">/* Increment &quot;my-counter&quot; by 1 */</span>
+<span class="hljs-attribute">counter-increment</span>: my-counter;
+</code></pre>
+                            <pre><code class="hljs language-css"><span class="hljs-comment">/* Decrement &quot;my-counter&quot; by 1 */</span>
+<span class="hljs-attribute">counter-increment</span>: my-counter -<span class="hljs-number">1</span>;
+</code></pre>
+                            <pre><code class="hljs language-css"><span class="hljs-comment">/* Reset &quot;my-counter&quot; to 0 */</span>
+<span class="hljs-attribute">counter-reset</span>: my-counter;
+</code></pre>
+                            <p>See also: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/CSS/counter-set">Counter set</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="using-counters"><a class="h-anchor" href="#using-counters">#</a>Using counters</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-tag">body</span> &#123; <span class="hljs-attribute">counter-reset</span>: section; &#125;
+
+<span class="hljs-selector-tag">h3</span><span class="hljs-selector-pseudo">::before</span> &#123;
+  <span class="hljs-attribute">counter-increment</span>: section; 
+  <span class="hljs-attribute">content</span>: <span class="hljs-string">&quot;Section.&quot;</span> <span class="hljs-built_in">counter</span>(section);
+&#125;
+</code></pre>
+                            <pre><code class="hljs language-css"><span class="hljs-selector-tag">ol</span> &#123;
+  <span class="hljs-attribute">counter-reset</span>: section;   
+  list-marker-type: none;
+&#125;
+
+<span class="hljs-selector-tag">li</span><span class="hljs-selector-pseudo">::before</span> &#123;
+  <span class="hljs-attribute">counter-increment</span>: section;
+  <span class="hljs-attribute">content</span>: <span class="hljs-built_in">counters</span>(section, <span class="hljs-string">&quot;.&quot;</span>) <span class="hljs-string">&quot; &quot;</span>; 
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="css-3-tricks"><a class="h-anchor" href="#css-3-tricks">#</a>Css 3 tricks</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="scrollbar-smooth"><a class="h-anchor" href="#scrollbar-smooth">#</a>Scrollbar smooth</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-css"><span class="hljs-selector-tag">html</span> &#123;
+    scroll-behavior: smooth;
+&#125;
+</code></pre>
+                            <p><a href="#css-getting-started">Click me</a>, the page will scroll smoothly to Getting started</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap cols-1">
+                <h2 id="also-see"><a class="h-anchor" href="#also-see">#</a>Also see</h2>
+                <div class="h3-wrap-list">
+                    <ul>
+                        <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://frontend30.com/css-selectors-cheatsheet/">CSS selectors cheatsheet</a> <em>(frontend30.com)</em></li>
+                        <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Flexible_boxes">MDN: Using CSS flexbox</a></li>
+                        <li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.sketchingwithcss.com/samplechapter/cheatsheet.html">Ultimate flexbox cheatsheet</a></li>
+                        <li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://grid.malven.co/">GRID: A simple visual cheatsheet</a></li>
+                        <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://css-tricks.com/snippets/css/complete-guide-grid/">CSS Tricks: A Complete Guide to Grid</a></li>
+                        <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://caniuse.com/#feat=css-grid">Browser support</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div data-pw-desk="med_rect_btf" id="pwDeskMedRectBtf3"></div>
+            <script type="text/javascript">
+                window.ramp.que.push(function() {
+                    window.ramp.addTag("pwDeskMedRectBtf3")
+                })
+            </script>
+        </div>
+    </div>
+    <script>
+        ! function(e, n, t, r) {
+            var o = n.createElement(t);
+            o.async = 1, o.src = "https://a.ad.gt/api/v1/u/matches/514?url=" + encodeURIComponent(e.location.href) + "&ref=" + encodeURIComponent(n.referrer);
+            var a = n.getElementsByTagName(t)[0];
+            a.parentNode.insertBefore(o, a)
+        }(window, document, "script")
+    </script>
+    <div id="mysearch" class="z-50 fixed inset-0 flex justify-center bg-slate-600/80 dark:bg-slate-900/90 items-start text-sm z-50 overflow-hidden lg:pt-16 lg:pb-20 hidden">
+        <div id="mysearch-box" class="lg:max-w-screen-lg w-full flex flex-col justify-between bg-white dark:bg-slate-700 shadow-3xl dark:shadow-3xl lg:rounded-lg lg:max-h-832 min-h-320 h-full">
+            <div class="flex items-center h-16 flex-none border-b border-slate-200 dark:border-slate-700">
+                <div class="w-full h-full">
+                    <form class="flex items-center w-full h-full outline-none rounded-tl-lg"><label for="mysearch-input" id="mysearch-label" class="h-full w-14 mt-1 ml-1 px-4 flex items-center justify-center transition-colors duration-200 ease-in-out text-emerald-200"><div class="text-2xl text-emerald-500"><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="1em" width="1em"><path d="M942.14826666 878.7968l-200.56746667-229.92213333C795.37493333 583.8848 827.73333333 500.5312 827.73333333 409.6 827.73333333 202.27413333 659.59253333 34.13333333 452.26666666 34.13333333 244.87253333 34.13333333 76.79999999 202.27413333 76.79999999 409.6S244.87253333 785.06666667 452.26666666 785.06666667c77.14133333 0 148.82133333-23.3472 208.41813333-63.21493334l199.33866667 228.5568c19.72906667 22.7328 54.272 24.91733333 76.8 5.25653334C959.62453333 935.86773333 961.87733333 901.46133333 942.14826666 878.7968zM179.19999999 409.6c0-150.59626667 122.4704-273.06666667 273.06666667-273.06666667 150.59626667 0 273.06666667 122.4704 273.06666667 273.06666667s-122.4704 273.06666667-273.06666667 273.06666667C301.67039999 682.66666667 179.19999999 560.19626667 179.19999999 409.6z"></path></svg></div></label>
+                        <div
+                            class="relative flex-1"> <input class="flex-1 font-light h-full bg-transparent focus:text-slate-900 text-slate-500 dark:text-slate-300 placeholder-slate-400 placeholder-opacity-80 shadow-none outline-none truncate text-lg sm:text-2xl caret-color-emerald-400 leading-normalized w-full appearance-none rounded-none transition-colors duration-200 ease-in-out"
+                                id="mysearch-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search for cheatsheet" maxlength="128" type="text" enterkeyhint="go"></div> <button id="mysearch-clear" type="reset"
+                    class="items-center justify-center h-full w-14 px-4 text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-100 opacity-75 fill-current cursor-pointer transition-fast-out flex"><i class="icon icon-close text-xs font-bold"></i></button></form>
+            </div>
+            <div class="w-px h-8 bg-slate-100 dark:bg-slate-400/20 flex-none"></div> <button class="cancel mr-1 px-4 h-full text-slate-500 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-300"> Cancel</button></div>
+        <div class="flex flex-grow overflow-hidden lg:rounded-br-lg">
+            <div class="relative w-full flex-none overflow-y-auto lg:w-1/2">
+                <ul id="mysearch-list"></ul>
+            </div>
+            <div class="preview-panel shadow-inner bg-slate-100 dark:bg-slate-800 lg:block w-1/2 flex-none overflow-y-auto"></div>
+        </div>
+    </div>
+    </div>
+
+    <div id="carbon_container"></div>
+</body>
+<script src="../../js/cheat.js"></script>
+<script>
+    // Get all pre > code elements
+    const codeBlocks = document.querySelectorAll('pre > code');
+    const initInnerHTML = '<svg height="1em" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path> </svg>';
+    const successInnerHTML = '<svg height="1em" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>';
+    codeBlocks.forEach(function(codeBlock) {
+        // Create a copy button element
+        const copyButton = document.createElement('button');
+        copyButton.className = 'bg-emerald-500 p-2 text-white fadeIn shadow-xl rounded flex items-center absolute top-2 right-2';
+        copyButton.innerHTML = initInnerHTML;
+        copyButton.style.opacity = "0";
+        const parent = codeBlock.parentNode;
+
+        parent.style = "position: relative;"
+        parent.insertBefore(copyButton, codeBlock);
+
+        // Add click event listener to copy button
+        copyButton.addEventListener('click', () => {
+            navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+                copyButton.innerHTML = successInnerHTML;
+                setTimeout(() => {
+                    copyButton.innerHTML = initInnerHTML;
+                }, 1000);
+            });
+        });
+
+        parent.addEventListener('mouseenter', () => {
+            copyButton.style.opacity = "1";
+        });
+        parent.addEventListener('mouseleave', () => {
+            copyButton.style.opacity = "0";
+        });
+    });
+</script>
+
+
+</html>

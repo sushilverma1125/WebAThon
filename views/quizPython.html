@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Python Quiz</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="/css/quiz.css">
+    <link rel="stylesheet" href="../../css/cheatsheet.css" media="screen, print" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        .poppins-regular {
+      font-family: "Poppins", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+    </style>
+</head>
+
+<body style="--container: min(95%, 1780px);">
+
+    <div class="tutorial-content" id="mainContent">
+        <center><h1 class="poppins-regular" style="font-size: xx-large;"><strong>Python Quiz</strong></h1></center>
+        <hr />
+        <div class="QA">
+            <div class="Q" id="Q105">
+                <p><span>Q 1</span> - What is output for -</p>
+                <p>' ' in 'python' ?</p>
+                <p><a class="false" href="javascript:void(0);"><span>A</span> - 'python'</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>B</span> - False</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>C</span> - Name error</a></p>
+                <p><a class="true" href="javascript:void(0);"><span>D</span> - True</a></p>
+            </div>
+            <div class="A" id="A105">
+                <h3>Answer : D</h3>
+                <h3>Explanation</h3>
+                <p>To strings connected by 'in' operator gives true and false.</p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('105')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q118">
+                <p><span>Q 2</span> - What is output for -</p>
+                <p>b = [11,13,15,17,19,21]</p>
+                <p>ptint(b[::2])</p>
+                <p><a class="false" href="javascript:void(0);"><span>A</span> - [19,21]</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>B</span> - [11,15]</a></p>
+                <p><a class="true" href="javascript:void(0);"><span>C</span> - [11,15,19]</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - [13,17,21]</a></p>
+            </div>
+            <div class="A" id="A118">
+                <h3>Answer : C</h3>
+                <h3>Explanation</h3>
+                <p>b[::2] :- it iterates over the list with '2' increments</p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('118')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q123">
+                <p><span>Q 3</span> - In the following options which are python libraries which are used for data
+                    analysis and scientific computations</p>
+                <p><a class="false" href="javascript:void(0);"><span>A</span> - Numpy</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>B</span> - Scipy</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>C</span> - Pandas</a></p>
+                <p><a class="true" href="javascript:void(0);"><span>D</span> - All the above</a></p>
+            </div>
+            <div class="A" id="A123">
+                <h3>Answer : D</h3>
+                <h3>Explanation</h3>
+                <p>Numpy,Scipy,pandas are few libraries in python which are used for data analysis and scientific
+                    computations.</p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('123')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q136">
+                <p><span>Q 4</span> - What is output for -</p>
+                <p>2 * 2 **3</p>
+                <p><a class="false" href="javascript:void(0);"><span>A</span> - 12</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>B</span> - 64</a></p>
+                <p><a class="true" href="javascript:void(0);"><span>C</span> - 16</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - 36</a></p>
+            </div>
+            <div class="A" id="A136">
+                <h3>Answer : C</h3>
+                <h3>Explanation</h3>
+                <p>2**3 gives 2*2*2 i.e. 8, then 2*8 gives 16, since order of precedence is ** then*. ** implies raise
+                    to power''.</p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('136')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q146">
+                <p><span>Q 5</span> - What will be the output of the following code?</p>
+                <pre
+                    class="prettyprint notranslate prettyprinted"><span class="kwd">def</span><span class="pln"> total</span><span class="pun">(</span><span class="pln">initial </span><span class="pun">=</span><span class="pln"> </span><span class="lit">5</span><span class="pun">,</span><span class="pln"> </span><span class="pun">*</span><span class="pln">num</span><span class="pun">,</span><span class="pln"> </span><span class="pun">**</span><span class="pln">key</span><span class="pun">):</span><span class="pln">
+               count </span><span class="pun">=</span><span class="pln"> initial
+               </span><span class="kwd">for</span><span class="pln"> n </span><span class="kwd">in</span><span class="pln"> num</span><span class="pun">:</span><span class="pln">
+                  count</span><span class="pun">+=</span><span class="pln">n
+               </span><span class="kwd">for</span><span class="pln"> k </span><span class="kwd">in</span><span class="pln"> key</span><span class="pun">:</span><span class="pln">
+                  count</span><span class="pun">+=</span><span class="pln">key</span><span class="pun">[</span><span class="pln">k</span><span class="pun">]</span><span class="pln">
+               </span><span class="kwd">return</span><span class="pln"> count
+            </span><span class="kwd">print</span><span class="pun">(</span><span class="pln">total</span><span class="pun">(</span><span class="lit">100</span><span class="pun">,</span><span class="lit">2</span><span class="pun">,</span><span class="lit">3</span><span class="pun">,</span><span class="pln"> clouds</span><span class="pun">=</span><span class="lit">50</span><span class="pun">,</span><span class="pln"> stars</span><span class="pun">=</span><span class="lit">100</span><span class="pun">))</span></pre>
+                <p><a class="false" href="javascript:void(0);"><span>A</span> - 260</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>B</span> - 160</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>C</span> - 155</a></p>
+                <p><a class="true" href="javascript:void(0);"><span>D</span> - 255</a></p>
+            </div>
+            <div class="A" id="A146">
+                <h3>Answer : D</h3>
+                <h3>Explanation</h3>
+                <p>It takes initial value as 100 now. And adds 2, 3, 50 and 100 to it as according to code.</p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('146')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q157">
+                <p><span>Q 6</span> - Guess the output -</p>
+                <pre class="prettyprint notranslate prettyprinted"><span class="kwd">def</span><span class="pln"> main</span><span class="pun">():</span><span class="pln"> 
+               </span><span class="kwd">try</span><span class="pun">:</span><span class="pln"> 
+                  func</span><span class="pun">()</span><span class="pln"> 
+                  </span><span class="kwd">print</span><span class="pun">(</span><span class="str">''</span><span class="kwd">print</span><span class="pln"> </span><span class="kwd">this</span><span class="pln"> after </span><span class="kwd">function</span><span class="pln"> call</span><span class="str">''</span><span class="pun">)</span><span class="pln"> 
+               </span><span class="kwd">except</span><span class="pln"> </span><span class="typ">ZeroDivisionError</span><span class="pun">:</span><span class="pln"> 
+                  </span><span class="kwd">print</span><span class="pun">(</span><span class="str">'Divided By Zero! Not Possible! '</span><span class="pun">)</span><span class="pln"> 
+               </span><span class="kwd">except</span><span class="pun">:</span><span class="pln"> 
+                  </span><span class="kwd">print</span><span class="pun">(</span><span class="str">'Its an Exception!'</span><span class="pun">)</span><span class="pln"> 
+            </span><span class="kwd">def</span><span class="pln"> func</span><span class="pun">():</span><span class="pln"> 
+               </span><span class="kwd">print</span><span class="pun">(</span><span class="lit">1</span><span class="pun">/</span><span class="lit">0</span><span class="pun">)</span><span class="pln"> 
+            main</span><span class="pun">()</span></pre>
+                <p><a class="false" href="javascript:void(0);"><span>A</span> - 'Its an Exception!'</a></p>
+                <p><a class="true" href="javascript:void(0);"><span>B</span> - 'Divided By Zero! Not possible!'</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>C</span> - 'print this after function call'
+                        followed by 'Divided By Zero! Not Possible!'</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - 'print this after function call'
+                        followed by 'Its an Exception!'</a></p>
+            </div>
+            <div class="A" id="A157">
+                <h3>Answer : B</h3>
+                <h3>Explanation</h3>
+                <p>The function 'func' will not run because it contains an exception. So in try and expect block. The
+                    function called under try will not run and will move to except block which defines the type of
+                    exception present in the function 'func'. Thus block of statements present in except
+                    ZeroDivisionError is printed.</p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('157')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q163">
+                <p><span>Q 7</span> - What is the out of the code?</p>
+                <pre
+                    class="prettyprint notranslate prettyprinted"><span class="kwd">def</span><span class="pln"> rev_func</span><span class="pun">(</span><span class="pln">x</span><span class="pun">,</span><span class="pln">length</span><span class="pun">):</span><span class="pln"> 
+               </span><span class="kwd">print</span><span class="pun">(</span><span class="pln">x</span><span class="pun">[</span><span class="pln">length</span><span class="pun">-</span><span class="lit">1</span><span class="pun">],</span><span class="kwd">end</span><span class="pun">=</span><span class="str">''</span><span class="pln"> </span><span class="str">''</span><span class="pun">)</span><span class="pln"> 
+               rev_func</span><span class="pun">(</span><span class="pln">x</span><span class="pun">,</span><span class="pln">length</span><span class="pun">-</span><span class="lit">1</span><span class="pun">)</span><span class="pln"> 
+            x</span><span class="pun">=[</span><span class="lit">11</span><span class="pun">,</span><span class="pln"> </span><span class="lit">12</span><span class="pun">,</span><span class="pln"> </span><span class="lit">13</span><span class="pun">,</span><span class="pln"> </span><span class="lit">14</span><span class="pun">,</span><span class="pln"> </span><span class="lit">15</span><span class="pun">]</span><span class="pln"> 
+            rev_func</span><span class="pun">(</span><span class="pln">x</span><span class="pun">,</span><span class="lit">5</span><span class="pun">)</span><span class="pln"> </span></pre>
+                <p><a class="false" href="javascript:void(0);"><span>A</span> - The program runs fine without error.</a>
+                </p>
+                <p><a class="false" href="javascript:void(0);"><span>B</span> - Program displays 15 14 13 12 11.</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>C</span> - Program displays 11 12 13 14 15.</a></p>
+                <p><a class="true" href="javascript:void(0);"><span>D</span> - Program displays 15 14 13 12 11 and then
+                        raises an index out of range exception.</a></p>
+            </div>
+            <div class="A" id="A163">
+                <h3>Answer : D</h3>
+                <h3>Explanation</h3>
+                <p>In the print statement of rev_func we use the index value of list x. We decrement the value of length
+                    of function because it becomes the index of x in the print statement.</p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('163')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q174">
+                <p><span>Q 8</span> - Select the correct function among them which can be used to write the data to
+                    perform for a binary output?</p>
+                <p><a class="false" href="javascript:void(0);"><span>A</span> - Write</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>B</span> - Output.binary</a></p>
+                <p><a class="true" href="javascript:void(0);"><span>C</span> - Dump</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - Binary.output</a></p>
+            </div>
+            <div class="A" id="A174">
+                <h3>Answer : C</h3>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('174')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q184">
+                <p><span>Q 9</span> - Suppose you are using a grid manager then which option is best suitable to place a
+                    component in multiple rows and columns?</p>
+                <p><a class="true" href="javascript:void(0);"><span>A</span> - Columnspan and rowspan</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>B</span> - Only row</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>C</span> - Only column</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - Only rowspan</a></p>
+            </div>
+            <div class="A" id="A184">
+                <h3>Answer : A</h3>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('184')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q200">
+                <p><span>Q 10</span> - What will be the output of the following code?</p>
+                <pre
+                    class="prettyprint notranslate prettyprinted"><span class="pln">minidict </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="str">'name'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'TutorialsPoint'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'name'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'website'</span><span class="pun">}</span><span class="pln">
+            </span><span class="kwd">print</span><span class="pun">(</span><span class="pln">minidict</span><span class="pun">[</span><span class="str">'name'</span><span class="pun">])</span></pre>
+                <p><a class="false" href="javascript:void(0);"><span>A</span> - TutorialsPoint</a></p>
+                <p><a class="true" href="javascript:void(0);"><span>B</span> - Website</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>C</span> - ('TutorialsPoint' , 'website')</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - It will show an Error.</a></p>
+            </div>
+            <div class="A" id="A200">
+                <h3>Answer : B</h3>
+                <h3>Explanation</h3>
+                <p>Dictionary gets updated by the above code as the key has been assigned a new value.</p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('200')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+
+
+        <script type="text/javascript" src="/exams.js"></script>
+        <script type="text/javascript" src="../../js/quiz.js"></script>
+        <script type="text/javascript" src="../../js/cheat.js"></script>
+</body>
+
+</html>

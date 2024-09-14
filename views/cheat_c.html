@@ -1,0 +1,1921 @@
+<!DOCTYPE HTML>
+<html class="scrollbar" translate="no">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="content-language" content="en-gb">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>C Cheat Sheet</title>
+    <link rel="stylesheet" href="../../css/cheatsheet.css">
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            let html = document.documentElement.classList;
+            html.toggle('dark')
+        }
+    </script>
+</head>
+
+<body class="bg-slate-100 dark:bg-slate-900">
+    <div class="mx-auto flex flex-wrap md:py-5 flex-col md:flex-row items-center">
+        <div class="flex flex-col w-full mx-auto text-center my-8">
+            <div class="max-container w-full">
+                <h1 class="text-5xl mb-4"> <span class="text-slate-700 dark:text-slate-300 font-light">C</span> <span class="text-slate-400 dark:text-slate-500 font-extralight hidden md:inline">cheatsheet</span></h1>
+                <div class="lg:w-3/5 mx-auto intro leading-relaxed text-slate-600">
+                    <p>C reference cheat sheet that provides basic syntax and methods.</p>
+                </div>
+            </div>
+        </div>
+        <div id="mdLayout" class="mdLayout w-full max-container">
+            <div data-pw-desk="leaderboard_btf" id="pwDeskLbBtf1"></div>
+            <script type="text/javascript">
+                window.ramp.que.push(function() {
+                    window.ramp.addTag("pwDeskLbBtf1")
+                })
+            </script>
+            <div class="h2-wrap">
+                <h2 id="getting-started"><a class="h-anchor" href="#getting-started">#</a>Getting Started</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="hello-c"><a class="h-anchor" href="#hello-c">#</a>hello.c</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> &#123;
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello World!\n&quot;</span>);
+
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+</code></pre>
+                            <p>Compile <code>hello.c</code> file with <code>gcc</code></p>
+                            <pre><code class="hljs language-bash">$ gcc hello.c -o hello
+</code></pre>
+                            <p>Run the compiled binary <code>hello</code></p>
+                            <pre><code class="hljs language-bash">$ ./hello
+</code></pre>
+                            <p>Output =&gt; Hello World!</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="variables"><a class="h-anchor" href="#variables">#</a>Variables</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-type">int</span> myNum = <span class="hljs-number">15</span>;
+
+<span class="hljs-type">int</span> myNum2; <span class="hljs-comment">// do not assign, then assign</span>
+myNum2 = <span class="hljs-number">15</span>;
+
+<span class="hljs-type">int</span> myNum3 = <span class="hljs-number">15</span>; <span class="hljs-comment">// myNum3 is 15</span>
+myNum3 = <span class="hljs-number">10</span>;     <span class="hljs-comment">// myNum3 is now 10</span>
+
+<span class="hljs-type">float</span> myFloat = <span class="hljs-number">5.99</span>; <span class="hljs-comment">// floating point number</span>
+<span class="hljs-type">char</span> myLetter = <span class="hljs-string">&#x27;D&#x27;</span>;  <span class="hljs-comment">// character</span>
+
+<span class="hljs-type">int</span> x = <span class="hljs-number">5</span>;
+<span class="hljs-type">int</span> y = <span class="hljs-number">6</span>;
+<span class="hljs-type">int</span> sum = x + y; <span class="hljs-comment">// add variables to sum</span>
+
+<span class="hljs-comment">// declare multiple variables</span>
+<span class="hljs-type">int</span> x = <span class="hljs-number">5</span>, y = <span class="hljs-number">6</span>, z = <span class="hljs-number">50</span>;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="constants"><a class="h-anchor" href="#constants">#</a>Constants</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-type">const</span> <span class="hljs-type">int</span> minutesPerHour = <span class="hljs-number">60</span>;
+<span class="hljs-type">const</span> <span class="hljs-type">float</span> PI = <span class="hljs-number">3.14</span>;
+</code></pre>
+                            <p>Best Practices</p>
+                            <pre><code class="hljs language-c"><span class="hljs-type">const</span> <span class="hljs-type">int</span> BIRTHYEAR = <span class="hljs-number">1980</span>;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="comment"><a class="h-anchor" href="#comment">#</a>Comment</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-comment">// this is a comment</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello World!&quot;</span>); <span class="hljs-comment">// Can comment anywhere in file</span>
+
+<span class="hljs-comment">/*Multi-line comment, print Hello World!
+to the screen, it&#x27;s awesome */</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="print-text"><a class="h-anchor" href="#print-text">#</a>Print text</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;I am learning C.&quot;</span>);
+<span class="hljs-type">int</span> testInteger = <span class="hljs-number">5</span>;
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Number = %d&quot;</span>, testInteger);
+
+<span class="hljs-type">float</span> f = <span class="hljs-number">5.99</span>; <span class="hljs-comment">// floating point number</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Value = %f&quot;</span>, f);
+
+<span class="hljs-type">short</span> a = <span class="hljs-number">0b1010110</span>; <span class="hljs-comment">// binary number</span>
+<span class="hljs-type">int</span> b = <span class="hljs-number">02713</span>; <span class="hljs-comment">// octal number</span>
+<span class="hljs-type">long</span> c = <span class="hljs-number">0X1DAB83</span>; <span class="hljs-comment">// hexadecimal number</span>
+
+<span class="hljs-comment">// output in octal form</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a=%ho, b=%o, c=%lo\n&quot;</span>, a, b, c);
+<span class="hljs-comment">// output =&gt; a=126, b=2713, c=7325603</span>
+
+<span class="hljs-comment">// Output in decimal form</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a=%hd, b=%d, c=%ld\n&quot;</span>, a, b, c);
+<span class="hljs-comment">// output =&gt; a=86, b=1483, c=1944451</span>
+
+<span class="hljs-comment">// output in hexadecimal form (letter lowercase)</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a=%hx, b=%x, c=%lx\n&quot;</span>, a, b, c);
+<span class="hljs-comment">// output =&gt; a=56, b=5cb, c=1dab83</span>
+
+<span class="hljs-comment">// Output in hexadecimal (capital letters)</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a=%hX, b=%X, c=%lX\n&quot;</span>, a, b, c);
+<span class="hljs-comment">// output =&gt; a=56, b=5CB, c=1DAB83</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="control-the-number-of-spaces"><a class="h-anchor" href="#control-the-number-of-spaces">#</a>Control the number of spaces</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-type">int</span> a1 = <span class="hljs-number">20</span>, a2 = <span class="hljs-number">345</span>, a3 = <span class="hljs-number">700</span>;
+<span class="hljs-type">int</span> b1 = <span class="hljs-number">56720</span>, b2 = <span class="hljs-number">9999</span>, b3 = <span class="hljs-number">20098</span>;
+<span class="hljs-type">int</span> c1 = <span class="hljs-number">233</span>, c2 = <span class="hljs-number">205</span>, c3 = <span class="hljs-number">1</span>;
+<span class="hljs-type">int</span> d1 = <span class="hljs-number">34</span>, d2 = <span class="hljs-number">0</span>, d3 = <span class="hljs-number">23</span>;
+
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%-9d %-9d %-9d\n&quot;</span>, a1, a2, a3);
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%-9d %-9d %-9d\n&quot;</span>, b1, b2, b3);
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%-9d %-9d %-9d\n&quot;</span>, c1, c2, c3);
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%-9d %-9d %-9d\n&quot;</span>, d1, d2, d3);
+</code></pre>
+                            <p>output result</p>
+                            <pre><code class="hljs language-bash">20        345       700      
+56720     9999      20098    
+233       205       1        
+34        0         23  
+</code></pre>
+                            <p>In <code>%-9d</code>, <code>d</code> means to output in <code>10</code> base, <code>9</code> means to occupy at least <code>9</code> characters width, and the width is not enough to fill with spaces, <code>-</code> means left
+                                alignment</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="strings"><a class="h-anchor" href="#strings">#</a>Strings</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-type">char</span> greetings[] = <span class="hljs-string">&quot;Hello World!&quot;</span>;
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s&quot;</span>, greetings);
+</code></pre>
+                            <p>access string</p>
+                            <pre><code class="hljs language-c"><span class="hljs-type">char</span> greetings[] = <span class="hljs-string">&quot;Hello World!&quot;</span>;
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%c&quot;</span>, greetings[<span class="hljs-number">0</span>]);
+</code></pre>
+                            <p>modify string</p>
+                            <pre><code class="hljs language-c"><span class="hljs-type">char</span> greetings[] = <span class="hljs-string">&quot;Hello World!&quot;</span>;
+greetings[<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;J&#x27;</span>;
+
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s&quot;</span>, greetings);
+<span class="hljs-comment">// prints &quot;Jello World!&quot;</span>
+</code></pre>
+                            <p>Another way to create a string</p>
+                            <pre><code class="hljs language-c"><span class="hljs-type">char</span> greetings[] = &#123;<span class="hljs-string">&#x27;H&#x27;</span>,<span class="hljs-string">&#x27;e&#x27;</span>,<span class="hljs-string">&#x27;l&#x27;</span>,<span class="hljs-string">&#x27;l&#x27;</span>,<span class="hljs-string">&#x27;\0&#x27;</span>&#125;;
+
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s&quot;</span>, greetings);
+<span class="hljs-comment">// print &quot;Hell!&quot;</span>
+</code></pre>
+                            <p>Creating String using character pointer (String Literals)</p>
+                            <pre><code class="hljs language-c"><span class="hljs-type">char</span> *greetings = <span class="hljs-string">&quot;Hello&quot;</span>;
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s&quot;</span>, greetings);
+<span class="hljs-comment">// print &quot;Hello!&quot;</span>
+</code></pre>
+                            <p><strong>NOTE</strong>: String literals might be stored in read-only section of memory. Modifying a string literal invokes undefined behavior. You can't modify it.!</p>
+                            <p><code>C</code> <strong>does not</strong> have a String type, use <code>char</code> type and create an <code>array</code> of characters</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="condition"><a class="h-anchor" href="#condition">#</a>Condition</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-type">int</span> time = <span class="hljs-number">20</span>;
+<span class="hljs-keyword">if</span> (time &lt; <span class="hljs-number">18</span>) &#123;
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Goodbye!&quot;</span>);
+&#125; <span class="hljs-keyword">else</span> &#123;
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Good evening!&quot;</span>);
+&#125;
+<span class="hljs-comment">// Output -&gt; &quot;Good evening!&quot;</span>
+<span class="hljs-type">int</span> time = <span class="hljs-number">22</span>;
+<span class="hljs-keyword">if</span> (time &lt; <span class="hljs-number">10</span>) &#123;
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Good morning!&quot;</span>);
+&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (time &lt; <span class="hljs-number">20</span>) &#123;
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Goodbye!&quot;</span>);
+&#125; <span class="hljs-keyword">else</span> &#123;
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Good evening!&quot;</span>);
+&#125;
+<span class="hljs-comment">// Output -&gt; &quot;Good evening!&quot;</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap col-span-2">
+                        <h3 id="ternary-operator"><a class="h-anchor" href="#ternary-operator">#</a>Ternary operator</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-type">int</span> age = <span class="hljs-number">20</span>;
+(age &gt; <span class="hljs-number">19</span>) ? <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Adult&quot;</span>) : <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Teenager&quot;</span>);
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="switch"><a class="h-anchor" href="#switch">#</a>Switch</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-type">int</span> day = <span class="hljs-number">4</span>;
+
+<span class="hljs-keyword">switch</span> (day) &#123;
+  <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>: <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Wednesday&quot;</span>); <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>: <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Thursday&quot;</span>); <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">default</span>:
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Weekend!&quot;</span>);
+&#125;
+<span class="hljs-comment">// output -&gt; &quot;Thursday&quot; (day 4)</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="while-loop"><a class="h-anchor" href="#while-loop">#</a>While Loop</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;
+
+<span class="hljs-keyword">while</span> (i &lt; <span class="hljs-number">5</span>) &#123;
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);
+  i++;
+&#125;
+</code></pre>
+                            <p><strong>NOTE</strong>: Don't forget to increment the variable used in the condition, otherwise the loop will never end and become an &quot;infinite loop&quot;!</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="do-while-loop"><a class="h-anchor" href="#do-while-loop">#</a>Do/While Loop</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;
+
+<span class="hljs-keyword">do</span> &#123;
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);
+  i++;
+&#125; <span class="hljs-keyword">while</span> (i &lt; <span class="hljs-number">5</span>);
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="for-loop"><a class="h-anchor" href="#for-loop">#</a>For Loop</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) &#123;
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="break-out-of-the-loop-break-continue"><a class="h-anchor" href="#break-out-of-the-loop-break-continue">#</a>Break out of the loop Break/Continue</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;
+  <span class="hljs-keyword">if</span> (i == <span class="hljs-number">4</span>) &#123;
+    <span class="hljs-keyword">break</span>;
+  &#125;
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);
+&#125;
+</code></pre>
+                            <p>break out of the loop when <code>i</code> is equal to <code>4</code></p>
+                            <pre><code class="hljs language-c"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;
+  <span class="hljs-keyword">if</span> (i == <span class="hljs-number">4</span>) &#123;
+    <span class="hljs-keyword">continue</span>;
+  &#125;
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);
+&#125;
+</code></pre>
+                            <p>Example to skip the value of <code>4</code></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="while-break-example"><a class="h-anchor" href="#while-break-example">#</a>While Break Example</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;
+
+<span class="hljs-keyword">while</span> (i &lt; <span class="hljs-number">10</span>) &#123;
+  <span class="hljs-keyword">if</span> (i == <span class="hljs-number">4</span>) &#123;
+    <span class="hljs-keyword">break</span>;
+  &#125;
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);
+
+  i++;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="while-continue-example"><a class="h-anchor" href="#while-continue-example">#</a>While continue example</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;
+
+<span class="hljs-keyword">while</span> (i &lt; <span class="hljs-number">10</span>) &#123;
+  i++;
+
+  <span class="hljs-keyword">if</span> (i == <span class="hljs-number">4</span>) &#123;
+    <span class="hljs-keyword">continue</span>;
+  &#125;
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="arrays"><a class="h-anchor" href="#arrays">#</a>Arrays</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-type">int</span> myNumbers[] = &#123;<span class="hljs-number">25</span>, <span class="hljs-number">50</span>, <span class="hljs-number">75</span>, <span class="hljs-number">100</span>&#125;;
+
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, myNumbers[<span class="hljs-number">0</span>]);
+<span class="hljs-comment">// output 25</span>
+</code></pre>
+                            <p>change array elements</p>
+                            <pre><code class="hljs language-c"><span class="hljs-type">int</span> myNumbers[] = &#123;<span class="hljs-number">25</span>, <span class="hljs-number">50</span>, <span class="hljs-number">75</span>, <span class="hljs-number">100</span>&#125;;
+myNumbers[<span class="hljs-number">0</span>] = <span class="hljs-number">33</span>;
+
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, myNumbers[<span class="hljs-number">0</span>]);
+</code></pre>
+                            <p>Loop through the array</p>
+                            <pre><code class="hljs language-c"><span class="hljs-type">int</span> myNumbers[] = &#123;<span class="hljs-number">25</span>, <span class="hljs-number">50</span>, <span class="hljs-number">75</span>, <span class="hljs-number">100</span>&#125;;
+<span class="hljs-type">int</span> i;
+
+<span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++) &#123;
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, myNumbers[i]);
+&#125;
+</code></pre>
+                            <p>set array size</p>
+                            <pre><code class="hljs language-c"><span class="hljs-comment">// Declare an array of four integers:</span>
+<span class="hljs-type">int</span> myNumbers[<span class="hljs-number">4</span>];
+
+<span class="hljs-comment">// add element</span>
+myNumbers[<span class="hljs-number">0</span>] = <span class="hljs-number">25</span>;
+myNumbers[<span class="hljs-number">1</span>] = <span class="hljs-number">50</span>;
+myNumbers[<span class="hljs-number">2</span>] = <span class="hljs-number">75</span>;
+myNumbers[<span class="hljs-number">3</span>] = <span class="hljs-number">100</span>;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap col-span-2">
+                        <h3 id="enumeration-enum"><a class="h-anchor" href="#enumeration-enum">#</a>Enumeration Enum</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">week</span> &#123;</span> Mon = <span class="hljs-number">1</span>, Tues, Wed, Thurs, Fri, Sat, Sun &#125;;
+</code></pre>
+                            <p>define enum variable</p>
+                            <pre><code class="hljs language-c"><span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">week</span> <span class="hljs-title">a</span>, <span class="hljs-title">b</span>, <span class="hljs-title">c</span>;</span>
+<span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">week</span> &#123;</span> Mon = <span class="hljs-number">1</span>, Tues, Wed, Thurs, Fri, Sat, Sun &#125; a, b, c;
+</code></pre>
+                            <p>With an enumeration variable, you can assign the value in the list to it</p>
+                            <pre><code class="hljs language-c"><span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">week</span> &#123;</span> Mon = <span class="hljs-number">1</span>, Tues, Wed, Thurs, Fri, Sat, Sun &#125;;
+<span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">week</span> <span class="hljs-title">a</span> =</span> Mon, b = Wed, c = Sat;
+<span class="hljs-comment">// or</span>
+<span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">week</span>&#123;</span> Mon = <span class="hljs-number">1</span>, Tues, Wed, Thurs, Fri, Sat, Sun &#125; a = Mon, b = Wed, c = Sat;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="enumerate-sample-applications"><a class="h-anchor" href="#enumerate-sample-applications">#</a>Enumerate sample applications</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">week</span> &#123;</span>Mon = <span class="hljs-number">1</span>, Tues, Wed, Thurs&#125; day;
+
+<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;day);
+
+<span class="hljs-keyword">switch</span>(day) &#123;
+  <span class="hljs-keyword">case</span> Mon: <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;Monday&quot;</span>); <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">case</span> Tues: <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;Tuesday&quot;</span>); <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">case</span> Wed: <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;Wednesday&quot;</span>); <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">case</span> Thursday: <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;Thursday&quot;</span>); <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">default</span>: <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;Error!&quot;</span>);
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="user-input"><a class="h-anchor" href="#user-input">#</a>User input</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-comment">// Create an integer variable to store the number we got from the user</span>
+<span class="hljs-type">int</span> myNum;
+
+<span class="hljs-comment">// Ask the user to enter a number</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Please enter a number: \n&quot;</span>);
+
+<span class="hljs-comment">// Get and save the number entered by the user</span>
+<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;myNum);
+
+<span class="hljs-comment">// Output the number entered by the user</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;The number you entered: %d&quot;</span>, myNum);
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="user-input-string"><a class="h-anchor" href="#user-input-string">#</a>User input string</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-comment">// create a string</span>
+<span class="hljs-type">char</span> firstName[<span class="hljs-number">30</span>];
+<span class="hljs-comment">// Ask the user to enter some text</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Enter your name: \n&quot;</span>);
+<span class="hljs-comment">// get and save the text</span>
+<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>, &amp;firstName);
+<span class="hljs-comment">// output text</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello %s.&quot;</span>, firstName);
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="memory-address"><a class="h-anchor" href="#memory-address">#</a>memory address</h3>
+                        <div class="section">
+                            <p>When a variable is created, it is assigned a memory address</p>
+                            <pre><code class="hljs language-c"><span class="hljs-type">int</span> myAge = <span class="hljs-number">43</span>;
+
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%p&quot;</span>, &amp;myAge);
+<span class="hljs-comment">// Output: 0x7ffe5367e044</span>
+</code></pre>
+                            <p>To access it, use the reference operator (<code>&amp;</code>)</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="create-pointer"><a class="h-anchor" href="#create-pointer">#</a>create pointer</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-type">int</span> myAge = <span class="hljs-number">43</span>; <span class="hljs-comment">// an int variable</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, myAge); <span class="hljs-comment">// output the value of myAge(43)</span>
+
+<span class="hljs-comment">// Output the memory address of myAge (0x7ffe5367e044)</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%p&quot;</span>, &amp;myAge);
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap col-span-2">
+                        <h3 id="pointer-variable"><a class="h-anchor" href="#pointer-variable">#</a>pointer variable</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-type">int</span> myAge = <span class="hljs-number">43</span>; <span class="hljs-comment">// an int variable</span>
+<span class="hljs-type">int</span>*ptr = &amp;myAge; <span class="hljs-comment">// pointer variable named ptr, used to store the address of myAge</span>
+
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, myAge); <span class="hljs-comment">// print the value of myAge (43)</span>
+
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%p\n&quot;</span>, \&amp;myAge); <span class="hljs-comment">// output the memory address of myAge (0x7ffe5367e044)</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%p\n&quot;</span>, ptr); <span class="hljs-comment">// use the pointer (0x7ffe5367e044) to output the memory address of myAge</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="dereference"><a class="h-anchor" href="#dereference">#</a>Dereference</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-type">int</span> myAge = <span class="hljs-number">43</span>; <span class="hljs-comment">// variable declaration</span>
+<span class="hljs-type">int</span>*ptr = &amp;myAge; <span class="hljs-comment">// pointer declaration</span>
+
+<span class="hljs-comment">// Reference: output myAge with a pointer</span>
+<span class="hljs-comment">// memory address (0x7ffe5367e044)</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%p\n&quot;</span>, ptr);
+<span class="hljs-comment">// dereference: output the value of myAge with a pointer (43)</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, *ptr);
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="operators"><a class="h-anchor" href="#operators">#</a>Operators</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="arithmetic-operators"><a class="h-anchor" href="#arithmetic-operators">#</a>Arithmetic Operators</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-type">int</span> myNum = <span class="hljs-number">100</span> + <span class="hljs-number">50</span>;
+<span class="hljs-type">int</span> sum1 = <span class="hljs-number">100</span> + <span class="hljs-number">50</span>; <span class="hljs-comment">// 150 (100 + 50)</span>
+<span class="hljs-type">int</span> sum2 = sum1 + <span class="hljs-number">250</span>; <span class="hljs-comment">// 400 (150 + 250)</span>
+<span class="hljs-type">int</span> sum3 = sum2 + sum2; <span class="hljs-comment">// 800 (400 + 400)</span>
+</code></pre>
+                            <hr>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Operator</th>
+                                        <th>Name</th>
+                                        <th>Example</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>+</code></td>
+                                        <td>Add</td>
+                                        <td><code>x + y</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>-</code></td>
+                                        <td>Subtract</td>
+                                        <td><code>x - y</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>*</code></td>
+                                        <td>Multiply</td>
+                                        <td><code>x * y</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>/</code></td>
+                                        <td>Divide</td>
+                                        <td><code>x / y</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>%</code></td>
+                                        <td>Modulo</td>
+                                        <td><code>x % y</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>++</code></td>
+                                        <td>Increment</td>
+                                        <td><code>++x</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>--</code></td>
+                                        <td>Decrement</td>
+                                        <td><code>--x</code></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="assignment-operator"><a class="h-anchor" href="#assignment-operator">#</a>Assignment operator</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>example</th>
+                                        <th>as</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>x <code>=</code> 5</td>
+                                        <td>x <code>=</code> 5</td>
+                                    </tr>
+                                    <tr>
+                                        <td>x <code>+=</code> 3</td>
+                                        <td>x <code>=</code> x <code>+</code> 3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>x <code>-=</code> 3</td>
+                                        <td>x <code>=</code> x <code>-</code> 3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>x <code>*=</code> 3</td>
+                                        <td>x <code>=</code> x <code>*</code> 3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>x <code>/=</code> 3</td>
+                                        <td>x <code>=</code> x <code>/</code> 3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>x <code>%=</code> 3</td>
+                                        <td>x <code>=</code> x <code>%</code> 3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>x <code>&amp;=</code> 3</td>
+                                        <td>x <code>=</code> x <code>&amp;</code> 3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>x <code>|=</code> 3</td>
+                                        <td>x <code>=</code> x <code>|</code> 3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>x <code>^=</code> 3</td>
+                                        <td>x <code>=</code> x <code>^</code> 3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>x <code>&gt;&gt;=</code> 3</td>
+                                        <td>x <code>=</code> x <code>&gt;&gt;</code> 3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>x <code>&lt;&lt;=</code> 3</td>
+                                        <td>x <code>=</code> x <code>&lt;&lt;</code> 3</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="comparison-operators"><a class="h-anchor" href="#comparison-operators">#</a>Comparison Operators</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-type">int</span> x = <span class="hljs-number">5</span>;
+<span class="hljs-type">int</span> y = <span class="hljs-number">3</span>;
+
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, x &gt; y);
+<span class="hljs-comment">// returns 1 (true) because 5 is greater than 3</span>
+</code></pre>
+                            <hr>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Symbol</th>
+                                        <th>Name</th>
+                                        <th>Example</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>==</code></td>
+                                        <td>equals</td>
+                                        <td>x <code>==</code> y</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>!=</code></td>
+                                        <td>not equal to</td>
+                                        <td>x <code>!=</code> y</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>&gt;</code></td>
+                                        <td>greater than</td>
+                                        <td>x <code>&gt;</code> y</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>&lt;</code></td>
+                                        <td>less than</td>
+                                        <td>x <code>&lt;</code> y</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>&gt;=</code></td>
+                                        <td>greater than or equal to</td>
+                                        <td>x <code>&gt;=</code> y</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>&lt;=</code></td>
+                                        <td>less than or equal to</td>
+                                        <td>x <code>&lt;=</code> y</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>Comparison operators are used to compare two values</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap col-span-2">
+                        <h3 id="logical-operators"><a class="h-anchor" href="#logical-operators">#</a>Logical Operators</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Symbol</th>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Example</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>&amp;&amp;</code></td>
+                                        <td><code>and</code> logical</td>
+                                        <td>returns true if both statements are true</td>
+                                        <td><code>x &lt; 5 &amp;&amp; x &lt; 10</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>||</code></td>
+                                        <td><code>or</code> logical</td>
+                                        <td>returns true if one of the statements is true</td>
+                                        <td><code>x &lt; 5 || x &lt; 4</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>!</code></td>
+                                        <td><code>not</code> logical</td>
+                                        <td>Invert result, return false if true</td>
+                                        <td><code>!(x &lt; 5 &amp;&amp; x &lt; 10)</code></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="operator-examples"><a class="h-anchor" href="#operator-examples">#</a>Operator Examples</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> a = <span class="hljs-number">60</span>; <span class="hljs-comment">/*60 = 0011 1100 */</span>
+<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> b = <span class="hljs-number">13</span>; <span class="hljs-comment">/*13 = 0000 1101 */</span>
+<span class="hljs-type">int</span> c = <span class="hljs-number">0</span>;
+
+c = a &amp; b; <span class="hljs-comment">/*12 = 0000 1100 */</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 1 -the value of c is %d\n&quot;</span>, c);
+
+c = a | b; <span class="hljs-comment">/*61 = 0011 1101 */</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 2 -the value of c is %d\n&quot;</span>, c);
+c = a ^ b; <span class="hljs-comment">/*49 = 0011 0001 */</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 3 -the value of c is %d\n&quot;</span>, c);
+c = ~a; <span class="hljs-comment">/*-61 = 1100 0011 */</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 4 -The value of c is %d\n&quot;</span>, c);
+c = a &lt;&lt; <span class="hljs-number">2</span>; <span class="hljs-comment">/*240 = 1111 0000 */</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 5 -the value of c is %d\n&quot;</span>, c);
+c = a &gt;&gt; <span class="hljs-number">2</span>; <span class="hljs-comment">/*15 = 0000 1111 */</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line 6 -The value of c is %d\n&quot;</span>, c);
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap col-span-2">
+                        <h3 id="bitwise-operators"><a class="h-anchor" href="#bitwise-operators">#</a>Bitwise operators</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="text-align:left">operator</th>
+                                        <th style="text-align:left">description</th>
+                                        <th style="text-align:left">instance</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align:left"><code>&amp;</code></td>
+                                        <td style="text-align:left">Bitwise AND operation, &quot;AND&quot; operation by binary digits</td>
+                                        <td style="text-align:left"><code>(A &amp; B)</code> will get <code>12</code> which is 0000 1100</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>|</code></td>
+                                        <td style="text-align:left">Bitwise OR operator, &quot;or&quot; operation by binary digit</td>
+                                        <td style="text-align:left"><code>(A | B)</code> will get <code>61</code> which is 0011 1101</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>^</code></td>
+                                        <td style="text-align:left">XOR operator, perform &quot;XOR&quot; operation by binary digits</td>
+                                        <td style="text-align:left"><code>(A ^ B)</code> will get <code>49</code> which is 0011 0001</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>~</code></td>
+                                        <td style="text-align:left">Inversion operator, perform &quot;inversion&quot; operation by binary bit</td>
+                                        <td style="text-align:left"><code>(~A)</code> will get <code>-61</code> which is 1100 0011</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>&lt;&lt;</code></td>
+                                        <td style="text-align:left">binary left shift operator</td>
+                                        <td style="text-align:left"><code>A &lt;&lt; 2</code> will get <code>240</code> which is 1111 0000</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>&gt;&gt;</code></td>
+                                        <td style="text-align:left">binary right shift operator</td>
+                                        <td style="text-align:left"><code>A &gt;&gt; 2</code> will get <code>15</code> which is 0000 1111</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="data-types"><a class="h-anchor" href="#data-types">#</a>Data Types</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap col-span-2">
+                        <h3 id="basic-data-types"><a class="h-anchor" href="#basic-data-types">#</a>Basic data types</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Data Type</th>
+                                        <th>Size Size</th>
+                                        <th>Range Range</th>
+                                        <th>Description Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>char</code></td>
+                                        <td>1 byte</td>
+                                        <td><code>−128</code> ~ <code>127</code></td>
+                                        <td>single character/alphanumeric/ASCII</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>signed char</code></td>
+                                        <td>1 byte</td>
+                                        <td><code>−128</code> ~ <code>127</code></td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>unsigned char</code></td>
+                                        <td>1 byte</td>
+                                        <td><code>0</code> ~ <code>255</code></td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>int</code></td>
+                                        <td><code>2</code> to <code>4</code> bytes</td>
+                                        <td><code>−32,768</code> ~ <code>32,767</code></td>
+                                        <td>store integers</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>signed int</code></td>
+                                        <td>2 bytes</td>
+                                        <td><code>−32,768</code> ~ <code>32,767</code></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>unsigned int</code></td>
+                                        <td>2 bytes</td>
+                                        <td><code>0</code> ~ <code>65,535</code></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>short int</code></td>
+                                        <td>2 bytes</td>
+                                        <td><code>−32,768</code> ~ <code>32,767</code></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>signed short int</code></td>
+                                        <td>2 bytes</td>
+                                        <td><code>−32,768</code> ~ <code>32,767</code></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>unsigned short int</code></td>
+                                        <td>2 bytes</td>
+                                        <td><code>0</code> ~ <code>65,535</code></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>long int</code></td>
+                                        <td>4 bytes</td>
+                                        <td><code>-2,147,483,648</code> ~ <code>2,147,483,647</code></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>signed long int</code></td>
+                                        <td>4 bytes</td>
+                                        <td><code>-2,147,483,648</code> ~ <code>2,147,483,647</code></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>unsigned long int</code></td>
+                                        <td>4 bytes</td>
+                                        <td><code>0</code> ~ <code>4,294,967,295</code></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>float</code></td>
+                                        <td>4 bytes</td>
+                                        <td><code>3.4E-38</code> ~ <code>3.4E+38</code></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>double</code></td>
+                                        <td>8 bytes</td>
+                                        <td><code>1.7E-308</code> ~ <code>1.7E+308</code></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>long double</code></td>
+                                        <td>10 bytes</td>
+                                        <td><code>3.4E-4932</code> ~ <code>1.1E+4932</code></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="data-types-2"><a class="h-anchor" href="#data-types-2">#</a>Data types</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-comment">// create variables</span>
+<span class="hljs-type">int</span> myNum = <span class="hljs-number">5</span>; <span class="hljs-comment">// integer</span>
+<span class="hljs-type">float</span> myFloatNum = <span class="hljs-number">5.99</span>; <span class="hljs-comment">// floating point number</span>
+<span class="hljs-type">char</span> myLetter = <span class="hljs-string">&#x27;D&#x27;</span>; <span class="hljs-comment">// string</span>
+<span class="hljs-comment">// High precision floating point data or numbers</span>
+<span class="hljs-type">double</span> myDouble = <span class="hljs-number">3.2325467</span>;
+<span class="hljs-comment">// print output variables</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, myNum);
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%f\n&quot;</span>, myFloatNum);
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%c\n&quot;</span>, myLetter);
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lf\n&quot;</span>, myDouble);
+</code></pre>
+                            <hr>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="text-align:left">Data Type</th>
+                                        <th style="text-align:left">Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align:left"><code>char</code></td>
+                                        <td style="text-align:left">character type</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>short</code></td>
+                                        <td style="text-align:left">short integer</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>int</code></td>
+                                        <td style="text-align:left">integer type</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>long</code></td>
+                                        <td style="text-align:left">long integer</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>float</code></td>
+                                        <td style="text-align:left">single-precision floating-point type</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>double</code></td>
+                                        <td style="text-align:left">double-precision floating-point type</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>void</code></td>
+                                        <td style="text-align:left">no type</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="basic-format-specifiers"><a class="h-anchor" href="#basic-format-specifiers">#</a>Basic format specifiers</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>format specifier</th>
+                                        <th>data type</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>%d</code> or <code>%i</code></td>
+                                        <td><code>int</code> integer</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>%f</code></td>
+                                        <td><code>float</code> single-precision decimal type</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>%lf</code></td>
+                                        <td><code>double</code> high precision floating point data or number</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>%c</code></td>
+                                        <td><code>char</code> character</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>%s</code></td>
+                                        <td>for <code>strings</code> strings</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="basic-format-specifiers-2"><a class="h-anchor" href="#basic-format-specifiers-2">#</a>Basic format specifiers</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>short</th>
+                                        <th>int</th>
+                                        <th>long</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Octal</td>
+                                        <td><code>%ho</code></td>
+                                        <td><code>%o</code></td>
+                                        <td><code>%lo</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Decimal</td>
+                                        <td><code>%hd</code></td>
+                                        <td><code>%d</code></td>
+                                        <td><code>%ld</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hexadecimal</td>
+                                        <td><code>%hx</code> /<code>%hX</code></td>
+                                        <td><code>%x</code> /<code>%X</code></td>
+                                        <td><code>%lx</code> /<code>%lX</code></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="data-format-example"><a class="h-anchor" href="#data-format-example">#</a>Data format example</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-type">int</span> myNum = <span class="hljs-number">5</span>;
+<span class="hljs-type">float</span> myFloatNum = <span class="hljs-number">5.99</span>; <span class="hljs-comment">// floating point number</span>
+<span class="hljs-type">char</span> myLetter = <span class="hljs-string">&#x27;D&#x27;</span>;     <span class="hljs-comment">// string</span>
+<span class="hljs-comment">// print output variables</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, myNum);
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%f\n&quot;</span>, myFloatNum);
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%c\n&quot;</span>, myLetter);
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="c-preprocessor"><a class="h-anchor" href="#c-preprocessor">#</a>C Preprocessor</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="preprocessor-directives"><a class="h-anchor" href="#preprocessor-directives">#</a>Preprocessor Directives</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>command</th>
+                                        <th>description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>#define</code></td>
+                                        <td>define a macro</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>#include</code></td>
+                                        <td>include a source code file</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>#undef</code></td>
+                                        <td>undefined macro</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>#ifdef</code></td>
+                                        <td>Returns true if the macro is defined</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>#ifndef</code></td>
+                                        <td>Returns true if the macro is not defined</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>#if</code></td>
+                                        <td>Compile the following code if the given condition is true</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>#else</code></td>
+                                        <td>Alternative to <code>#if</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>#elif</code></td>
+                                        <td>If the <code>#if</code> condition is false, the current condition is <code>true</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>#endif</code></td>
+                                        <td>End a <code>#if...#else</code> conditional compilation block</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>#error</code></td>
+                                        <td>Print an error message when standard error is encountered</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>#pragma</code></td>
+                                        <td>Issue special commands to the compiler using the standardized method</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <pre><code class="hljs language-c"><span class="hljs-comment">// replace all MAX_ARRAY_LENGTH with 20</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> MAX_ARRAY_LENGTH 20</span>
+<span class="hljs-comment">// Get stdio.h from the system library</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-comment">// Get myheader.h in the local directory</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;myheader.h&quot;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">undef</span> FILE_SIZE</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> FILE_SIZE 42 <span class="hljs-comment">// undefine and define to 42</span></span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="predefined-macros"><a class="h-anchor" href="#predefined-macros">#</a>Predefined macros</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>macro</th>
+                                        <th>description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>__DATE__</code></td>
+                                        <td>The current date, a character constant in the format &quot;MMM DD YYYY&quot;</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>__TIME__</code></td>
+                                        <td>The current time, a character constant in the format &quot;HH:MM:SS&quot;</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>__FILE__</code></td>
+                                        <td>This will contain the current filename, a string constant</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>__LINE__</code></td>
+                                        <td>This will contain the current line number, a decimal constant</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>__STDC__</code></td>
+                                        <td>Defined as <code>1</code> when the compiler compiles against the <code>ANSI</code> standard</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <p><code>ANSI C</code> defines a number of macros that you can use, but you cannot directly modify these predefined macros</p>
+                            <h4 id="predefined-macro-example"><a class="h-anchor" href="#predefined-macro-example">#</a>Predefined macro example</h4>
+                            <pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;File :%s\n&quot;</span>, __FILE__);
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Date :%s\n&quot;</span>, __DATE__);
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Time :%s\n&quot;</span>, __TIME__);
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Line :%d\n&quot;</span>, __LINE__);
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;ANSI :%d\n&quot;</span>, __STDC__);
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="macro-continuation-operator"><a class="h-anchor" href="#macro-continuation-operator">#</a>Macro continuation operator ()</h3>
+                        <div class="section">
+                            <p>A macro is usually written on a single line.</p>
+                            <pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> message_for(a, b) \
+    printf(#a <span class="hljs-string">&quot; and &quot;</span> #b <span class="hljs-string">&quot;: We love you!\n&quot;</span>)</span>
+</code></pre>
+                            <p>If the macro is too long to fit on a single line, use the macro continuation operator <code>\</code></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="string-constantization-operator"><a class="h-anchor" href="#string-constantization-operator">#</a>String Constantization Operator (#)</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> message_for(a, b) \
+  printf(#a <span class="hljs-string">&quot; and &quot;</span> #b <span class="hljs-string">&quot;: We love you!\n&quot;</span>)</span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> &#123;
+  message_for(Carole, Debra);
+
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+</code></pre>
+                            <p>When the above code is compiled and executed, it produces the following result:</p>
+                            <pre><code class="hljs"><span class="hljs-symbol">Carole</span> <span class="hljs-keyword">and</span> Debra: We love you!
+</code></pre>
+                            <p>When you need to convert a macro parameter to a string constant, use the string constant operator <code>#</code></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="tag-paste-operator"><a class="h-anchor" href="#tag-paste-operator">#</a>tag paste operator (##)</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> tokenpaster(n) printf (<span class="hljs-string">&quot;token&quot;</span> #n <span class="hljs-string">&quot; = %d&quot;</span>, token##n)</span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> &#123;
+  <span class="hljs-type">int</span> token34 = <span class="hljs-number">40</span>;
+  tokenpaster(<span class="hljs-number">34</span>);
+
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="defined-operator"><a class="h-anchor" href="#defined-operator">#</a>defined() operator</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-keyword">if</span> !defined (MESSAGE)</span>
+   <span class="hljs-meta">#<span class="hljs-keyword">define</span> MESSAGE <span class="hljs-string">&quot;You wish!&quot;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">endif</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> &#123;
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Here is the message: %s\n&quot;</span>, MESSAGE);
+
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="parameterized-macros"><a class="h-anchor" href="#parameterized-macros">#</a>Parameterized macros</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-type">int</span> <span class="hljs-title function_">square</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> &#123;
+  <span class="hljs-keyword">return</span> x * x;
+&#125;
+</code></pre>
+                            <p>The macro rewrites the above code as follows:</p>
+                            <pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> square(x) ( (x) * (x) )</span>
+</code></pre>
+                            <p>No spaces are allowed between the macro name and the opening parenthesis</p>
+                            <pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> MAX(x,y) ( (x) &gt; (y) ? (x) : (y) )</span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> &#123;
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Max between 20 and 10 is %d\n&quot;</span>, MAX(<span class="hljs-number">10</span>, <span class="hljs-number">20</span>));
+
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="c-function"><a class="h-anchor" href="#c-function">#</a>C Function</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="function-declaration-and-definition"><a class="h-anchor" href="#function-declaration-and-definition">#</a>Function declaration and definition</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> &#123;
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello World!&quot;</span>);
+
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+</code></pre>
+                            <p>The function consists of two parts</p>
+                            <pre><code class="hljs language-c"><span class="hljs-type">void</span> <span class="hljs-title function_">myFunction</span><span class="hljs-params">()</span> &#123; <span class="hljs-comment">// declaration declaration</span>
+  <span class="hljs-comment">// function body (code to be executed) (definition)</span>
+&#125;
+</code></pre>
+                            <hr>
+                            <ul>
+                                <li><code>Declaration</code> declares the function name, return type and parameters <em>(if any)</em></li>
+                                <li><code>Definition</code> function body <em>(code to execute)</em></li>
+                            </ul>
+                            <hr>
+                            <pre><code class="hljs language-c"><span class="hljs-comment">// function declaration</span>
+<span class="hljs-type">void</span> <span class="hljs-title function_">myFunction</span><span class="hljs-params">()</span>;
+<span class="hljs-comment">// main method</span>
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;
+  myFunction(); <span class="hljs-comment">// --&gt; call the function</span>
+
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">myFunction</span><span class="hljs-params">()</span> &#123;<span class="hljs-comment">// Function definition</span>
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Good evening!&quot;</span>);
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="call-function"><a class="h-anchor" href="#call-function">#</a>Call function</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-comment">// create function</span>
+<span class="hljs-type">void</span> <span class="hljs-title function_">myFunction</span><span class="hljs-params">()</span> &#123;
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Good evening!&quot;</span>);
+&#125;
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;
+  myFunction(); <span class="hljs-comment">// call the function</span>
+  myFunction(); <span class="hljs-comment">// can be called multiple times</span>
+
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+<span class="hljs-comment">// Output -&gt; &quot;Good evening!&quot;</span>
+<span class="hljs-comment">// Output -&gt; &quot;Good evening!&quot;</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="function-parameters"><a class="h-anchor" href="#function-parameters">#</a>Function parameters</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-type">void</span> <span class="hljs-title function_">myFunction</span><span class="hljs-params">(<span class="hljs-type">char</span> name[])</span> &#123;
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello %s\n&quot;</span>, name);
+&#125;
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;
+  myFunction(<span class="hljs-string">&quot;Liam&quot;</span>);
+  myFunction(<span class="hljs-string">&quot;Jenny&quot;</span>);
+
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+<span class="hljs-comment">// Hello Liam</span>
+<span class="hljs-comment">// Hello Jenny</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="multiple-parameters"><a class="h-anchor" href="#multiple-parameters">#</a>Multiple parameters</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-type">void</span> <span class="hljs-title function_">myFunction</span><span class="hljs-params">(<span class="hljs-type">char</span> name[], <span class="hljs-type">int</span> age)</span> &#123;
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hi %s, you are %d years old.\n&quot;</span>,name,age);
+&#125;
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;
+  myFunction(<span class="hljs-string">&quot;Liam&quot;</span>, <span class="hljs-number">3</span>);
+  myFunction(<span class="hljs-string">&quot;Jenny&quot;</span>, <span class="hljs-number">14</span>);
+
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+<span class="hljs-comment">// Hi Liam you are 3 years old.</span>
+<span class="hljs-comment">// Hi Jenny you are 14 years old.</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="return-value"><a class="h-anchor" href="#return-value">#</a>Return value</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-type">int</span> <span class="hljs-title function_">myFunction</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> &#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-number">5</span> + x;
+&#125;
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Result: %d&quot;</span>, myFunction(<span class="hljs-number">3</span>));
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+<span class="hljs-comment">// output 8 (5 + 3)</span>
+</code></pre>
+                            <p>two parameters</p>
+                            <pre><code class="hljs language-c"><span class="hljs-type">int</span> <span class="hljs-title function_">myFunction</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> &#123;
+  <span class="hljs-keyword">return</span> x + y;
+&#125;
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Result: %d&quot;</span>, myFunction(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>));
+  <span class="hljs-comment">// store the result in a variable</span>
+  <span class="hljs-type">int</span> result = myFunction(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>);
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Result = %d&quot;</span>, result);
+
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+<span class="hljs-comment">// result: 8 (5 + 3)</span>
+<span class="hljs-comment">// result = 8 (5 + 3)</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="recursive-example"><a class="h-anchor" href="#recursive-example">#</a>Recursive example</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-type">int</span> <span class="hljs-title function_">sum</span><span class="hljs-params">(<span class="hljs-type">int</span> k)</span>;
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;
+  <span class="hljs-type">int</span> result = sum(<span class="hljs-number">10</span>);
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, result);
+
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">sum</span><span class="hljs-params">(<span class="hljs-type">int</span> k)</span> &#123;
+  <span class="hljs-keyword">if</span> (k &gt; <span class="hljs-number">0</span>) &#123;
+    <span class="hljs-keyword">return</span> k + sum(k <span class="hljs-number">-1</span>);
+  &#125; <span class="hljs-keyword">else</span> &#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+  &#125;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="mathematical-functions"><a class="h-anchor" href="#mathematical-functions">#</a>Mathematical functions</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;math.h&gt;</span></span>
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> &#123;
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%f&quot;</span>, <span class="hljs-built_in">sqrt</span>(<span class="hljs-number">16</span>)); <span class="hljs-comment">// square root</span>
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%f&quot;</span>, <span class="hljs-built_in">ceil</span>(<span class="hljs-number">1.4</span>)); <span class="hljs-comment">// round up (round)</span>
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%f&quot;</span>, <span class="hljs-built_in">floor</span>(<span class="hljs-number">1.4</span>)); <span class="hljs-comment">// round up (round)</span>
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%f&quot;</span>, <span class="hljs-built_in">pow</span>(<span class="hljs-number">4</span>, <span class="hljs-number">3</span>)); <span class="hljs-comment">// x(4) to the power of y(3)</span>
+&#125;
+</code></pre>
+                            <hr>
+                            <ul>
+                                <li><code>abs(x)</code> absolute value</li>
+                                <li><code>acos(x)</code> arc cosine value</li>
+                                <li><code>asin(x)</code> arc sine</li>
+                                <li><code>atan(x)</code> arc tangent</li>
+                                <li><code>cbrt(x)</code> cube root</li>
+                                <li><code>cos(x)</code> cosine</li>
+                                <li>the value of <code>exp(x)</code> Ex</li>
+                                <li><code>sin(x)</code> the sine of x</li>
+                                <li>tangent of <code>tan(x)</code> angle</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="c-structures"><a class="h-anchor" href="#c-structures">#</a>C Structures</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="create-structure"><a class="h-anchor" href="#create-structure">#</a>Create structure</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">MyStructure</span> &#123;</span> <span class="hljs-comment">// structure declaration</span>
+  <span class="hljs-type">int</span> myNum; <span class="hljs-comment">// member (int variable)</span>
+  <span class="hljs-type">char</span> myLetter; <span class="hljs-comment">// member (char variable)</span>
+&#125;; <span class="hljs-comment">// end the structure with a semicolon</span>
+</code></pre>
+                            <p>Create a struct variable called <code>s1</code></p>
+                            <pre><code 7="" class="language-c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">myStructure</span> &#123;</span>
+  <span class="hljs-type">int</span> myNum;
+  <span class="hljs-type">char</span> myLetter;
+&#125;;
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;
+  <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">myStructure</span> <span class="hljs-title">s1</span>;</span>
+
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="strings-in-the-structure"><a class="h-anchor" href="#strings-in-the-structure">#</a>Strings in the structure</h3>
+                        <div class="section">
+                            <pre><code 9="" class="language-c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">myStructure</span> &#123;</span>
+  <span class="hljs-type">int</span> myNum;
+  <span class="hljs-type">char</span> myLetter;
+  <span class="hljs-type">char</span> myString[<span class="hljs-number">30</span>]; <span class="hljs-comment">// String</span>
+&#125;;
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;
+  <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">myStructure</span> <span class="hljs-title">s1</span>;</span>
+  <span class="hljs-built_in">strcpy</span>(s1. myString, <span class="hljs-string">&quot;Some text&quot;</span>);
+  <span class="hljs-comment">// print value</span>
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;my string: %s&quot;</span>, s1.myString);
+
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+</code></pre>
+                            <p>Assigning values ​​to strings using the <code>strcpy</code> function</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="accessing-structure-members"><a class="h-anchor" href="#accessing-structure-members">#</a>Accessing structure members</h3>
+                        <div class="section">
+                            <pre><code 11,12,16="" class="language-c"><span class="hljs-comment">// create a structure called myStructure</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">myStructure</span> &#123;</span>
+  <span class="hljs-type">int</span> myNum;
+  <span class="hljs-type">char</span> myLetter;
+&#125;;
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;
+  <span class="hljs-comment">// Create a structure variable called myStructure called s1</span>
+  <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">myStructure</span> <span class="hljs-title">s1</span>;</span>
+  <span class="hljs-comment">// Assign values ​​to the members of s1</span>
+  s1.myNum = <span class="hljs-number">13</span>;
+  s1.myLetter = <span class="hljs-string">&#x27;B&#x27;</span>;
+
+  <span class="hljs-comment">// Create a structure variable of myStructure called s2</span>
+  <span class="hljs-comment">// and assign it a value</span>
+  <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">myStructure</span> <span class="hljs-title">s2</span> =</span> &#123;<span class="hljs-number">13</span>, <span class="hljs-string">&#x27;B&#x27;</span>&#125;;
+  <span class="hljs-comment">// print value</span>
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;My number: %d\n&quot;</span>, s1.myNum);
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;My letter: %c\n&quot;</span>, s1.myLetter);
+
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+</code></pre>
+                            <p>Create different structure variables</p>
+                            <pre><code class="hljs language-c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">myStructure</span> <span class="hljs-title">s1</span>;</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">myStructure</span> <span class="hljs-title">s2</span>;</span>
+<span class="hljs-comment">// Assign values ​​to different structure variables</span>
+s1.myNum = <span class="hljs-number">13</span>;
+s1.myLetter = <span class="hljs-string">&#x27;B&#x27;</span>;
+
+s2.myNum = <span class="hljs-number">20</span>;
+s2.myLetter = <span class="hljs-string">&#x27;C&#x27;</span>;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="copy-structure"><a class="h-anchor" href="#copy-structure">#</a>Copy structure</h3>
+                        <div class="section">
+                            <pre><code 6="" class="language-c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">myStructure</span> <span class="hljs-title">s1</span> =</span> &#123;
+  <span class="hljs-number">13</span>, <span class="hljs-string">&#x27;B&#x27;</span>, <span class="hljs-string">&quot;Some text&quot;</span>
+&#125;;
+
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">myStructure</span> <span class="hljs-title">s2</span>;</span>
+s2 = s1;
+</code></pre>
+                            <p>In the example, the value of <code>s1</code> is copied to <code>s2</code></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="modify-value"><a class="h-anchor" href="#modify-value">#</a>Modify value</h3>
+                        <div class="section">
+                            <pre><code 6,7="" class="language-c"><span class="hljs-comment">// Create a struct variable and assign it a value</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">myStructure</span> <span class="hljs-title">s1</span> =</span> &#123;
+  <span class="hljs-number">13</span>, <span class="hljs-string">&#x27;B&#x27;</span>
+&#125;;
+<span class="hljs-comment">// modify the value</span>
+s1.myNum = <span class="hljs-number">30</span>;
+s1.myLetter = <span class="hljs-string">&#x27;C&#x27;</span>;
+<span class="hljs-comment">// print value</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d %c %s&quot;</span>,
+    s1.myNum,
+    s1.myLetter);
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="file-processing"><a class="h-anchor" href="#file-processing">#</a>file processing</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="file-processing-function"><a class="h-anchor" href="#file-processing-function">#</a>File processing function</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>function</th>
+                                        <th>description Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>fopen()</code></td>
+                                        <td><code>open</code> a new or existing file</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>fprintf()</code></td>
+                                        <td>write data to <code>file</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>fscanf()</code></td>
+                                        <td><code>read</code> data from a file</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>fputc()</code></td>
+                                        <td>write a character to <code>file</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>fgetc()</code></td>
+                                        <td><code>read</code> a character from a file</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>fclose()</code></td>
+                                        <td><code>close</code> the file</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>fseek()</code></td>
+                                        <td>set the file pointer to <code>the given position</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>fputw()</code></td>
+                                        <td>Write an integer <code>to</code> a file</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>fgetw()</code></td>
+                                        <td><code>read</code> an integer from a file</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>ftell()</code></td>
+                                        <td>returns the current <code>position</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>rewind()</code></td>
+                                        <td>set the file pointer to the beginning of the file</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>There are many functions in the C library to <code>open</code>/<code>read</code>/<code>write</code>/<code>search</code> and <code>close</code> files</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="open-mode-parameter"><a class="h-anchor" href="#open-mode-parameter">#</a>Open mode parameter</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Mode Mode</th>
+                                        <th>Description Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>r</code></td>
+                                        <td>Open a text file in <code>read</code> mode, allowing the file to be read</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>w</code></td>
+                                        <td>Open a text file in <code>write</code> mode, allowing writing to the file</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>a</code></td>
+                                        <td>Open a text file in <code>append</code> mode<br>If the file does not exist, a new one will be created</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>r+</code></td>
+                                        <td>Open a text file in <code>read-write</code> mode, allowing reading and writing of the file</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>w+</code></td>
+                                        <td>Open a text file in <code>read-write</code> mode, allowing reading and writing of the file</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>a+</code></td>
+                                        <td>Open a text file in <code>read-write</code> mode, allowing reading and writing of the file</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>rb</code></td>
+                                        <td>Open a binary file in <code>read</code> mode</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>wb</code></td>
+                                        <td>Open binary file in <code>write</code> mode</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>ab</code></td>
+                                        <td>Open a binary file in <code>append</code> mode</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>rb+</code></td>
+                                        <td>open binary file in <code>read-write</code> mode</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>wb+</code></td>
+                                        <td>Open binary file in <code>read-write</code> mode</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>ab+</code></td>
+                                        <td>open binary file in <code>read-write</code> mode</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="open-the-file-fopen"><a class="h-anchor" href="#open-the-file-fopen">#</a>Open the file: fopen()</h3>
+                        <div class="section">
+                            <pre><code 6="" class="language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;
+  FILE *fp;
+  <span class="hljs-type">char</span> ch;
+
+  fp = fopen(<span class="hljs-string">&quot;file_handle.c&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>);
+
+  <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) &#123;
+    ch = fgetc(fp);
+    <span class="hljs-keyword">if</span> (ch == EOF)
+      <span class="hljs-keyword">break</span>;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%c&quot;</span>, ch);
+  &#125;
+  fclose(fp);
+&#125;
+</code></pre>
+                            <p>After performing all operations on the file, the file must be closed with <code>fclose()</code></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="write-to-file-fprintf"><a class="h-anchor" href="#write-to-file-fprintf">#</a>Write to file: fprintf()</h3>
+                        <div class="section">
+                            <pre><code 7="" class="language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;
+  FILE *fp;
+  fp = fopen(<span class="hljs-string">&quot;file.txt&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>); <span class="hljs-comment">// open the file</span>
+
+  <span class="hljs-comment">// write data to file</span>
+  <span class="hljs-built_in">fprintf</span>(fp, <span class="hljs-string">&quot;Hello file for fprintf..\n&quot;</span>);
+  fclose(fp); <span class="hljs-comment">// close the file</span>
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="read-the-file-fscanf"><a class="h-anchor" href="#read-the-file-fscanf">#</a>Read the file: fscanf()</h3>
+                        <div class="section">
+                            <pre><code 6="" class="language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;
+  FILE *fp;
+
+  <span class="hljs-type">char</span> buff[<span class="hljs-number">255</span>]; <span class="hljs-comment">// Create a char array to store file data</span>
+  fp = fopen(<span class="hljs-string">&quot;file.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>);
+
+  <span class="hljs-keyword">while</span>(<span class="hljs-built_in">fscanf</span>(fp, <span class="hljs-string">&quot;%s&quot;</span>, buff) != EOF) &#123;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s &quot;</span>, buff);
+  &#125;
+  fclose(fp);
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="write-to-file-fputc"><a class="h-anchor" href="#write-to-file-fputc">#</a>Write to file: fputc()</h3>
+                        <div class="section">
+                            <pre><code 6="" class="language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;
+  FILE *fp;
+  fp = fopen(<span class="hljs-string">&quot;file1.txt&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>); <span class="hljs-comment">// open the file</span>
+  fputc(<span class="hljs-string">&#x27;a&#x27;</span>,fp); <span class="hljs-comment">// write a single character to the file</span>
+  fclose(fp); <span class="hljs-comment">// close the file</span>
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="read-the-file-fgetc"><a class="h-anchor" href="#read-the-file-fgetc">#</a>Read the file: fgetc()</h3>
+                        <div class="section">
+                            <pre><code 8="" class="language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;conio.h&gt;</span></span>
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;
+  FILE *fp;
+  <span class="hljs-type">char</span> c;
+
+  clrscr();
+
+  fp = fopen(<span class="hljs-string">&quot;myfile.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>);
+
+  <span class="hljs-keyword">while</span>( (c = fgetc(fp) ) != EOF) &#123;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%c&quot;</span>, c);
+  &#125;
+  fclose(fp);
+
+  getch();
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="write-to-file-fputs"><a class="h-anchor" href="#write-to-file-fputs">#</a>Write to file: fputs()</h3>
+                        <div class="section">
+                            <pre><code 8="" class="language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;conio.h&gt;</span></span>
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;
+  FILE *fp;
+
+  clrscr();
+
+  fp = fopen(<span class="hljs-string">&quot;myfile2.txt&quot;</span>,<span class="hljs-string">&quot;w&quot;</span>);
+  <span class="hljs-built_in">fputs</span>(<span class="hljs-string">&quot;hello c programming&quot;</span>,fp);
+  fclose(fp);
+
+  getch();
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="read-files-fgets"><a class="h-anchor" href="#read-files-fgets">#</a>Read files: fgets()</h3>
+                        <div class="section">
+                            <pre><code 10="" class="language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;conio.h&gt;</span></span>
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;
+  FILE *fp;
+  <span class="hljs-type">char</span> text[<span class="hljs-number">300</span>];
+
+  clrscr();
+
+  fp = fopen(<span class="hljs-string">&quot;myfile2.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>);
+  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s&quot;</span>, fgets(text, <span class="hljs-number">200</span>, fp));
+  fclose(fp);
+
+  getch();
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="fseek"><a class="h-anchor" href="#fseek">#</a>fseek()</h3>
+                        <div class="section">
+                            <pre><code 8="" class="language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> &#123;
+  FILE *fp;
+
+  fp = fopen(<span class="hljs-string">&quot;myfile.txt&quot;</span>,<span class="hljs-string">&quot;w+&quot;</span>);
+  <span class="hljs-built_in">fputs</span>(<span class="hljs-string">&quot;This is Book&quot;</span>, fp);
+
+  <span class="hljs-comment">// Set file pointer to the given position</span>
+  fseek(fp, <span class="hljs-number">7</span>, SEEK_SET);
+
+  <span class="hljs-built_in">fputs</span>(<span class="hljs-string">&quot;Kenny Wong&quot;</span>, fp);
+  fclose(fp);
+&#125;
+</code></pre>
+                            <p>set the file pointer to the given position</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="rewind"><a class="h-anchor" href="#rewind">#</a>rewind()</h3>
+                        <div class="section">
+                            <pre><code 11="" class="language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;conio.h&gt;</span></span>
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;
+  FILE *fp;
+  <span class="hljs-type">char</span> c;
+
+  clrscr();
+
+  fp = fopen(<span class="hljs-string">&quot;file.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>);
+
+  <span class="hljs-keyword">while</span>( (c = fgetc(fp) ) != EOF) &#123;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%c&quot;</span>, c);
+  &#125;
+
+  rewind(fp); <span class="hljs-comment">// move the file pointer to the beginning of the file</span>
+
+  <span class="hljs-keyword">while</span>( (c = fgetc(fp) ) != EOF) &#123;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%c&quot;</span>, c);
+  &#125;
+  fclose(fp);
+
+  getch();
+&#125;
+<span class="hljs-comment">// output</span>
+<span class="hljs-comment">// Hello World! Hello World!</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="ftell"><a class="h-anchor" href="#ftell">#</a>ftell()</h3>
+                        <div class="section">
+                            <pre><code 11="" class="language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;conio.h&gt;</span></span>
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">main</span> <span class="hljs-params">()</span> &#123;
+   FILE *fp;
+   <span class="hljs-type">int</span> length;
+
+   clrscr();
+
+   fp = fopen(<span class="hljs-string">&quot;file.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>);
+
+   fseek(fp, <span class="hljs-number">0</span>, SEEK_END);
+   length = ftell(fp); <span class="hljs-comment">// return current position</span>
+   fclose(fp);
+
+   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;File size: %d bytes&quot;</span>, length);
+
+   getch();
+&#125;
+<span class="hljs-comment">// output</span>
+<span class="hljs-comment">// file size: 18 bytes</span>
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div data-pw-desk="med_rect_btf" id="pwDeskMedRectBtf3"></div>
+            <script type="text/javascript">
+                window.ramp.que.push(function() {
+                    window.ramp.addTag("pwDeskMedRectBtf3")
+                })
+            </script>
+        </div>
+    </div>
+    <script>
+        ! function(e, n, t, r) {
+            var o = n.createElement(t);
+            o.async = 1, o.src = "https://a.ad.gt/api/v1/u/matches/514?url=" + encodeURIComponent(e.location.href) + "&ref=" + encodeURIComponent(n.referrer);
+            var a = n.getElementsByTagName(t)[0];
+            a.parentNode.insertBefore(o, a)
+        }(window, document, "script")
+    </script>
+    <div id="mysearch" class="z-50 fixed inset-0 flex justify-center bg-slate-600/80 dark:bg-slate-900/90 items-start text-sm z-50 overflow-hidden lg:pt-16 lg:pb-20 hidden">
+        <div id="mysearch-box" class="lg:max-w-screen-lg w-full flex flex-col justify-between bg-white dark:bg-slate-700 shadow-3xl dark:shadow-3xl lg:rounded-lg lg:max-h-832 min-h-320 h-full">
+            <div class="flex items-center h-16 flex-none border-b border-slate-200 dark:border-slate-700">
+                <div class="w-full h-full">
+                    <form class="flex items-center w-full h-full outline-none rounded-tl-lg"><label for="mysearch-input" id="mysearch-label" class="h-full w-14 mt-1 ml-1 px-4 flex items-center justify-center transition-colors duration-200 ease-in-out text-emerald-200"><div class="text-2xl text-emerald-500"><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="1em" width="1em"><path d="M942.14826666 878.7968l-200.56746667-229.92213333C795.37493333 583.8848 827.73333333 500.5312 827.73333333 409.6 827.73333333 202.27413333 659.59253333 34.13333333 452.26666666 34.13333333 244.87253333 34.13333333 76.79999999 202.27413333 76.79999999 409.6S244.87253333 785.06666667 452.26666666 785.06666667c77.14133333 0 148.82133333-23.3472 208.41813333-63.21493334l199.33866667 228.5568c19.72906667 22.7328 54.272 24.91733333 76.8 5.25653334C959.62453333 935.86773333 961.87733333 901.46133333 942.14826666 878.7968zM179.19999999 409.6c0-150.59626667 122.4704-273.06666667 273.06666667-273.06666667 150.59626667 0 273.06666667 122.4704 273.06666667 273.06666667s-122.4704 273.06666667-273.06666667 273.06666667C301.67039999 682.66666667 179.19999999 560.19626667 179.19999999 409.6z"></path></svg></div></label>
+                        <div
+                            class="relative flex-1"> <input class="flex-1 font-light h-full bg-transparent focus:text-slate-900 text-slate-500 dark:text-slate-300 placeholder-slate-400 placeholder-opacity-80 shadow-none outline-none truncate text-lg sm:text-2xl caret-color-emerald-400 leading-normalized w-full appearance-none rounded-none transition-colors duration-200 ease-in-out"
+                                id="mysearch-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search for cheatsheet" maxlength="128" type="text" enterkeyhint="go"></div> <button id="mysearch-clear" type="reset"
+                    class="items-center justify-center h-full w-14 px-4 text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-100 opacity-75 fill-current cursor-pointer transition-fast-out flex"><i class="icon icon-close text-xs font-bold"></i></button></form>
+            </div>
+            <div class="w-px h-8 bg-slate-100 dark:bg-slate-400/20 flex-none"></div> <button class="cancel mr-1 px-4 h-full text-slate-500 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-300"> Cancel</button></div>
+        <div class="flex flex-grow overflow-hidden lg:rounded-br-lg">
+            <div class="relative w-full flex-none overflow-y-auto lg:w-1/2">
+                <ul id="mysearch-list"></ul>
+            </div>
+            <div class="preview-panel shadow-inner bg-slate-100 dark:bg-slate-800 lg:block w-1/2 flex-none overflow-y-auto"></div>
+        </div>
+    </div>
+    </div>
+
+    <div id="carbon_container"></div>
+</body>
+<script src="main.js"></script>
+<script>
+    // Get all pre > code elements
+    const codeBlocks = document.querySelectorAll('pre > code');
+    const initInnerHTML = '<svg height="1em" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path> </svg>';
+    const successInnerHTML = '<svg height="1em" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>';
+    codeBlocks.forEach(function(codeBlock) {
+        // Create a copy button element
+        const copyButton = document.createElement('button');
+        copyButton.className = 'bg-emerald-500 p-2 text-white fadeIn shadow-xl rounded flex items-center absolute top-2 right-2';
+        copyButton.innerHTML = initInnerHTML;
+        copyButton.style.opacity = "0";
+        const parent = codeBlock.parentNode;
+
+        parent.style = "position: relative;"
+        parent.insertBefore(copyButton, codeBlock);
+
+        // Add click event listener to copy button
+        copyButton.addEventListener('click', () => {
+            navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+                copyButton.innerHTML = successInnerHTML;
+                setTimeout(() => {
+                    copyButton.innerHTML = initInnerHTML;
+                }, 1000);
+            });
+        });
+
+        parent.addEventListener('mouseenter', () => {
+            copyButton.style.opacity = "1";
+        });
+        parent.addEventListener('mouseleave', () => {
+            copyButton.style.opacity = "0";
+        });
+    });
+</script>
+
+
+
+</html>

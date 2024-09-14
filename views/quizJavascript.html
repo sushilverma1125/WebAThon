@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>JavaScript Quiz</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="../../css/quiz.css" media="screen, print" />
+    <link rel="stylesheet" href="../../css/cheatsheet.css" media="screen, print" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        .poppins-regular {
+      font-family: "Poppins", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+    </style>
+</head>
+
+<body style="--container: min(95%, 1780px);">
+
+    <div class="tutorial-content" id="mainContent">
+        <center><h1 class="poppins-regular" style="font-size: xx-large;"><strong>JavaScript Quiz</strong></h1></center>
+        <hr />
+        <div class="QA">
+            <div class="Q" id="Q10">
+                <p><span>Q 1</span> - Can you access Cookie using javascript?</p>
+                <p><a class="true" href="javascript:void(0);"><span>A</span> - true</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>B</span> - false</a></p>
+            </div>
+            <div class="A" id="A10">
+                <h3>Answer : A</h3>
+                <h3>Explanation</h3>
+                <p>Yes! JavaScript can also manipulate cookies using the cookie property of the Document object.</p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('10')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q14">
+                <p><span>Q 2</span> - Which of the following is the correct syntax to print a page using JavaScript?</p>
+                <p><a class="true" href="javascript:void(0);"><span>A</span> - window.print();</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>B</span> - browser.print();</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>C</span> - navigator.print();</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - document.print();</a></p>
+            </div>
+            <div class="A" id="A14">
+                <h3>Answer : A</h3>
+                <h3>Explanation</h3>
+                <p>window.print(); is the correct option.</p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('14')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q21">
+                <p><span>Q 3</span> - Which of the following type of variable is visible only within a function where it
+                    is defined?</p>
+                <p><a class="false" href="javascript:void(0);"><span>A</span> - global variable</a></p>
+                <p><a class="true" href="javascript:void(0);"><span>B</span> - local variable</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>C</span> - Both of the above.</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - None of the above.</a></p>
+            </div>
+            <div class="A" id="A21">
+                <h3>Answer : B</h3>
+                <h3>Explanation</h3>
+                <p>Local Variables: A local variable will be visible only within a function where it is defined.
+                    Function parameters are always local to that function.</p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('21')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q32">
+                <p><span>Q 4</span> - Which built-in method sorts the elements of an array?</p>
+                <p><a class="false" href="javascript:void(0);"><span>A</span> - changeOrder(order)</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>B</span> - order()</a></p>
+                <p><a class="true" href="javascript:void(0);"><span>C</span> - sort()</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - None of the above.</a></p>
+            </div>
+            <div class="A" id="A32">
+                <h3>Answer : C</h3>
+                <h3>Explanation</h3>
+                <p>sort() method sorts the elements of an array.</p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('32')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q44">
+                <p><span>Q 5</span> - Which of the following function of Number object returns the number's value?</p>
+                <p><a class="false" href="javascript:void(0);"><span>A</span> - toString()</a></p>
+                <p><a class="true" href="javascript:void(0);"><span>B</span> - valueOf()</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>C</span> - toLocaleString()</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - toPrecision()</a></p>
+            </div>
+            <div class="A" id="A44">
+                <h3>Answer : B</h3>
+                <h3>Explanation</h3>
+                <p>valueOf() − Returns the number's value.</p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('44')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q52">
+                <p><span>Q 6</span> - Which of the following function of String object returns the index within the
+                    calling String object of the last occurrence of the specified value?</p>
+                <p><a class="true" href="javascript:void(0);"><span>A</span> - lastIndexOf()</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>B</span> - search()</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>C</span> - substr()</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - indexOf()</a></p>
+            </div>
+            <div class="A" id="A52">
+                <h3>Answer : A</h3>
+                <h3>Explanation</h3>
+                <p>lastIndexOf() − Returns the index within the calling String object of the last occurrence of the
+                    specified value, or -1 if not found.</p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('52')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q70">
+                <p><span>Q 7</span> - Which of the following function of String object creates a string to be displayed
+                    as bold as if it were in a &lt;b&gt; tag?</p>
+                <p><a class="false" href="javascript:void(0);"><span>A</span> - anchor()</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>B</span> - big()</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>C</span> - blink()</a></p>
+                <p><a class="true" href="javascript:void(0);"><span>D</span> - bold()</a></p>
+            </div>
+            <div class="A" id="A70">
+                <h3>Answer : D</h3>
+                <h3>Explanation</h3>
+                <p>bold() − Creates a string to be displayed as bold as if it were in a &lt;b&gt; tag.</p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('70')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q77">
+                <p><span>Q 8</span> - Which of the following function of String object causes a string to be displayed
+                    as struck-out text, as if it were in a &lt;strike&gt; tag?</p>
+                <p><a class="false" href="javascript:void(0);"><span>A</span> - sup()</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>B</span> - small()</a></p>
+                <p><a class="true" href="javascript:void(0);"><span>C</span> - strike()</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - sub()</a></p>
+            </div>
+            <div class="A" id="A77">
+                <h3>Answer : C</h3>
+                <h3>Explanation</h3>
+                <p>strike() − Causes a string to be displayed as struck-out text, as if it were in a &lt;strike&gt; tag.
+                </p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('77')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q83">
+                <p><span>Q 9</span> - Which of the following function of Array object calls a function for each element
+                    in the array?</p>
+                <p><a class="false" href="javascript:void(0);"><span>A</span> - concat()</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>B</span> - every()</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>C</span> - filter()</a></p>
+                <p><a class="true" href="javascript:void(0);"><span>D</span> - forEach()</a></p>
+            </div>
+            <div class="A" id="A83">
+                <h3>Answer : D</h3>
+                <h3>Explanation</h3>
+                <p>forEach() - Calls a function for each element in the array.</p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('83')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q98">
+                <p><span>Q 10</span> - Which of the following function of Array object adds and/or removes elements from
+                    an array?</p>
+                <p><a class="false" href="javascript:void(0);"><span>A</span> - toSource()</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>B</span> - sort()</a></p>
+                <p><a class="true" href="javascript:void(0);"><span>C</span> - splice()</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - unshift()</a></p>
+            </div>
+            <div class="A" id="A98">
+                <h3>Answer : C</h3>
+                <h3>Explanation</h3>
+                <p>splice() - Adds and/or removes elements from an array.</p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('98')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <script type="text/javascript" src="/exams.js"></script>
+        <script type="text/javascript" src="../../js/quiz.js"></script>
+        <script type="text/javascript" src="../../js/cheat.js"></script>
+</body>
+
+</html>

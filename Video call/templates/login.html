@@ -1,0 +1,87 @@
+<!-- Typewriter effect container -->
+<div class="typewriter" id="typeWrite">
+    <span id="text"></span>
+    <span class="cursor">|</span>
+</div>
+
+
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="alert alert-success">
+    {{ messages | join('<br>') | safe }}
+</div>
+{% endif %}
+{% endwith %}
+
+
+<script>
+    const textElement = document.getElementById("text");
+const phrases = [
+    "Welcome to login page!",
+    "Please enter your credentials",
+    "One step away from mentorship",
+    "Register if you are first"
+];
+
+let phraseIndex = 0;
+let charIndex = 0;
+let typingSpeed = 100;  // Speed of typing (in milliseconds)
+let delayBetweenPhrases = 1500;  // Delay before starting the next phrase (in milliseconds)
+let isDeleting = false;
+
+function typeWriter() {
+    const currentPhrase = phrases[phraseIndex];
+
+    if (isDeleting) {
+        textElement.textContent = currentPhrase.substring(0, charIndex - 1);
+        charIndex--;
+
+        if (charIndex === 0) {
+            isDeleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            setTimeout(typeWriter, 500);
+        } else {
+            setTimeout(typeWriter, typingSpeed / 2);
+        }
+    } else {
+        textElement.textContent = currentPhrase.substring(0, charIndex + 1);
+        charIndex++;
+
+        if (charIndex === currentPhrase.length) {
+            isDeleting = true;
+            setTimeout(typeWriter, delayBetweenPhrases);
+        } else {
+            setTimeout(typeWriter, typingSpeed);
+        }
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(typeWriter, 500);
+});
+</script>
+<div class="mb-md-5 mt-md-4 pb-5">
+
+    <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+    <p class="text-white-50 mb-5">Please enter your login and password</p>
+
+    <form action="{{ url_for('login') }}" method="POST">
+    {{ form.csrf_token }}
+    {{ form.hidden_tag() }}
+
+    <div class="form-outline form-white mb-4">
+    {{ form.email.label }} {{ form.email(class="form-control form-control-lg", id="email") }}<br>
+    {{ form.password.label }} {{ form.password(class="form-control form-control-lg", id="password") }}
+    </div>
+    <button class="btn btn-outline-light btn-lg px-5" type="submit" id="login">Login</button>
+</form>
+</div>
+
+<div id="register"><p class="mb-0">Don't have an account? <a href="{{ url_for('register') }}" class="text-white-50 fw-bold">Register</a></p> </div>
+
+
+{% endblock %}

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>C++ Quiz</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="../../css/quiz.css" media="screen, print" />
+    <link rel="stylesheet" href="../../css/cheatsheet.css" media="screen, print" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        .poppins-regular {
+      font-family: "Poppins", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+    </style>
+</head>
+
+<body style="--container: min(95%, 1780px);">
+
+    <div class="tutorial-content" id="mainContent">
+        <center><h1 class="poppins-regular" style="font-size: xx-large;"><strong>C++ Quiz</strong></h1></center>
+        <hr />
+
+        <div class="QA">
+            <div class="Q" id="Q7">
+                <p><span>Q 1</span> - What is the output of the following program?</p>
+                <pre class="prettyprint">
+            #include&lt;iostream&gt;
+            
+            using namespace std;
+            class abc { 
+               void f();
+               void g();
+               int x;
+            };
+            
+            main() {
+               cout&lt;&lt;sizeof(abc)&lt;&lt;endl;
+            }
+            </pre>
+                <p><a class="false" href="javascript:void(0);"><span>A</span> - 12</a></p>
+                <p><a class="true" href="javascript:void(0);"><span>B</span> - 4</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>C</span> - 8</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - Compile error</a></p>
+            </div>
+            <div class="A" id='A7'>
+                <h3>Answer : B</h3>
+                <h3>Explaination</h3>
+                <p>Only the class member variables constitutes as the size of the class or its object.</p>
+                <pre class="prettyprint tryit">
+            #include&lt;iostream&gt;
+            
+            using namespace std;
+            class abc { 
+               void f();
+               void g();
+               int x;
+            };
+            main() {
+               cout&lt;&lt;sizeof(abc)&lt;&lt;endl;
+            }
+            </pre>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('7')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q16">
+                <p><span>Q 2</span> - Choose the respective delete operator usage for the expression ‘ptr=new int[100]’.
+                </p>
+                <p><a class="false" href="javascript:void(0);"><span>A</span> - delete ptr;</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>B</span> - delete ptr[];</a></p>
+                <p><a class="true" href="javascript:void(0);"><span>C</span> - delete[] ptr;</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - []delete ptr;</a></p>
+            </div>
+            <div class="A" id='A16'>
+                <h3>Answer : C</h3>
+                <h3>Explaination</h3>
+                <p> </p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('16')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q23">
+                <p><span>Q 3</span> - Pick up the valid declaration for overloading ++ in postfix form where T is the
+                    class name.</p>
+                <p><a class="false" href="javascript:void(0);"><span>A</span> - T operator++();</a></p>
+                <p><a class="true" href="javascript:void(0);"><span>B</span> - T operator++(int);</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>C</span> - T&amp; operator++();</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - T&amp; operator++(int);</a></p>
+            </div>
+            <div class="A" id='A23'>
+                <h3>Answer : B</h3>
+                <h3>Explaination</h3>
+                <p>The parameter int is just to signify that it is the postfix form overloaded. Shouldn’t return
+                    reference as per its original behavior.</p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('23')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q35">
+                <p><span>Q 4</span> - The pointer which stores always the current active object address is __</p>
+                <p><a class="false" href="javascript:void(0);"><span>A</span> - auto_ptr</a></p>
+                <p><a class="true" href="javascript:void(0);"><span>B</span> - this</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>C</span> - p</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - none of the above.</a></p>
+            </div>
+            <div class="A" id='A35'>
+                <h3>Answer : B</h3>
+                <h3>Explaination</h3>
+                <p>this is the keyword and acts as a pointer which always holds current active objects.</p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('35')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q41">
+                <p><span>Q 5</span> - What is the output of the following program?</p>
+                <pre class="prettyprint">
+            #include&lt;iostream&gt;
+            
+            using namespace std;
+            class Base {
+            public:
+               void f() {
+                  cout&lt;&lt;"Base\n";
+               }
+            };
+            class Derived:public Base {
+            public:
+               void f() {
+                  cout&lt;&lt;"Derived\n";
+               }
+            };
+            main() { 
+               Derived obj; 
+               obj.Base::f();
+            }
+            </pre>
+                <p><a class="true" href="javascript:void(0);"><span>A</span> - Base</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>B</span> - Derived</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>C</span> - Compile error</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - None of the above.</a></p>
+            </div>
+            <div class="A" id='A41'>
+                <h3>Answer : A</h3>
+                <h3>Explaination</h3>
+                <p>The method f() inherited from Base is referred using :: operator.</p>
+                <pre class="prettyprint tryit">
+            #include&lt;iostream&gt;
+            
+            using namespace std;
+            class Base {
+            public:
+               void f() {
+                  cout&lt;&lt;"Base\n";
+               }
+            };
+            class Derived:public Base {
+            public:
+               void f() {
+                  cout&lt;&lt;"Derived\n";
+               }
+            };
+            main() { 
+               Derived obj; 
+               obj.Base::f();
+            }
+            </pre>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('41')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q54">
+                <p><span>Q 6</span> - HAS-A relationship between the classes is shown through.</p>
+                <p><a class="false" href="javascript:void(0);"><span>A</span> - Inheritance</a></p>
+                <p><a class="true" href="javascript:void(0);"><span>B</span> - Container classes</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>C</span> - Polymorphism</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - None of the above.</a></p>
+            </div>
+            <div class="A" id='A54'>
+                <h3>Answer : B</h3>
+                <h3>Explaination</h3>
+                <p>A class containing anther class object as its member is called as container class and exhibits HAS A
+                    relationship.</p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('54')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q67">
+                <p><span>Q 7</span> - What is the output of the following program?</p>
+                <pre class="prettyprint">
+            #include&lt;iostream&gt;
+            
+            using namespace std;
+            main() { 
+               int x = 5;
+            
+               if(x==5) {	
+                  if(x==5) break;
+                  cout&lt;&lt;"Hello";
+               } 
+            
+               cout&lt;&lt;”Hi”; 
+            }
+            
+            </pre>
+                <p><a class="true" href="javascript:void(0);"><span>A</span> - Compile error</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>B</span> - Hi</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>C</span> - HelloHi</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - Hello</a></p>
+            </div>
+            <div class="A" id='A67'>
+                <h3>Answer : A</h3>
+                <h3>Explaination</h3>
+                <p>compile error, keyword break can appear only within loop/switch statement.</p>
+                <pre class="prettyprint tryit">
+            #include&lt;iostream&gt;
+            
+            using namespace std;
+            main() { 
+               int x = 5;
+            
+               if(x==5) {	
+                  if(x==5) break;
+                  cout&lt;&lt;"Hello";
+               } 
+            
+               cout&lt;&lt;”Hi”; 
+            }
+            
+            </pre>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('67')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q71">
+                <p><span>Q 8</span> - What is the output of the following program?</p>
+                <pre class="prettyprint">
+            #include&lt;iostream&gt;
+            
+            using namespace std;
+            void swap(int m, int n) {
+               int x = m;
+            
+                m = n;
+                n = x;
+            }
+            main() {
+               int x = 5, y = 3;
+               
+                swap(x,y);
+                cout&lt;&lt;x&lt;&lt;" "&lt;&lt;y;
+            }
+            </pre>
+                <p><a class="false" href="javascript:void(0);"><span>A</span> - 3 5
+                    </a></p>
+                <p><a class="true" href="javascript:void(0);"><span>B</span> - 5 3</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>C</span> - 5 5</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - Compile error</a></p>
+            </div>
+            <div class="A" id='A71'>
+                <h3>Answer : B</h3>
+                <h3>Explaination</h3>
+                <p>5 3, call by value mechanism can’t alter actual arguments.</p>
+                <pre class="prettyprint tryit">
+            #include&lt;iostream&gt;
+            
+            using namespace std;
+            void swap(int m, int n) {
+               int x = m;
+            
+                m = n;
+                n = x;
+            }
+            main() {
+               int x = 5, y = 3;
+               
+                swap(x,y);
+                cout&lt;&lt;x&lt;&lt;" "&lt;&lt;y;
+            }
+            </pre>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('71')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q83">
+                <p><span>Q 9</span> - An inline function can execute faster than a normal function.</p>
+                <p><a class="true" href="javascript:void(0);"><span>A</span> - True</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>B</span> - False</a></p>
+            </div>
+            <div class="A" id='A83'>
+                <h3>Answer : A</h3>
+                <h3>Explaination</h3>
+                <p>As the code of inline function gets expanded at the line of call, therefore it gets executed faster
+                    with no overhead of context switch</p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('83')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <script type="text/javascript" src="/exams.js"></script>
+            <script type="text/javascript" src="../../js/quiz.js"></script>
+            <script type="text/javascript" src="../../js/cheat.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1263 @@
+<!DOCTYPE HTML>
+<html class="scrollbar" translate="no">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="content-language" content="en-gb">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Java Cheat Sheet</title>
+    <link rel="stylesheet" href="../../css/cheatsheet.css">
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            let html = document.documentElement.classList;
+            html.toggle('dark')
+        }
+    </script>
+
+</head>
+
+<body class="bg-slate-100 dark:bg-slate-900">
+    
+    <div class="mx-auto flex flex-wrap md:py-5 flex-col md:flex-row items-center">
+        <div class="flex flex-col w-full mx-auto text-center my-8">
+            <div class="max-container w-full">
+                <h1 class="text-5xl mb-4"> <span class="text-slate-700 dark:text-slate-300 font-light">Java</span> <span class="text-slate-400 dark:text-slate-500 font-extralight hidden md:inline">cheatsheet</span></h1>
+                <div class="lg:w-3/5 mx-auto intro leading-relaxed text-slate-600">
+                    <p>This cheat sheet is a crash course for Java beginners and help review the basic syntax of the Java language.</p>
+                </div>
+            </div>
+        </div>
+        <div id="mdLayout" class="mdLayout w-full max-container">
+            <div data-pw-desk="leaderboard_btf" id="pwDeskLbBtf1"></div>
+            <script type="text/javascript">
+                window.ramp.que.push(function() {
+                    window.ramp.addTag("pwDeskLbBtf1")
+                })
+            </script>
+            <div class="h2-wrap">
+                <h2 id="getting-started"><a class="h-anchor" href="#getting-started">#</a>Getting Started</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="hello-java"><a class="h-anchor" href="#hello-java">#</a>Hello.java</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Hello</span> &#123;
+  <span class="hljs-comment">// main method</span>
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span>
+  &#123;
+    <span class="hljs-comment">// Output: Hello, world!</span>
+    System.out.println(<span class="hljs-string">&quot;Hello, world!&quot;</span>);
+  &#125;
+&#125;
+</code></pre>
+                            <p>Compiling and running</p>
+                            <pre><code class="hljs language-shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">javac Hello.java</span>
+<span class="hljs-meta prompt_">$ </span><span class="language-bash">java Hello</span>
+Hello, world!
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="variables"><a class="h-anchor" href="#variables">#</a>Variables</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-variable">num</span> <span class="hljs-operator">=</span> <span class="hljs-number">5</span>;
+<span class="hljs-type">float</span> <span class="hljs-variable">floatNum</span> <span class="hljs-operator">=</span> <span class="hljs-number">5.99f</span>;
+<span class="hljs-type">char</span> <span class="hljs-variable">letter</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;D&#x27;</span>;
+<span class="hljs-type">boolean</span> <span class="hljs-variable">bool</span> <span class="hljs-operator">=</span> <span class="hljs-literal">true</span>;
+<span class="hljs-type">String</span> <span class="hljs-variable">site</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;quickref.me&quot;</span>;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="primitive-data-types"><a class="h-anchor" href="#primitive-data-types">#</a>Primitive Data Types</h3>
+                        <div class="section">
+                            <table class="show-header">
+                                <thead>
+                                    <tr>
+                                        <th>Data Type</th>
+                                        <th>Size</th>
+                                        <th>Default</th>
+                                        <th>Range</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>byte</code></td>
+                                        <td>1 byte</td>
+                                        <td>0</td>
+                                        <td>-128 <sup>to</sup> 127</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>short</code></td>
+                                        <td>2 byte</td>
+                                        <td>0</td>
+                                        <td>-2<sup>15</sup> <sup>to</sup> 2<sup>15</sup>-1</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>int</code></td>
+                                        <td>4 byte</td>
+                                        <td>0</td>
+                                        <td>-2<sup>31</sup> <sup>to</sup> 2<sup>31</sup>-1</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>long</code></td>
+                                        <td>8 byte</td>
+                                        <td>0</td>
+                                        <td>-2<sup>63</sup> <sup>to</sup> 2<sup>63</sup>-1</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>float</code></td>
+                                        <td>4 byte</td>
+                                        <td>0.0f</td>
+                                        <td><em>N/A</em></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>double</code></td>
+                                        <td>8 byte</td>
+                                        <td>0.0d</td>
+                                        <td><em>N/A</em></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>char</code></td>
+                                        <td>2 byte</td>
+                                        <td>\u0000</td>
+                                        <td>0 <sup>to</sup> 65535</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>boolean</code></td>
+                                        <td><em>N/A</em></td>
+                                        <td>false</td>
+                                        <td>true / false</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="strings"><a class="h-anchor" href="#strings">#</a>Strings</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-variable">first</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;John&quot;</span>;
+<span class="hljs-type">String</span> <span class="hljs-variable">last</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Doe&quot;</span>;
+<span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> first + <span class="hljs-string">&quot; &quot;</span> + last;
+System.out.println(name);
+</code></pre>
+                            <p>See: <a href="#java-strings">Strings</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="loops"><a class="h-anchor" href="#loops">#</a>Loops</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-variable">word</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;QuickRef&quot;</span>;
+<span class="hljs-keyword">for</span> (<span class="hljs-type">char</span> c: word.toCharArray()) &#123;
+  System.out.print(c + <span class="hljs-string">&quot;-&quot;</span>);
+&#125;
+<span class="hljs-comment">// Outputs: Q-u-i-c-k-R-e-f-</span>
+</code></pre>
+                            <p>See: <a href="#java-loops">Loops</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="arrays"><a class="h-anchor" href="#arrays">#</a>Arrays</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-type">char</span>[] chars = <span class="hljs-keyword">new</span> <span class="hljs-title class_">char</span>[<span class="hljs-number">10</span>];
+chars[<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;a&#x27;</span>
+chars[<span class="hljs-number">1</span>] = <span class="hljs-string">&#x27;b&#x27;</span>
+
+String[] letters = &#123;<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>&#125;;
+<span class="hljs-type">int</span>[] mylist = &#123;<span class="hljs-number">100</span>, <span class="hljs-number">200</span>&#125;;
+<span class="hljs-type">boolean</span>[] answers = &#123;<span class="hljs-literal">true</span>, <span class="hljs-literal">false</span>&#125;;
+</code></pre>
+                            <p>See: <a href="#java-arrays">Arrays</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="swap"><a class="h-anchor" href="#swap">#</a>Swap</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;
+<span class="hljs-type">int</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-number">2</span>;
+System.out.println(a + <span class="hljs-string">&quot; &quot;</span> + b); <span class="hljs-comment">// 1 2</span>
+
+<span class="hljs-type">int</span> <span class="hljs-variable">temp</span> <span class="hljs-operator">=</span> a;
+a = b;
+b = temp;
+System.out.println(a + <span class="hljs-string">&quot; &quot;</span> + b); <span class="hljs-comment">// 2 1</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="type-casting"><a class="h-anchor" href="#type-casting">#</a>Type Casting</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-comment">// Widening</span>
+<span class="hljs-comment">// byte&lt;short&lt;int&lt;long&lt;float&lt;double</span>
+<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;
+<span class="hljs-type">long</span> <span class="hljs-variable">l</span> <span class="hljs-operator">=</span> i;               <span class="hljs-comment">// 10</span>
+
+<span class="hljs-comment">// Narrowing </span>
+<span class="hljs-type">double</span> <span class="hljs-variable">d</span> <span class="hljs-operator">=</span> <span class="hljs-number">10.02</span>;
+<span class="hljs-type">long</span> <span class="hljs-variable">l</span> <span class="hljs-operator">=</span> (<span class="hljs-type">long</span>)d;         <span class="hljs-comment">// 10</span>
+
+String.valueOf(<span class="hljs-number">10</span>);       <span class="hljs-comment">// &quot;10&quot;</span>
+Integer.parseInt(<span class="hljs-string">&quot;10&quot;</span>);   <span class="hljs-comment">// 10</span>
+Double.parseDouble(<span class="hljs-string">&quot;10&quot;</span>); <span class="hljs-comment">// 10.0</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="conditionals"><a class="h-anchor" href="#conditionals">#</a>Conditionals</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;
+
+<span class="hljs-keyword">if</span> (j == <span class="hljs-number">10</span>) &#123;
+  System.out.println(<span class="hljs-string">&quot;I get printed&quot;</span>);
+&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (j &gt; <span class="hljs-number">10</span>) &#123;
+  System.out.println(<span class="hljs-string">&quot;I don&#x27;t&quot;</span>);
+&#125; <span class="hljs-keyword">else</span> &#123;
+  System.out.println(<span class="hljs-string">&quot;I also don&#x27;t&quot;</span>);
+&#125;
+</code></pre>
+                            <p>See: <a href="#java-conditionals">Conditionals</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="user-input"><a class="h-anchor" href="#user-input">#</a>User Input</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-type">Scanner</span> <span class="hljs-variable">in</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);
+<span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> in.nextLine();
+System.out.println(str);
+
+<span class="hljs-type">int</span> <span class="hljs-variable">num</span> <span class="hljs-operator">=</span> in.nextInt();
+System.out.println(num);
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="java-strings"><a class="h-anchor" href="#java-strings">#</a>Java Strings</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="basic"><a class="h-anchor" href="#basic">#</a>Basic</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-variable">str1</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;value&quot;</span>; 
+<span class="hljs-type">String</span> <span class="hljs-variable">str2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-string">&quot;value&quot;</span>);
+<span class="hljs-type">String</span> <span class="hljs-variable">str3</span> <span class="hljs-operator">=</span> String.valueOf(<span class="hljs-number">123</span>);
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="concatenation"><a class="h-anchor" href="#concatenation">#</a>Concatenation</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-number">3</span> + <span class="hljs-string">&quot;str&quot;</span> + <span class="hljs-number">3</span>;     <span class="hljs-comment">// 3str3</span>
+<span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-number">3</span> + <span class="hljs-number">3</span> + <span class="hljs-string">&quot;str&quot;</span>;     <span class="hljs-comment">// 6str</span>
+<span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;3&quot;</span> + <span class="hljs-number">3</span> + <span class="hljs-string">&quot;str&quot;</span>;   <span class="hljs-comment">// 33str</span>
+<span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;3&quot;</span> + <span class="hljs-string">&quot;3&quot;</span> + <span class="hljs-string">&quot;23&quot;</span>;  <span class="hljs-comment">// 3323</span>
+<span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&quot;</span> + <span class="hljs-number">3</span> + <span class="hljs-number">3</span> + <span class="hljs-string">&quot;23&quot;</span>; <span class="hljs-comment">// 3323</span>
+<span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-number">3</span> + <span class="hljs-number">3</span> + <span class="hljs-number">23</span>;        <span class="hljs-comment">// 29</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-3">
+                        <h3 id="stringbuilder"><a class="h-anchor" href="#stringbuilder">#</a>StringBuilder</h3>
+                        <div class="section">
+                            <p>StringBuilder sb = new StringBuilder(10);</p>
+                            <pre><code class="hljs language-java">┌───┬───┬───┬───┬───┬───┬───┬───┬───┐
+|   |   |   |   |   |   |   |   |   |
+└───┴───┴───┴───┴───┴───┴───┴───┴───┘
+<span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>   <span class="hljs-number">5</span>   <span class="hljs-number">6</span>   <span class="hljs-number">7</span>   <span class="hljs-number">8</span>   <span class="hljs-number">9</span>
+</code></pre>
+                            <p>sb.append(&quot;QuickRef&quot;);</p>
+                            <pre><code class="hljs language-java">┌───┬───┬───┬───┬───┬───┬───┬───┬───┐
+| Q | u | i | c | k | R | e | f |   |
+└───┴───┴───┴───┴───┴───┴───┴───┴───┘
+<span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>   <span class="hljs-number">5</span>   <span class="hljs-number">6</span>   <span class="hljs-number">7</span>   <span class="hljs-number">8</span>   <span class="hljs-number">9</span>
+</code></pre>
+                            <p>sb.delete(5, 9);</p>
+                            <pre><code class="hljs language-java">┌───┬───┬───┬───┬───┬───┬───┬───┬───┐
+| Q | u | i | c | k |   |   |   |   |
+└───┴───┴───┴───┴───┴───┴───┴───┴───┘
+<span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>   <span class="hljs-number">5</span>   <span class="hljs-number">6</span>   <span class="hljs-number">7</span>   <span class="hljs-number">8</span>   <span class="hljs-number">9</span>
+</code></pre>
+                            <p>sb.insert(0, &quot;My &quot;);</p>
+                            <pre><code class="hljs language-java">┌───┬───┬───┬───┬───┬───┬───┬───┬───┐
+| M | y |   | Q | u | i | c | k |   |
+└───┴───┴───┴───┴───┴───┴───┴───┴───┘
+<span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>   <span class="hljs-number">5</span>   <span class="hljs-number">6</span>   <span class="hljs-number">7</span>   <span class="hljs-number">8</span>   <span class="hljs-number">9</span>
+</code></pre>
+                            <p>sb.append(&quot;!&quot;);</p>
+                            <pre><code class="hljs language-java">┌───┬───┬───┬───┬───┬───┬───┬───┬───┐
+| M | y |   | Q | u | i | c | k | ! |
+└───┴───┴───┴───┴───┴───┴───┴───┴───┘
+<span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>   <span class="hljs-number">5</span>   <span class="hljs-number">6</span>   <span class="hljs-number">7</span>   <span class="hljs-number">8</span>   <span class="hljs-number">9</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="comparison"><a class="h-anchor" href="#comparison">#</a>Comparison</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-variable">s1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-string">&quot;QuickRef&quot;</span>); 
+<span class="hljs-type">String</span> <span class="hljs-variable">s2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-string">&quot;QuickRef&quot;</span>); 
+
+s1 == s2          <span class="hljs-comment">// false</span>
+s1.equals(s2)     <span class="hljs-comment">// true</span>
+
+<span class="hljs-string">&quot;AB&quot;</span>.equalsIgnoreCase(<span class="hljs-string">&quot;ab&quot;</span>)  <span class="hljs-comment">// true</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="manipulation"><a class="h-anchor" href="#manipulation">#</a>Manipulation</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Abcd&quot;</span>;
+
+str.toUpperCase();     <span class="hljs-comment">// ABCD</span>
+str.toLowerCase();     <span class="hljs-comment">// abcd</span>
+str.concat(<span class="hljs-string">&quot;#&quot;</span>);       <span class="hljs-comment">// Abcd#</span>
+str.replace(<span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;-&quot;</span>); <span class="hljs-comment">// A-cd</span>
+
+<span class="hljs-string">&quot;  abc &quot;</span>.trim();       <span class="hljs-comment">// abc</span>
+<span class="hljs-string">&quot;ab&quot;</span>.toCharArray();    <span class="hljs-comment">// &#123;&#x27;a&#x27;, &#x27;b&#x27;&#125;</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="information"><a class="h-anchor" href="#information">#</a>Information</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;abcd&quot;</span>;
+
+str.charAt(<span class="hljs-number">2</span>);       <span class="hljs-comment">// c</span>
+str.indexOf(<span class="hljs-string">&quot;a&quot;</span>)     <span class="hljs-comment">// 0</span>
+str.indexOf(<span class="hljs-string">&quot;z&quot;</span>)     <span class="hljs-comment">// -1</span>
+str.length();        <span class="hljs-comment">// 4</span>
+str.toString();      <span class="hljs-comment">// abcd</span>
+str.substring(<span class="hljs-number">2</span>);    <span class="hljs-comment">// cd</span>
+str.substring(<span class="hljs-number">2</span>,<span class="hljs-number">3</span>);  <span class="hljs-comment">// c</span>
+str.contains(<span class="hljs-string">&quot;c&quot;</span>);   <span class="hljs-comment">// true</span>
+str.endsWith(<span class="hljs-string">&quot;d&quot;</span>);   <span class="hljs-comment">// true</span>
+str.startsWith(<span class="hljs-string">&quot;a&quot;</span>); <span class="hljs-comment">// true</span>
+str.isEmpty();       <span class="hljs-comment">// false</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="immutable"><a class="h-anchor" href="#immutable">#</a>Immutable</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;hello&quot;</span>;
+str.concat(<span class="hljs-string">&quot;world&quot;</span>);
+
+<span class="hljs-comment">// Outputs: hello</span>
+System.out.println(str);
+</code></pre>
+                            <hr>
+                            <pre><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;hello&quot;</span>;
+<span class="hljs-type">String</span> <span class="hljs-variable">concat</span> <span class="hljs-operator">=</span> str.concat(<span class="hljs-string">&quot;world&quot;</span>);
+
+<span class="hljs-comment">// Outputs: helloworld</span>
+System.out.println(concat);
+</code></pre>
+                            <p>Once created cannot be modified, any modification creates a new String</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="java-arrays"><a class="h-anchor" href="#java-arrays">#</a>Java Arrays</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="declare"><a class="h-anchor" href="#declare">#</a>Declare</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-type">int</span>[] a1;
+<span class="hljs-type">int</span>[] a2 = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>&#125;;
+<span class="hljs-type">int</span>[] a3 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[]&#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>&#125;;
+
+<span class="hljs-type">int</span>[] a4 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">3</span>];
+a4[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
+a4[<span class="hljs-number">2</span>] = <span class="hljs-number">2</span>;
+a4[<span class="hljs-number">3</span>] = <span class="hljs-number">3</span>;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="modify"><a class="h-anchor" href="#modify">#</a>Modify</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-type">int</span>[] a = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>&#125;;
+System.out.println(a[<span class="hljs-number">0</span>]); <span class="hljs-comment">// 1</span>
+
+a[<span class="hljs-number">0</span>] = <span class="hljs-number">9</span>;
+System.out.println(a[<span class="hljs-number">0</span>]); <span class="hljs-comment">// 9</span>
+
+System.out.println(a.length); <span class="hljs-comment">// 3</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="loop-read-modify"><a class="h-anchor" href="#loop-read-modify">#</a>Loop (Read &amp; Modify)</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-type">int</span>[] arr = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>&#125;;
+<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>; i &lt; arr.length; i++) &#123;
+    arr[i] = arr[i] * <span class="hljs-number">2</span>;
+    System.out.print(arr[i] + <span class="hljs-string">&quot; &quot;</span>);
+&#125;
+<span class="hljs-comment">// Outputs: 2 4 6</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="loop-read"><a class="h-anchor" href="#loop-read">#</a>Loop (Read)</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java">String[] arr = &#123;<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>&#125;;
+<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> a: arr) &#123;
+    System.out.print(a + <span class="hljs-string">&quot; &quot;</span>);
+&#125;
+<span class="hljs-comment">// Outputs: a b c </span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="multidimensional-arrays"><a class="h-anchor" href="#multidimensional-arrays">#</a>Multidimensional Arrays</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-type">int</span>[][] matrix = &#123; &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>&#125;, &#123;<span class="hljs-number">4</span>, <span class="hljs-number">5</span>&#125; &#125;;
+
+<span class="hljs-type">int</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> matrix[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>];  <span class="hljs-comment">// 4</span>
+<span class="hljs-comment">// [[1, 2, 3], [4, 5]]</span>
+Arrays.deepToString(matrix)
+
+<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; a.length; ++i) &#123;
+  <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt; a[i].length; ++j) &#123;
+    System.out.println(a[i][j]);
+  &#125;
+&#125;
+<span class="hljs-comment">// Outputs: 1 2 3 4 5 6 7 </span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="sort"><a class="h-anchor" href="#sort">#</a>Sort</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-type">char</span>[] chars = &#123;<span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>&#125;;
+Arrays.sort(chars);
+
+<span class="hljs-comment">// [a, b, c]</span>
+Arrays.toString(chars);
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="java-conditionals"><a class="h-anchor" href="#java-conditionals">#</a>Java Conditionals</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="operators"><a class="h-anchor" href="#operators">#</a>Operators</h3>
+                        <div class="section">
+                            <ul class="marker-none cols-4">
+                                <li><a href="javascript:void(0);" rel="external nofollow noreferrer" data-tooltip="Additive operator (also used for String concatenation)">+</a></li>
+                                <li><a href="javascript:void(0);" rel="external nofollow noreferrer" data-tooltip="Subtraction operator">-</a></li>
+                                <li><a href="javascript:void(0);" rel="external nofollow noreferrer" data-tooltip="Multiplication operator">*</a></li>
+                                <li><a href="javascript:void(0);" rel="external nofollow noreferrer" data-tooltip="Division operator">/</a></li>
+                                <li><a href="javascript:void(0);" rel="external nofollow noreferrer" data-tooltip="Remainder operator">%</a></li>
+                                <li><a href="javascript:void(0);" rel="external nofollow noreferrer" data-tooltip="Simple assignment operator">=</a></li>
+                                <li><a href="javascript:void(0);" rel="external nofollow noreferrer" data-tooltip="Increment operator; increments a value by 1">++</a></li>
+                                <li><a href="javascript:void(0);" rel="external nofollow noreferrer" data-tooltip="Decrement operator; decrements a value by 1">--</a></li>
+                                <li><a href="javascript:void(0);" rel="external nofollow noreferrer" data-tooltip="Logical complement operator; inverts the value of a boolean">!</a></li>
+                            </ul>
+                            <hr>
+                            <ul class="marker-none cols-4">
+                                <li><a href="javascript:void(0);" rel="external nofollow noreferrer" data-tooltip="Equal to">==</a></li>
+                                <li><a href="javascript:void(0);" rel="external nofollow noreferrer" data-tooltip="Not equal to">!=</a></li>
+                                <li><a href="javascript:void(0);" rel="external nofollow noreferrer" data-tooltip="Greater than">&gt;</a></li>
+                                <li><a href="javascript:void(0);" rel="external nofollow noreferrer" data-tooltip="Greater than or equal to">&gt;=</a></li>
+                                <li><a href="javascript:void(0);" rel="external nofollow noreferrer" data-tooltip="Less than">&lt;</a></li>
+                                <li><a href="javascript:void(0);" rel="external nofollow noreferrer" data-tooltip="Less than or equal to">&lt;=</a></li>
+                            </ul>
+                            <hr>
+                            <ul class="marker-none cols-4">
+                                <li><a href="javascript:void(0);" rel="external nofollow noreferrer" data-tooltip="Conditional-AND">&amp;&amp;</a></li>
+                                <li><a href="javascript:void(0);" rel="external nofollow noreferrer" data-tooltip="Conditional-OR">||</a></li>
+                                <li><a href="#ternary-operator" data-tooltip="Ternary (shorthand for if-then-else statement)">?:</a></li>
+                            </ul>
+                            <hr>
+                            <ul class="marker-none">
+                                <li><a href="javascript:void(0);" rel="external nofollow noreferrer" data-tooltip="Compares an object to a specified type">instanceof</a></li>
+                            </ul>
+                            <hr>
+                            <ul class="marker-none cols-4">
+                                <li><a href="javascript:void(0);" rel="external nofollow noreferrer" data-tooltip="Unary bitwise complement">~</a></li>
+                                <li><a href="javascript:void(0);" rel="external nofollow noreferrer" data-tooltip="Signed left shift">&lt;&lt;</a></li>
+                                <li><a href="javascript:void(0);" rel="external nofollow noreferrer" data-tooltip="Signed right shift">&gt;&gt;</a></li>
+                                <li><a href="javascript:void(0);" rel="external nofollow noreferrer" data-tooltip="Unsigned right shift">&gt;&gt;&gt;</a></li>
+                                <li><a href="javascript:void(0);" rel="external nofollow noreferrer" data-tooltip="Bitwise AND">&amp;</a></li>
+                                <li><a href="javascript:void(0);" rel="external nofollow noreferrer" data-tooltip="Bitwise exclusive OR">^</a></li>
+                                <li><a href="javascript:void(0);" rel="external nofollow noreferrer" data-tooltip="Bitwise inclusive OR">|</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="if-else"><a class="h-anchor" href="#if-else">#</a>If else</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-variable">k</span> <span class="hljs-operator">=</span> <span class="hljs-number">15</span>;
+<span class="hljs-keyword">if</span> (k &gt; <span class="hljs-number">20</span>) &#123;
+  System.out.println(<span class="hljs-number">1</span>);
+&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (k &gt; <span class="hljs-number">10</span>) &#123;
+  System.out.println(<span class="hljs-number">2</span>);
+&#125; <span class="hljs-keyword">else</span> &#123;
+  System.out.println(<span class="hljs-number">3</span>);
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="switch"><a class="h-anchor" href="#switch">#</a>Switch</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-variable">month</span> <span class="hljs-operator">=</span> <span class="hljs-number">3</span>;
+String str;
+<span class="hljs-keyword">switch</span> (month) &#123;
+  <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+    str = <span class="hljs-string">&quot;January&quot;</span>;
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+    str = <span class="hljs-string">&quot;February&quot;</span>;
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:
+    str = <span class="hljs-string">&quot;March&quot;</span>;
+    <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">default</span>:
+    str = <span class="hljs-string">&quot;Some other month&quot;</span>;
+    <span class="hljs-keyword">break</span>;
+&#125;
+
+<span class="hljs-comment">// Outputs: Result March</span>
+System.out.println(<span class="hljs-string">&quot;Result &quot;</span> + str);
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="ternary-operator"><a class="h-anchor" href="#ternary-operator">#</a>Ternary operator</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;
+<span class="hljs-type">int</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-number">20</span>;
+<span class="hljs-type">int</span> <span class="hljs-variable">max</span> <span class="hljs-operator">=</span> (a &gt; b) ? a : b;
+
+<span class="hljs-comment">// Outputs: 20</span>
+System.out.println(max);
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="java-loops"><a class="h-anchor" href="#java-loops">#</a>Java Loops</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="for-loop"><a class="h-anchor" href="#for-loop">#</a>For Loop</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;
+  System.out.print(i);
+&#125;
+<span class="hljs-comment">// Outputs: 0123456789</span>
+</code></pre>
+                            <hr>
+                            <pre><code class="hljs language-java"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>,j = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++,j--) &#123;
+  System.out.print(j + <span class="hljs-string">&quot;|&quot;</span> + i + <span class="hljs-string">&quot; &quot;</span>);
+&#125;
+<span class="hljs-comment">// Outputs: 0|0 -1|1 -2|2</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="enhanced-for-loop"><a class="h-anchor" href="#enhanced-for-loop">#</a>Enhanced For Loop</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-type">int</span>[] numbers = &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>&#125;;
+
+<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> number: numbers) &#123;
+  System.out.print(number);
+&#125;
+<span class="hljs-comment">// Outputs: 12345</span>
+</code></pre>
+                            <p>Used to loop around array's or List's</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="while-loop"><a class="h-anchor" href="#while-loop">#</a>While Loop</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-variable">count</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;
+
+<span class="hljs-keyword">while</span> (count &lt; <span class="hljs-number">5</span>) &#123;
+  System.out.print(count);
+  count++;
+&#125;
+<span class="hljs-comment">// Outputs: 01234</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="do-while-loop"><a class="h-anchor" href="#do-while-loop">#</a>Do While Loop</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-variable">count</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;
+
+<span class="hljs-keyword">do</span> &#123;
+  System.out.print(count);
+  count++;
+&#125; <span class="hljs-keyword">while</span> (count &lt; <span class="hljs-number">5</span>);
+<span class="hljs-comment">// Outputs: 01234</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="continue-statement"><a class="h-anchor" href="#continue-statement">#</a>Continue Statement</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) &#123;
+  <span class="hljs-keyword">if</span> (i == <span class="hljs-number">3</span>) &#123;
+    <span class="hljs-keyword">continue</span>;
+  &#125;
+  System.out.print(i);
+&#125;
+<span class="hljs-comment">// Outputs: 01245</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="break-statement"><a class="h-anchor" href="#break-statement">#</a>Break Statement</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) &#123;
+  System.out.print(i);
+  <span class="hljs-keyword">if</span> (i == <span class="hljs-number">3</span>) &#123;
+    <span class="hljs-keyword">break</span>;
+  &#125;
+&#125;
+<span class="hljs-comment">// Outputs: 0123</span>
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="java-collections-framework"><a class="h-anchor" href="#java-collections-framework">#</a>Java Collections Framework</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap col-span-2">
+                        <h3 id="java-collections"><a class="h-anchor" href="#java-collections">#</a>Java Collections</h3>
+                        <div class="section">
+                            <table class="show-header left-text">
+                                <thead>
+                                    <tr>
+                                        <th>Collection</th>
+                                        <th>Interface</th>
+                                        <th>Ordered</th>
+                                        <th>Sorted</th>
+                                        <th>Thread safe</th>
+                                        <th>Duplicate</th>
+                                        <th>Nullable</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html">ArrayList</a></td>
+                                        <td>List</td>
+                                        <td>Y</td>
+                                        <td><em>N</em></td>
+                                        <td><em>N</em></td>
+                                        <td>Y</td>
+                                        <td>Y</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.oracle.com/javase/8/docs/api/java/util/Vector.html">Vector</a></td>
+                                        <td>List</td>
+                                        <td>Y</td>
+                                        <td><em>N</em></td>
+                                        <td>Y</td>
+                                        <td>Y</td>
+                                        <td>Y</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.oracle.com/javase/8/docs/api/java/util/LinkedList.html">LinkedList</a></td>
+                                        <td>List, Deque</td>
+                                        <td>Y</td>
+                                        <td><em>N</em></td>
+                                        <td><em>N</em></td>
+                                        <td>Y</td>
+                                        <td>Y</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CopyOnWriteArrayList.html">CopyOnWriteArrayList</a></td>
+                                        <td>List</td>
+                                        <td>Y</td>
+                                        <td><em>N</em></td>
+                                        <td>Y</td>
+                                        <td>Y</td>
+                                        <td>Y</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.oracle.com/javase/8/docs/api/java/util/HashSet.html">HashSet</a></td>
+                                        <td>Set</td>
+                                        <td><em>N</em></td>
+                                        <td><em>N</em></td>
+                                        <td><em>N</em></td>
+                                        <td><em>N</em></td>
+                                        <td>One <code>null</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashSet.html">LinkedHashSet</a></td>
+                                        <td>Set</td>
+                                        <td>Y</td>
+                                        <td><em>N</em></td>
+                                        <td><em>N</em></td>
+                                        <td><em>N</em></td>
+                                        <td>One <code>null</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.oracle.com/javase/8/docs/api/java/util/TreeSet.html">TreeSet</a></td>
+                                        <td>Set</td>
+                                        <td>Y</td>
+                                        <td>Y</td>
+                                        <td><em>N</em></td>
+                                        <td><em>N</em></td>
+                                        <td><em>N</em></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CopyOnWriteArraySet.html">CopyOnWriteArraySet</a></td>
+                                        <td>Set</td>
+                                        <td>Y</td>
+                                        <td><em>N</em></td>
+                                        <td>Y</td>
+                                        <td><em>N</em></td>
+                                        <td>One <code>null</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ConcurrentSkipListSet.html">ConcurrentSkipListSet</a></td>
+                                        <td>Set</td>
+                                        <td>Y</td>
+                                        <td>Y</td>
+                                        <td>Y</td>
+                                        <td><em>N</em></td>
+                                        <td><em>N</em></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.oracle.com/javase/8/docs/api/java/util/HashMap.html">HashMap</a></td>
+                                        <td>Map</td>
+                                        <td><em>N</em></td>
+                                        <td><em>N</em></td>
+                                        <td><em>N</em></td>
+                                        <td><em>N (key)</em></td>
+                                        <td>One <code>null</code> <em>(key)</em></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.oracle.com/javase/8/docs/api/java/util/Hashtable.html">HashTable</a></td>
+                                        <td>Map</td>
+                                        <td><em>N</em></td>
+                                        <td><em>N</em></td>
+                                        <td>Y</td>
+                                        <td><em>N (key)</em></td>
+                                        <td><em>N (key)</em></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html">LinkedHashMap</a></td>
+                                        <td>Map</td>
+                                        <td>Y</td>
+                                        <td><em>N</em></td>
+                                        <td><em>N</em></td>
+                                        <td><em>N (key)</em></td>
+                                        <td>One <code>null</code> <em>(key)</em></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.oracle.com/javase/8/docs/api/java/util/TreeMap.html">TreeMap</a></td>
+                                        <td>Map</td>
+                                        <td>Y</td>
+                                        <td>Y</td>
+                                        <td><em>N</em></td>
+                                        <td><em>N (key)</em></td>
+                                        <td><em>N (key)</em></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ConcurrentHashMap.html">ConcurrentHashMap</a></td>
+                                        <td>Map</td>
+                                        <td><em>N</em></td>
+                                        <td><em>N</em></td>
+                                        <td>Y</td>
+                                        <td><em>N (key)</em></td>
+                                        <td><em>N</em></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ConcurrentSkipListMap.html">ConcurrentSkipListMap</a></td>
+                                        <td>Map</td>
+                                        <td>Y</td>
+                                        <td>Y</td>
+                                        <td>Y</td>
+                                        <td><em>N (key)</em></td>
+                                        <td><em>N</em></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayDeque.html">ArrayDeque</a></td>
+                                        <td>Deque</td>
+                                        <td>Y</td>
+                                        <td><em>N</em></td>
+                                        <td><em>N</em></td>
+                                        <td>Y</td>
+                                        <td><em>N</em></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.oracle.com/javase/8/docs/api/java/util/PriorityQueue.html">PriorityQueue</a></td>
+                                        <td>Queue</td>
+                                        <td>Y</td>
+                                        <td><em>N</em></td>
+                                        <td><em>N</em></td>
+                                        <td>Y</td>
+                                        <td><em>N</em></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ConcurrentLinkedQueue.html">ConcurrentLinkedQueue</a></td>
+                                        <td>Queue</td>
+                                        <td>Y</td>
+                                        <td><em>N</em></td>
+                                        <td>Y</td>
+                                        <td>Y</td>
+                                        <td><em>N</em></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ConcurrentLinkedDeque.html">ConcurrentLinkedDeque</a></td>
+                                        <td>Deque</td>
+                                        <td>Y</td>
+                                        <td><em>N</em></td>
+                                        <td>Y</td>
+                                        <td>Y</td>
+                                        <td><em>N</em></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ArrayBlockingQueue.html">ArrayBlockingQueue</a></td>
+                                        <td>Queue</td>
+                                        <td>Y</td>
+                                        <td><em>N</em></td>
+                                        <td>Y</td>
+                                        <td>Y</td>
+                                        <td><em>N</em></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/LinkedBlockingDeque.html">LinkedBlockingDeque</a></td>
+                                        <td>Deque</td>
+                                        <td>Y</td>
+                                        <td><em>N</em></td>
+                                        <td>Y</td>
+                                        <td>Y</td>
+                                        <td><em>N</em></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/PriorityBlockingQueue.html">PriorityBlockingQueue</a></td>
+                                        <td>Queue</td>
+                                        <td>Y</td>
+                                        <td><em>N</em></td>
+                                        <td>Y</td>
+                                        <td>Y</td>
+                                        <td><em>N</em></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="arraylist"><a class="h-anchor" href="#arraylist">#</a>ArrayList</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java">List&lt;Integer&gt; nums = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();
+
+<span class="hljs-comment">// Adding</span>
+nums.add(<span class="hljs-number">2</span>);
+nums.add(<span class="hljs-number">5</span>);
+nums.add(<span class="hljs-number">8</span>);
+
+<span class="hljs-comment">// Retrieving</span>
+System.out.println(nums.get(<span class="hljs-number">0</span>));
+
+<span class="hljs-comment">// Indexed for loop iteration</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; nums.size(); i++) &#123;
+    System.out.println(nums.get(i));
+&#125;
+
+nums.remove(nums.size() - <span class="hljs-number">1</span>);
+nums.remove(<span class="hljs-number">0</span>); <span class="hljs-comment">// VERY slow</span>
+
+<span class="hljs-keyword">for</span> (Integer value : nums) &#123;
+    System.out.println(value);
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="hashmap"><a class="h-anchor" href="#hashmap">#</a>HashMap</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java">Map&lt;Integer, String&gt; m = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();
+m.put(<span class="hljs-number">5</span>, <span class="hljs-string">&quot;Five&quot;</span>);
+m.put(<span class="hljs-number">8</span>, <span class="hljs-string">&quot;Eight&quot;</span>);
+m.put(<span class="hljs-number">6</span>, <span class="hljs-string">&quot;Six&quot;</span>);
+m.put(<span class="hljs-number">4</span>, <span class="hljs-string">&quot;Four&quot;</span>);
+m.put(<span class="hljs-number">2</span>, <span class="hljs-string">&quot;Two&quot;</span>);
+
+<span class="hljs-comment">// Retrieving</span>
+System.out.println(m.get(<span class="hljs-number">6</span>));
+
+<span class="hljs-comment">// Lambda forEach</span>
+m.forEach((key, value) -&gt; &#123;
+    <span class="hljs-type">String</span> <span class="hljs-variable">msg</span> <span class="hljs-operator">=</span> key + <span class="hljs-string">&quot;: &quot;</span> + value;
+    System.out.println(msg);
+&#125;);
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="hashset"><a class="h-anchor" href="#hashset">#</a>HashSet</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java">Set&lt;String&gt; set = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>&lt;&gt;();
+<span class="hljs-keyword">if</span> (set.isEmpty()) &#123;
+    System.out.println(<span class="hljs-string">&quot;Empty!&quot;</span>);
+&#125;
+
+set.add(<span class="hljs-string">&quot;dog&quot;</span>);
+set.add(<span class="hljs-string">&quot;cat&quot;</span>);
+set.add(<span class="hljs-string">&quot;mouse&quot;</span>);
+set.add(<span class="hljs-string">&quot;snake&quot;</span>);
+set.add(<span class="hljs-string">&quot;bear&quot;</span>);
+
+<span class="hljs-keyword">if</span> (set.contains(<span class="hljs-string">&quot;cat&quot;</span>)) &#123;
+    System.out.println(<span class="hljs-string">&quot;Contains cat&quot;</span>);
+&#125;
+
+set.remove(<span class="hljs-string">&quot;cat&quot;</span>);
+<span class="hljs-keyword">for</span> (String element : set) &#123;
+    System.out.println(element);
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="arraydeque"><a class="h-anchor" href="#arraydeque">#</a>ArrayDeque</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java">Deque&lt;String&gt; a = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayDeque</span>&lt;&gt;();
+
+<span class="hljs-comment">// Using add()</span>
+a.add(<span class="hljs-string">&quot;Dog&quot;</span>);
+
+<span class="hljs-comment">// Using addFirst()</span>
+a.addFirst(<span class="hljs-string">&quot;Cat&quot;</span>);
+
+<span class="hljs-comment">// Using addLast()</span>
+a.addLast(<span class="hljs-string">&quot;Horse&quot;</span>);
+
+<span class="hljs-comment">// [Cat, Dog, Horse]</span>
+System.out.println(a);
+
+<span class="hljs-comment">// Access element</span>
+System.out.println(a.peek());
+
+<span class="hljs-comment">// Remove element</span>
+System.out.println(a.pop());
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="misc"><a class="h-anchor" href="#misc">#</a>Misc</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap col-span-2">
+                        <h3 id="access-modifiers"><a class="h-anchor" href="#access-modifiers">#</a>Access Modifiers</h3>
+                        <div class="section">
+                            <table class="show-header left-text">
+                                <thead>
+                                    <tr>
+                                        <th>Modifier</th>
+                                        <th>Class</th>
+                                        <th>Package</th>
+                                        <th>Subclass</th>
+                                        <th>World</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>public</td>
+                                        <td>Y</td>
+                                        <td>Y</td>
+                                        <td>Y</td>
+                                        <td>Y</td>
+                                    </tr>
+                                    <tr>
+                                        <td>protected</td>
+                                        <td>Y</td>
+                                        <td>Y</td>
+                                        <td>Y</td>
+                                        <td><em>N</em></td>
+                                    </tr>
+                                    <tr>
+                                        <td>no modifier</td>
+                                        <td>Y</td>
+                                        <td>Y</td>
+                                        <td><em>N</em></td>
+                                        <td><em>N</em></td>
+                                    </tr>
+                                    <tr>
+                                        <td>private</td>
+                                        <td>Y</td>
+                                        <td><em>N</em></td>
+                                        <td><em>N</em></td>
+                                        <td><em>N</em></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="regular-expressions"><a class="h-anchor" href="#regular-expressions">#</a>Regular expressions</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-variable">text</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;I am learning Java&quot;</span>;
+<span class="hljs-comment">// Removing All Whitespace</span>
+text.replaceAll(<span class="hljs-string">&quot;\\s+&quot;</span>, <span class="hljs-string">&quot;&quot;</span>);
+
+<span class="hljs-comment">// Splitting a String</span>
+text.split(<span class="hljs-string">&quot;\\|&quot;</span>);
+text.split(Pattern.quote(<span class="hljs-string">&quot;|&quot;</span>));
+</code></pre>
+                            <p>See: <a href="/regex#regex-in-java">Regex in java</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="comment"><a class="h-anchor" href="#comment">#</a>Comment</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-comment">// I am a single line comment!</span>
+ 
+<span class="hljs-comment">/*
+And I am a 
+multi-line comment!
+*/</span>
+
+<span class="hljs-comment">/**
+ * This  
+ * is  
+ * documentation  
+ * comment 
+ */</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap col-span-2">
+                        <h3 id="keywords"><a class="h-anchor" href="#keywords">#</a>Keywords</h3>
+                        <div class="section">
+                            <ul class="marker-none cols-6">
+                                <li>abstract</li>
+                                <li>continue</li>
+                                <li>for</li>
+                                <li>new</li>
+                                <li>switch</li>
+                                <li>assert</li>
+                                <li>default</li>
+                                <li>goto</li>
+                                <li>package</li>
+                                <li>synchronized</li>
+                                <li>boolean</li>
+                                <li>do</li>
+                                <li>if</li>
+                                <li>private</li>
+                                <li>this</li>
+                                <li>break</li>
+                                <li>double</li>
+                                <li>implements</li>
+                                <li>protected</li>
+                                <li>throw</li>
+                                <li>byte</li>
+                                <li>else</li>
+                                <li>import</li>
+                                <li>public</li>
+                                <li>throws</li>
+                                <li>case</li>
+                                <li>enum</li>
+                                <li>instanceof</li>
+                                <li>return</li>
+                                <li>transient</li>
+                                <li>catch</li>
+                                <li>extends</li>
+                                <li>int</li>
+                                <li>short</li>
+                                <li>try</li>
+                                <li>char</li>
+                                <li>final</li>
+                                <li>interface</li>
+                                <li>static</li>
+                                <li>void</li>
+                                <li>class</li>
+                                <li>finally</li>
+                                <li>long</li>
+                                <li>strictfp</li>
+                                <li>volatile</li>
+                                <li>const</li>
+                                <li>float</li>
+                                <li>native</li>
+                                <li>super</li>
+                                <li>while</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="math-methods"><a class="h-anchor" href="#math-methods">#</a>Math methods</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Method</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>Math.max(a,b)</code></td>
+                                        <td>Maximum of a and b</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>Math.min(a,b)</code></td>
+                                        <td>Minimum of a and b</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>Math.abs(a)</code></td>
+                                        <td>Absolute value a</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>Math.sqrt(a)</code></td>
+                                        <td>Square-root of a</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>Math.pow(a,b)</code></td>
+                                        <td>Power of b</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>Math.round(a)</code></td>
+                                        <td>Closest integer</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>Math.sin(ang)</code></td>
+                                        <td>Sine of ang</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>Math.cos(ang)</code></td>
+                                        <td>Cosine of ang</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>Math.tan(ang)</code></td>
+                                        <td>Tangent of ang</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>Math.asin(ang)</code></td>
+                                        <td>Inverse sine of ang</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>Math.log(a)</code></td>
+                                        <td>Natural logarithm of a</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>Math.toDegrees(rad)</code></td>
+                                        <td>Angle rad in degrees</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>Math.toRadians(deg)</code></td>
+                                        <td>Angle deg in radians</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="try-catch-finally"><a class="h-anchor" href="#try-catch-finally">#</a>Try/Catch/Finally</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-java"><span class="hljs-keyword">try</span> &#123;
+  <span class="hljs-comment">// something</span>
+&#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
+  e.printStackTrace();
+&#125; <span class="hljs-keyword">finally</span> &#123;
+  System.out.println(<span class="hljs-string">&quot;always printed&quot;</span>);
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div data-pw-desk="med_rect_btf" id="pwDeskMedRectBtf3"></div>
+            <script type="text/javascript">
+                window.ramp.que.push(function() {
+                    window.ramp.addTag("pwDeskMedRectBtf3")
+                })
+            </script>
+        </div>
+    </div>
+    <script>
+        ! function(e, n, t, r) {
+            var o = n.createElement(t);
+            o.async = 1, o.src = "https://a.ad.gt/api/v1/u/matches/514?url=" + encodeURIComponent(e.location.href) + "&ref=" + encodeURIComponent(n.referrer);
+            var a = n.getElementsByTagName(t)[0];
+            a.parentNode.insertBefore(o, a)
+        }(window, document, "script")
+    </script>
+    <div id="mysearch" class="z-50 fixed inset-0 flex justify-center bg-slate-600/80 dark:bg-slate-900/90 items-start text-sm z-50 overflow-hidden lg:pt-16 lg:pb-20 hidden">
+        <div id="mysearch-box" class="lg:max-w-screen-lg w-full flex flex-col justify-between bg-white dark:bg-slate-700 shadow-3xl dark:shadow-3xl lg:rounded-lg lg:max-h-832 min-h-320 h-full">
+            <div class="flex items-center h-16 flex-none border-b border-slate-200 dark:border-slate-700">
+                <div class="w-full h-full">
+                    <form class="flex items-center w-full h-full outline-none rounded-tl-lg"><label for="mysearch-input" id="mysearch-label" class="h-full w-14 mt-1 ml-1 px-4 flex items-center justify-center transition-colors duration-200 ease-in-out text-emerald-200"><div class="text-2xl text-emerald-500"><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="1em" width="1em"><path d="M942.14826666 878.7968l-200.56746667-229.92213333C795.37493333 583.8848 827.73333333 500.5312 827.73333333 409.6 827.73333333 202.27413333 659.59253333 34.13333333 452.26666666 34.13333333 244.87253333 34.13333333 76.79999999 202.27413333 76.79999999 409.6S244.87253333 785.06666667 452.26666666 785.06666667c77.14133333 0 148.82133333-23.3472 208.41813333-63.21493334l199.33866667 228.5568c19.72906667 22.7328 54.272 24.91733333 76.8 5.25653334C959.62453333 935.86773333 961.87733333 901.46133333 942.14826666 878.7968zM179.19999999 409.6c0-150.59626667 122.4704-273.06666667 273.06666667-273.06666667 150.59626667 0 273.06666667 122.4704 273.06666667 273.06666667s-122.4704 273.06666667-273.06666667 273.06666667C301.67039999 682.66666667 179.19999999 560.19626667 179.19999999 409.6z"></path></svg></div></label>
+                        <div
+                            class="relative flex-1"> <input class="flex-1 font-light h-full bg-transparent focus:text-slate-900 text-slate-500 dark:text-slate-300 placeholder-slate-400 placeholder-opacity-80 shadow-none outline-none truncate text-lg sm:text-2xl caret-color-emerald-400 leading-normalized w-full appearance-none rounded-none transition-colors duration-200 ease-in-out"
+                                id="mysearch-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search for cheatsheet" maxlength="128" type="text" enterkeyhint="go"></div> <button id="mysearch-clear" type="reset"
+                    class="items-center justify-center h-full w-14 px-4 text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-100 opacity-75 fill-current cursor-pointer transition-fast-out flex"><i class="icon icon-close text-xs font-bold"></i></button></form>
+            </div>
+            <div class="w-px h-8 bg-slate-100 dark:bg-slate-400/20 flex-none"></div> <button class="cancel mr-1 px-4 h-full text-slate-500 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-300"> Cancel</button></div>
+        <div class="flex flex-grow overflow-hidden lg:rounded-br-lg">
+            <div class="relative w-full flex-none overflow-y-auto lg:w-1/2">
+                <ul id="mysearch-list"></ul>
+            </div>
+            <div class="preview-panel shadow-inner bg-slate-100 dark:bg-slate-800 lg:block w-1/2 flex-none overflow-y-auto"></div>
+        </div>
+    </div>
+    </div>
+
+    <div id="carbon_container"></div>
+</body>
+<script src="../../js/cheat.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        if (typeof(tippy) !== 'undefined') {
+            document.querySelectorAll("a[data-tooltip]").forEach(function(x) {
+                let content = x.getAttribute('data-tooltip');
+                tippy(x, {
+                    content: content
+                });
+            });
+        }
+    });
+</script>
+<script>
+    // Get all pre > code elements
+    const codeBlocks = document.querySelectorAll('pre > code');
+    const initInnerHTML = '<svg height="1em" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path> </svg>';
+    const successInnerHTML = '<svg height="1em" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>';
+    codeBlocks.forEach(function(codeBlock) {
+        // Create a copy button element
+        const copyButton = document.createElement('button');
+        copyButton.className = 'bg-emerald-500 p-2 text-white fadeIn shadow-xl rounded flex items-center absolute top-2 right-2';
+        copyButton.innerHTML = initInnerHTML;
+        copyButton.style.opacity = "0";
+        const parent = codeBlock.parentNode;
+
+        parent.style = "position: relative;"
+        parent.insertBefore(copyButton, codeBlock);
+
+        // Add click event listener to copy button
+        copyButton.addEventListener('click', () => {
+            navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+                copyButton.innerHTML = successInnerHTML;
+                setTimeout(() => {
+                    copyButton.innerHTML = initInnerHTML;
+                }, 1000);
+            });
+        });
+
+        parent.addEventListener('mouseenter', () => {
+            copyButton.style.opacity = "1";
+        });
+        parent.addEventListener('mouseleave', () => {
+            copyButton.style.opacity = "0";
+        });
+    });
+</script>
+
+
+</html>

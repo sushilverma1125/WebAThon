@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>C Quiz</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="../../css/quiz.css" media="screen, print" />
+    <link rel="stylesheet" href="../../css/cheatsheet.css" media="screen, print" />
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+    .poppins-regular {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+</style>
+
+<body style="--container: min(95%, 1780px);">
+
+    <div class="tutorial-content" id="mainContent">
+        <center><h1 class="poppins-regular" style="font-size: xx-large;"><strong>C Quiz</strong></h1></center>
+        <hr />
+
+        <div class="QA">
+            <div class="Q" id="Q9">
+                <p><span>Q 1</span> - What is the output of the below code snippet?</p>
+                <pre class="prettyprint">
+            #include&lt;stdio.h&gt;
+            
+            main() 
+            {
+               unsigned x = 5, y=&x, *p = y+0; 
+            
+               printf("%u",*p);
+            }
+            </pre>
+                <p><a class="false" href="javascript:void(0);"><span>A</span> - Address of x</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>B</span> - Address of y</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>C</span> - Address of p</a></p>
+                <p><a class="true" href="javascript:void(0);"><span>D</span> - 5</a></p>
+            </div>
+            <div class="A" id='A9'>
+                <h3>Answer : D</h3>
+                <h3>Explanation</h3>
+                <p>5, as p holds the address of x which is y+0</p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('9')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q37">
+                <p><span>Q 2</span> - What is the output of the following program?</p>
+                <pre class="prettyprint">
+            #include&lt;stdio.h&gt;
+            
+            main()
+            {
+               int i = 1;
+               
+               while( i++&lt;=5 )
+                  printf("%d ",i++);
+            }
+            </pre>
+                <p><a class="false" href="javascript:void(0);"><span>A</span> - 1 3 5</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>B</span> - 2 4</a></p>
+                <p><a class="true" href="javascript:void(0);"><span>C</span> - 2 4 6</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - 2</a></p>
+            </div>
+            <div class="A" id='A37'>
+                <h3>Answer : C</h3>
+                <h3>Explanation</h3>
+                <p>2 4 6, at while first compared and later incremented and in printf printed first and incremented
+                    later.</p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('37')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q59">
+                <p><span>Q 3</span> - Identify the C compiler of UNIX.</p>
+                <p><a class="false" href="javascript:void(0);"><span>A</span> - gcc</a></p>
+                <p><a class="true" href="javascript:void(0);"><span>B</span> - cc</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>C</span> - Borland</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - vc++</a></p>
+            </div>
+            <div class="A" id='A59'>
+                <h3>Answer : B</h3>
+                <h3>Explanation</h3>
+                <p>‘cc’ full form is C Compiler and is the compiler for UNIX. gcc is GNU C compiler for linux. Borland
+                    and vc++ (Microsoft visual c++) for windows.</p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('59')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q71">
+                <p><span>Q 4</span> - Does both the loops in the following programs prints the correct string length?
+                </p>
+                <pre class="prettyprint">
+            #include&lt;stdio.h&gt;
+            
+            main()
+            {
+               int i;
+               char s[] = "hello";
+            
+               for(i=0; s[i]; ++i);
+                  printf("%d ", i);
+            
+               i=0; 
+               while(s[i++]);
+                  printf("%d ", i);
+            }
+            
+            </pre>
+                <p><a class="false" href="javascript:void(0);"><span>A</span> - Yes, both the loops prints the correct
+                        length
+                    </a></p>
+                <p><a class="true" href="javascript:void(0);"><span>B</span> - Only for loop prints the correct
+                        length</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>C</span> - Only while loop prints the correct
+                        length</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - Compile error in the program.</a></p>
+            </div>
+            <div class="A" id='A71'>
+                <h3>Answer : B</h3>
+                <h3>Explanation</h3>
+                <p>In while loop ‘i’ gets incremented after checking for ‘\0’, hence giving 1 more than the length.</p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('71')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q97">
+                <p><span>Q 5</span> - What is the output of the following program?</p>
+                <pre class="prettyprint">
+            #include&lt;stdio.h&gt;
+            
+            main()
+            {
+               char *s = "Hello";
+               
+               while(*s!=NULL)
+               printf("%c", *s++);
+            }
+            </pre>
+                <p><a class="true" href="javascript:void(0);"><span>A</span> - Hello</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>B</span> - Helloellolloloo</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>C</span> - ello</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - Compile error</a></p>
+            </div>
+            <div class="A" id='A97'>
+                <h3>Answer : A</h3>
+                <h3>Explanation</h3>
+                <p>NULL is equivalent to ‘\0’ in value. Statement *s++ prints the character first and increments the
+                    address later.</p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('97')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q120">
+                <p><span>Q 6</span> - In Windows & Linux, how many bytes exist for near, far and huge pointers?</p>
+                <p><a class="false" href="javascript:void(0);"><span>A</span> - Near: 1, far: 4, huge: 7</a></p>
+                <p><a class="true" href="javascript:void(0);"><span>B</span> - near: 4, far: 4, huge: 4</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>C</span> - near: 0, far: 4, huge: 4</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - near: 4, far: 5, huge: 6</a></p>
+            </div>
+            <div class="A" id='A120'>
+                <h3>Answer : B</h3>
+                <h3>Explanation</h3>
+                <p>In DOS, numbers of byte exist for near pointer = 2, far pointer = 4 and huge pointer = 4.</p>
+                <p>In Windows and Linux, numbers of byte exist for near pointer = 4, far pointer = 4 and huge pointer =
+                    4.</p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('120')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q138">
+                <p><span>Q 7</span> - “Stderr” is a standard error.</p>
+                <p><a class="false" href="javascript:void(0);"><span>A</span> - Yes</a></p>
+                <p><a class="true" href="javascript:void(0);"><span>B</span> - Standard error streams</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>C</span> - Standard error types</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - Standard error function</a></p>
+            </div>
+            <div class="A" id='A138'>
+                <h3>Answer : B</h3>
+                <h3>Explanation</h3>
+                <p>Standard error stream (Stderr) = Any program use it for error messages and diagnostics issue.</p>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('138')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q154">
+                <p><span>Q 8</span> - fgets() function is safer than gets() because in fgets() function you can specify
+                    the size of the buffer into which the supplied string will be stored.</p>
+                <p><a class="true" href="javascript:void(0);"><span>A</span> - True</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - False</a></p>
+            </div>
+            <div class="A" id='A154'>
+                <h3>Answer : A</h3>
+                <h3>Explanation</h3>
+                <p>Both functions retrive and store a string from console or file, but fgets() functions are more safer
+                    to use then gets() because gets() doesn't facilitate to detail the length of the buffer to store the
+                    string in and fgets() facilitates to specify a maximum string length.</p>
+                <pre class="prettyprint">
+               char *fgets(char *s, int size, FILE *stream);
+               char *gets(char *s);
+            </pre>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('154')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+        <div class="QA">
+            <div class="Q" id="Q179">
+                <p><span>Q 9</span> - What value strcmp() function returns when two strings are the same?</p>
+                <p><a class="true" href="javascript:void(0);"><span>A</span> - 0</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>B</span> - 2</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>C</span> - 1</a></p>
+                <p><a class="false" href="javascript:void(0);"><span>D</span> - Error</a></p>
+            </div>
+            <div class="A" id='A179'>
+                <h3>Answer : A</h3>
+                <h3>Explanation</h3>
+                <p>The C library function strcmp() compares two strings with each other and return the value
+                    accordingly.</p>
+                <pre class="prettyprint">
+               int strcmp(const char *str1, const char *str2)
+            </pre>
+                <p>Comparison happens between first string (str1) with second string (str2).</p>
+                <p>By comparing two strings, the values return by the function strcmp() are,</p>
+                <ul class="list">
+                    <li>If, str1 is less than str2 then Return value &lt; 0</li>
+                    <li>If, str2 is less than str1 then Return value &gt; 0</li>
+                    <li>If, str1 is equal to str2 then Return value = 0</li>
+                </ul>
+            </div>
+            <div class="B">
+                <button type="button" class="btn btn-default btn-xsm" onclick="javascript:showAnswer('179')"><i
+                        class="icon  icon-sort"></i> <span>Show Answer</span></button>
+            </div>
+        </div>
+            <script type="text/javascript" src="/exams.js"></script>
+            <script type="text/javascript" src="../../js/quiz.js"></script>
+            <script type="text/javascript" src="../../js/cheat.js"></script>
+</body>
+
+</html>

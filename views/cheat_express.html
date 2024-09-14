@@ -1,0 +1,845 @@
+<!DOCTYPE HTML>
+<html class="scrollbar" translate="no">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="content-language" content="en-gb">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Express Cheat Sheet</title>
+    <link rel="stylesheet" href="../../css/cheatsheet.css">
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            let html = document.documentElement.classList;
+            html.toggle('dark')
+        }
+    </script>
+    
+</head>
+
+<body class="bg-slate-100 dark:bg-slate-900">
+    
+    <div class="mx-auto flex flex-wrap md:py-5 flex-col md:flex-row items-center">
+        <div class="flex flex-col w-full mx-auto text-center my-8">
+            <div class="max-container w-full">
+                <h1 class="text-5xl mb-4"> <span class="text-slate-700 dark:text-slate-300 font-light">Express</span> <span class="text-slate-400 dark:text-slate-500 font-extralight hidden md:inline">cheatsheet</span></h1>
+                <div class="lg:w-3/5 mx-auto intro leading-relaxed text-slate-600">
+                    <p>A reference cheatsheet for Express, a flexible and streamlined web framework for Node.js</p>
+                </div>
+            </div>
+        </div>
+        <div id="mdLayout" class="mdLayout w-full max-container">
+            <div data-pw-desk="leaderboard_btf" id="pwDeskLbBtf1"></div>
+            <script type="text/javascript">
+                window.ramp.que.push(function() {
+                    window.ramp.addTag("pwDeskLbBtf1")
+                })
+            </script>
+            <div class="h2-wrap">
+                <h2 id="getting-started"><a class="h-anchor" href="#getting-started">#</a>Getting Started</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="hello-world"><a class="h-anchor" href="#hello-world">#</a>Hello World</h3>
+                        <div class="section">
+                            <ul class="marker-timeline">
+                                <li>
+                                    <p>&quot;Create project, add <code>package.json</code> configuration</p>
+                                    <pre><code class="hljs language-bash">$ <span class="hljs-built_in">mkdir</span> myapp <span class="hljs-comment"># create directory</span>
+$ <span class="hljs-built_in">cd</span> myapp    <span class="hljs-comment"># enter the directory</span>
+$ npm init -y <span class="hljs-comment"># Initialize a configuration</span>
+</code></pre>
+                                </li>
+                                <li>
+                                    <p>Install dependencies</p>
+                                    <pre><code class="hljs language-bash">$ npm install express
+</code></pre>
+                                </li>
+                                <li>
+                                    <p>Entry file <code>index.js</code> add code:</p>
+                                    <pre><code class="hljs language-js"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>)
+<span class="hljs-keyword">const</span> app = <span class="hljs-title function_">express</span>()
+<span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span>
+app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+  res. <span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;Hello World!&#x27;</span>)
+&#125;)
+app. <span class="hljs-title function_">listen</span>(port, <span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Listening port on <span class="hljs-subst">$&#123;port&#125;</span>`</span>)
+&#125;)
+</code></pre>
+                                </li>
+                                <li>
+                                    <p>Run the application using the following command</p>
+                                    <pre><code class="hljs language-bash">$ node index.js
+</code></pre>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="express-h"><a class="h-anchor" href="#express-h">#</a>express -h</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-bash">Usage: express [options] [<span class="hljs-built_in">dir</span>]
+Options:
+  -h, --<span class="hljs-built_in">help</span> output usage information
+      --version output version number
+  -e, --ejs add ejs engine support
+      --hbs add hbs engine support
+      --pug add pug engine support
+  -H, --hogan add hogan.js engine support
+      --no-view No view engine generated
+  -v, --view &lt;engine&gt; add view &lt;engine&gt; support (ejs|hbs|hjs|jade|pug|twig|vash) (default jade)
+  -c, --css &lt;engine&gt; add stylesheet &lt;engine&gt; support (less|stylus|compass|sass) (default css)
+      --git add .gitignore
+  -f, --force force non-empty directories
+</code></pre>
+                            <p class="wrap-text"></p>
+                            <p>Create a <code>myapp</code> project</p>
+                            <pre><code class="hljs language-bash">$ express --view=pug myapp
+<span class="hljs-comment"># run the application</span>
+$ DEBUG=myapp:*npm start
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="express"><a class="h-anchor" href="#express">#</a>express()</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="text-align:left">:-</th>
+                                        <th style="text-align:left">:-</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align:left"><code>express.json()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#express.json">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>express.raw()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#express.raw">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>express.Router()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#express.router">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>express.static()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#express.static">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>express.text()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#express.text">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>express.urlencoded()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#express.urlencoded">#</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="router"><a class="h-anchor" href="#router">#</a>Router</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="text-align:left">:-</th>
+                                        <th style="text-align:left">:-</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align:left"><code>router.all()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#router.all">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>router.METHOD()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#router.METHOD">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>router.param()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#router.param">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>router.route()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#router.route">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>router.use()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#router.use">#</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="application"><a class="h-anchor" href="#application">#</a>Application</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">var</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>)
+<span class="hljs-keyword">var</span> app = <span class="hljs-title function_">express</span>()
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">dir</span>(app.<span class="hljs-property">locals</span>.<span class="hljs-property">title</span>)
+<span class="hljs-comment">//=&gt; &#x27;My App&#x27;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">dir</span>(app.<span class="hljs-property">locals</span>.<span class="hljs-property">email</span>)
+<span class="hljs-comment">//=&gt; &#x27;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a5c8c0e5c8dcc4d5d58bc6cac8">[email&#160;protected]</a>&#x27;</span>
+</code></pre>
+                            <h4 id="attribute"><a class="h-anchor" href="#attribute">#</a>Attribute</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="text-align:left">:-</th>
+                                        <th style="text-align:left">:-</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align:left"><code>app.locals</code></td>
+                                        <td style="text-align:left">Local variables in the application <a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#app.locals">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>app.mountpath</code></td>
+                                        <td style="text-align:left">Path pattern for mounting sub-apps <a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#app.mountpath">#</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h4 id="events"><a class="h-anchor" href="#events">#</a>Events</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="text-align:left">:-</th>
+                                        <th style="text-align:left">:-</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align:left"><code>mount</code></td>
+                                        <td style="text-align:left">The child application is mounted on the parent application, and the event is triggered on the child application <a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#app.onmount">#</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h4 id="method"><a class="h-anchor" href="#method">#</a>Method</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="text-align:left">:-</th>
+                                        <th style="text-align:left">:-</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align:left"><code>app.all()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#app.all">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>app.delete()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#app.delete.method">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>app.disable()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#app.disable">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>app.disabled()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#app.disabled">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>app.enable()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#app.enable">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>app.enabled()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#app.enabled">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>app.engine()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#app.engine">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>app.get(name)</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#app.get">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>app.get(path, callback)</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#app.get.method">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>app.listen()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#app.listen">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>app.METHOD()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#app.METHOD">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>app.param()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#app.param">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>app.path()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#app.path">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>app.post()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#app.post.method">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>app.put()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#app.put.method">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>app.render()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#app.render">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>app.route()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#app.route">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>app.set()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#app.set">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>app.use()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#app.use">#</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="request"><a class="h-anchor" href="#request">#</a>Request</h3>
+                        <div class="section">
+                            <h4 id="attribute-2"><a class="h-anchor" href="#attribute-2">#</a>Attribute</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="text-align:left">:-</th>
+                                        <th style="text-align:left">:-</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align:left"><code>req.app</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#req.app">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>req.baseUrl</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#req.baseUrl">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>req.body</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#req.body">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>req.cookies</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#req.cookies">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>req.fresh</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#req.fresh">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>req.hostname</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#req.hostname">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>req.ip</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#req.ip">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>req.ips</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#req.ips">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>req.method</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#req.method">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>req.originalUrl</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#req.originalUrl">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>req.params</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#req.params">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>req.path</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#req.path">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>req.protocol</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#req.protocol">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>req.query</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#req.query">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>req.route</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#req.route">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>req.secure</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#req.secure">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>req.signedCookies</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#req.signedCookies">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>req.stale</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#req.stale">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>req.subdomains</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#req.subdomains">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>req.xhr</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#req.xhr">#</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h4 id="method-2"><a class="h-anchor" href="#method-2">#</a>Method</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="text-align:left">:-</th>
+                                        <th style="text-align:left">:-</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align:left"><code>req.accepts()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#req.accepts">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>req.acceptsCharsets()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#req.acceptsCharsets">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>req.acceptsEncodings()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#req.acceptsEncodings">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>req.acceptsLanguages()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#req.acceptsLanguages">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>req.get()</code></td>
+                                        <td style="text-align:left">Get HTTP request header fields <a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#req.get">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>req.is()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#req.is">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>req.param()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#req.param">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>req.range()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#req.range">#</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="response"><a class="h-anchor" href="#response">#</a>Response</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js">app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">dir</span>(res.<span class="hljs-property">headersSent</span>) <span class="hljs-comment">//false</span>
+  res.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;OK&#x27;</span>)
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">dir</span>(res.<span class="hljs-property">headersSent</span>) <span class="hljs-comment">//true</span>
+&#125;)
+</code></pre>
+                            <h4 id="attribute-3"><a class="h-anchor" href="#attribute-3">#</a>Attribute</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="text-align:left">:-</th>
+                                        <th style="text-align:left">:-</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align:left"><code>res.app</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#res.app">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>res.headersSent</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#res.headersSent">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>res.locals</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#res.locals">#</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h4 id="method-3"><a class="h-anchor" href="#method-3">#</a>Method</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="text-align:left">:-</th>
+                                        <th style="text-align:left">:-</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align:left"><code>res.append()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#res.append">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>res.attachment()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#res.attachment">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>res.cookie()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#res.cookie">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>res.clearCookie()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#res.clearCookie">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>res.download()</code></td>
+                                        <td style="text-align:left">Prompt for files to download <a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#res.download">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>res.end()</code></td>
+                                        <td style="text-align:left">end the response process <a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#res.end">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>res.format()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#res.format">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>res.get()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#res.get">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>res.json()</code></td>
+                                        <td style="text-align:left">Send JSON response <a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#res.json">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>res.jsonp()</code></td>
+                                        <td style="text-align:left">Send a response with JSONP support <a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#res.jsonp">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>res.links()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#res.links">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>res.location()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#res.location">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>res.redirect()</code></td>
+                                        <td style="text-align:left">Redirect request <a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#res.redirect">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>res.render()</code></td>
+                                        <td style="text-align:left">render view template <a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#res.render">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>res.send()</code></td>
+                                        <td style="text-align:left">Send various types of responses <a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#res.send">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>res.sendFile()</code></td>
+                                        <td style="text-align:left">Send a file as an octet stream <a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#res.sendFile">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>res.sendStatus()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#res.sendStatus">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>res.set()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#res.set">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>res.status()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#res.status">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>res.type()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#res.type">#</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left"><code>res.vary()</code></td>
+                                        <td style="text-align:left"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://expressjs.com/en/4x/api.html#res.vary">#</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="example"><a class="h-anchor" href="#example">#</a>Example</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap" row-span-2="">
+                        <h3 id="router-2"><a class="h-anchor" href="#router-2">#</a>Router</h3>
+                        <div class="section">
+                            <p>Called for any request passed to this router</p>
+                            <pre><code class="hljs language-js">router. <span class="hljs-title function_">use</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">req, res, next</span>) &#123;
+  <span class="hljs-comment">//.. some logic here .. like any other middleware</span>
+  <span class="hljs-title function_">next</span>()
+&#125;)
+</code></pre>
+                            <p>will handle any request ending in <code>/events</code></p>
+                            <pre><code class="hljs language-js"><span class="hljs-comment">//depends on where the router &quot;use()&quot;</span>
+router. <span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/events&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> &#123;
+  <span class="hljs-comment">//..</span>
+&#125;)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="response-2"><a class="h-anchor" href="#response-2">#</a>Response</h3>
+                        <div class="section">
+                            <p>The <code>res</code> object represents the HTTP response sent by the <code>Express</code> application when it receives an HTTP request</p>
+                            <pre><code class="hljs language-js">app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/user/:id&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+  res.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;user&#x27;</span> + req.<span class="hljs-property">params</span>.<span class="hljs-property">id</span>)
+&#125;)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="request-2"><a class="h-anchor" href="#request-2">#</a>Request</h3>
+                        <div class="section">
+                            <p>A <code>req</code> object represents an <code>HTTP</code> request and has properties for the request query string, parameters, body, HTTP headers, etc.</p>
+                            <pre><code class="hljs language-js">app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/user/:id&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+  res.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;user&#x27;</span> + req.<span class="hljs-property">params</span>.<span class="hljs-property">id</span>)
+&#125;)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="res-end"><a class="h-anchor" href="#res-end">#</a>res. end()</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js">res. <span class="hljs-title function_">end</span>()
+res.<span class="hljs-title function_">status</span>(<span class="hljs-number">404</span>).<span class="hljs-title function_">end</span>()
+</code></pre>
+                            <p>End the response process. This method actually comes from the Node core, specifically the <code>response.end()</code> method of <code>http.ServerResponse</code></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="res-json-body"><a class="h-anchor" href="#res-json-body">#</a>res.json([body])</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js">res.<span class="hljs-title function_">json</span>(<span class="hljs-literal">null</span>)
+res.<span class="hljs-title function_">json</span>(&#123; <span class="hljs-attr">user</span>: <span class="hljs-string">&#x27;tobi&#x27;</span> &#125;)
+res.<span class="hljs-title function_">status</span>(<span class="hljs-number">500</span>).<span class="hljs-title function_">json</span>(&#123; <span class="hljs-attr">error</span>: <span class="hljs-string">&#x27;message&#x27;</span> &#125;)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="app-all"><a class="h-anchor" href="#app-all">#</a>app.all</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js">app.<span class="hljs-title function_">all</span>(<span class="hljs-string">&#x27;/secret&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">req, res, next</span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;access secret section...&#x27;</span>)
+  <span class="hljs-title function_">next</span>() <span class="hljs-comment">// Pass control to the next handler</span>
+&#125;)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="app-delete"><a class="h-anchor" href="#app-delete">#</a>app.delete</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js">app.<span class="hljs-title function_">delete</span>(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) &#123;
+  res.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;DELETE request to homepage&#x27;</span>)
+&#125;)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="app-disable-name"><a class="h-anchor" href="#app-disable-name">#</a>app.disable(name)</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js">app.<span class="hljs-title function_">disable</span>(<span class="hljs-string">&#x27;trust proxy&#x27;</span>)
+app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;trust proxy&#x27;</span>)
+<span class="hljs-comment">// =&gt; false</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="app-disabled-name"><a class="h-anchor" href="#app-disabled-name">#</a>app.disabled(name)</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js">app.<span class="hljs-title function_">disabled</span>(<span class="hljs-string">&#x27;trust proxy&#x27;</span>)
+<span class="hljs-comment">// =&gt; true</span>
+
+app.<span class="hljs-title function_">enable</span>(<span class="hljs-string">&#x27;trust proxy&#x27;</span>)
+app.<span class="hljs-title function_">disabled</span>(<span class="hljs-string">&#x27;trust proxy&#x27;</span>)
+<span class="hljs-comment">// =&gt; false</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="app-engine-ext-callback"><a class="h-anchor" href="#app-engine-ext-callback">#</a>app.engine(ext, callback)</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">var</span> engines = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;consolidate&#x27;</span>)
+
+app.<span class="hljs-title function_">engine</span>(<span class="hljs-string">&#x27;haml&#x27;</span>, engines.<span class="hljs-property">haml</span>)
+app.<span class="hljs-title function_">engine</span>(<span class="hljs-string">&#x27;html&#x27;</span>, engines.<span class="hljs-property">hogan</span>)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="app-listen-port-host-backlog-callback"><a class="h-anchor" href="#app-listen-port-host-backlog-callback">#</a>app.listen([port[, host[, backlog]]][, callback])</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">var</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>)
+
+<span class="hljs-keyword">var</span> app = <span class="hljs-title function_">express</span>()
+app.<span class="hljs-title function_">listen</span>(<span class="hljs-number">3000</span>)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="routing"><a class="h-anchor" href="#routing">#</a>Routing</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>)
+<span class="hljs-keyword">const</span> app = <span class="hljs-title function_">express</span>()
+
+<span class="hljs-comment">//Respond to &quot;hello world&quot; when making a GET request to the homepage</span>
+app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+  res.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;hello world&#x27;</span>)
+&#125;)
+</code></pre>
+                            <pre><code class="hljs language-js"><span class="hljs-comment">// GET method routing</span>
+app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+  res.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;GET request to the homepage&#x27;</span>)
+&#125;)
+
+<span class="hljs-comment">// POST method routing</span>
+app.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+  res.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;POST request to the homepage&#x27;</span>)
+&#125;)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="middleware"><a class="h-anchor" href="#middleware">#</a>Middleware</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">logOriginalUrl</span> (req, res, next) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;ReqURL:&#x27;</span>, req.<span class="hljs-property">originalUrl</span>)
+  <span class="hljs-title function_">next</span>()
+&#125;
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">logMethod</span> (req, res, next) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Request Type:&#x27;</span>, req.<span class="hljs-property">method</span>)
+  <span class="hljs-title function_">next</span>()
+&#125;
+
+<span class="hljs-keyword">const</span> log = [logOriginalUrl, logMethod]
+
+app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/user/:id&#x27;</span>, log,
+  <span class="hljs-function">(<span class="hljs-params">req, res, next</span>)=&gt;</span>&#123;
+    res.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;User Info&#x27;</span>)
+  &#125;
+)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="using-templates"><a class="h-anchor" href="#using-templates">#</a>Using templates</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js">app.<span class="hljs-title function_">set</span>(<span class="hljs-string">&#x27;view engine&#x27;</span>, <span class="hljs-string">&#x27;pug&#x27;</span>)
+</code></pre>
+                            <p>Create a <code>Pug</code> template file named <code>index.pug</code> in the <code>views</code> directory with the following content</p>
+                            <pre><code class="hljs language-pug">html
+  the head
+    title= title
+  the body
+    h1=message
+</code></pre>
+                            <p>Create a route to render the <code>index.pug</code> file. If the view engine property is not set, the extension of the view file must be specified</p>
+                            <pre><code class="hljs language-js">app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
+  res. <span class="hljs-title function_">render</span>(<span class="hljs-string">&#x27;index&#x27;</span>, &#123;
+    <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;Hey&#x27;</span>, <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;Hello there!&#x27;</span>
+  &#125;)
+&#125;)
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div data-pw-desk="med_rect_btf" id="pwDeskMedRectBtf3"></div>
+            <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+            <script type="text/javascript">
+                window.ramp.que.push(function() {
+                    window.ramp.addTag("pwDeskMedRectBtf3")
+                })
+            </script>
+        </div>
+    </div>
+    <script>
+        ! function(e, n, t, r) {
+            var o = n.createElement(t);
+            o.async = 1, o.src = "https://a.ad.gt/api/v1/u/matches/514?url=" + encodeURIComponent(e.location.href) + "&ref=" + encodeURIComponent(n.referrer);
+            var a = n.getElementsByTagName(t)[0];
+            a.parentNode.insertBefore(o, a)
+        }(window, document, "script")
+    </script>
+    <div id="mysearch" class="z-50 fixed inset-0 flex justify-center bg-slate-600/80 dark:bg-slate-900/90 items-start text-sm z-50 overflow-hidden lg:pt-16 lg:pb-20 hidden">
+        <div id="mysearch-box" class="lg:max-w-screen-lg w-full flex flex-col justify-between bg-white dark:bg-slate-700 shadow-3xl dark:shadow-3xl lg:rounded-lg lg:max-h-832 min-h-320 h-full">
+            <div class="flex items-center h-16 flex-none border-b border-slate-200 dark:border-slate-700">
+                <div class="w-full h-full">
+                    <form class="flex items-center w-full h-full outline-none rounded-tl-lg"><label for="mysearch-input" id="mysearch-label" class="h-full w-14 mt-1 ml-1 px-4 flex items-center justify-center transition-colors duration-200 ease-in-out text-emerald-200"><div class="text-2xl text-emerald-500"><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="1em" width="1em"><path d="M942.14826666 878.7968l-200.56746667-229.92213333C795.37493333 583.8848 827.73333333 500.5312 827.73333333 409.6 827.73333333 202.27413333 659.59253333 34.13333333 452.26666666 34.13333333 244.87253333 34.13333333 76.79999999 202.27413333 76.79999999 409.6S244.87253333 785.06666667 452.26666666 785.06666667c77.14133333 0 148.82133333-23.3472 208.41813333-63.21493334l199.33866667 228.5568c19.72906667 22.7328 54.272 24.91733333 76.8 5.25653334C959.62453333 935.86773333 961.87733333 901.46133333 942.14826666 878.7968zM179.19999999 409.6c0-150.59626667 122.4704-273.06666667 273.06666667-273.06666667 150.59626667 0 273.06666667 122.4704 273.06666667 273.06666667s-122.4704 273.06666667-273.06666667 273.06666667C301.67039999 682.66666667 179.19999999 560.19626667 179.19999999 409.6z"></path></svg></div></label>
+                        <div
+                            class="relative flex-1"> <input class="flex-1 font-light h-full bg-transparent focus:text-slate-900 text-slate-500 dark:text-slate-300 placeholder-slate-400 placeholder-opacity-80 shadow-none outline-none truncate text-lg sm:text-2xl caret-color-emerald-400 leading-normalized w-full appearance-none rounded-none transition-colors duration-200 ease-in-out"
+                                id="mysearch-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search for cheatsheet" maxlength="128" type="text" enterkeyhint="go"></div> <button id="mysearch-clear" type="reset"
+                    class="items-center justify-center h-full w-14 px-4 text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-100 opacity-75 fill-current cursor-pointer transition-fast-out flex"><i class="icon icon-close text-xs font-bold"></i></button></form>
+            </div>
+            <div class="w-px h-8 bg-slate-100 dark:bg-slate-400/20 flex-none"></div> <button class="cancel mr-1 px-4 h-full text-slate-500 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-300"> Cancel</button></div>
+        <div class="flex flex-grow overflow-hidden lg:rounded-br-lg">
+            <div class="relative w-full flex-none overflow-y-auto lg:w-1/2">
+                <ul id="mysearch-list"></ul>
+            </div>
+            <div class="preview-panel shadow-inner bg-slate-100 dark:bg-slate-800 lg:block w-1/2 flex-none overflow-y-auto"></div>
+        </div>
+    </div>
+    </div>
+
+    <div id="carbon_container"></div>
+</body>
+<script src="main.js"></script>
+<script>
+    // Get all pre > code elements
+    const codeBlocks = document.querySelectorAll('pre > code');
+    const initInnerHTML = '<svg height="1em" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path> </svg>';
+    const successInnerHTML = '<svg height="1em" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>';
+    codeBlocks.forEach(function(codeBlock) {
+        // Create a copy button element
+        const copyButton = document.createElement('button');
+        copyButton.className = 'bg-emerald-500 p-2 text-white fadeIn shadow-xl rounded flex items-center absolute top-2 right-2';
+        copyButton.innerHTML = initInnerHTML;
+        copyButton.style.opacity = "0";
+        const parent = codeBlock.parentNode;
+
+        parent.style = "position: relative;"
+        parent.insertBefore(copyButton, codeBlock);
+
+        // Add click event listener to copy button
+        copyButton.addEventListener('click', () => {
+            navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+                copyButton.innerHTML = successInnerHTML;
+                setTimeout(() => {
+                    copyButton.innerHTML = initInnerHTML;
+                }, 1000);
+            });
+        });
+
+        parent.addEventListener('mouseenter', () => {
+            copyButton.style.opacity = "1";
+        });
+        parent.addEventListener('mouseleave', () => {
+            copyButton.style.opacity = "0";
+        });
+    });
+</script>
+
+
+</html>
